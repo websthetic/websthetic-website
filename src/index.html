@@ -1,0 +1,518 @@
+---
+title: "Websthetic | Toronto, Canada"
+description: "Meta description for the page"
+permalink: "/"
+tags: "sitemap" # content/content.json will make sure that all pages in content/ are marked with a "sitemap" tag, for automatic sitemap generation. As index.html is not in content/, we need to add it here to ensure the root page is included in the sitemap generation
+---
+
+{% extends "layouts/base.html" %}
+
+{% block head %}
+    <!-- Critical styles are loaded first -->
+    <link rel="stylesheet" href="/assets/css/critical.css"/>
+
+    <!-- If we're in production, defer the rest of the home page styles. In development, always load it. Otherwise the site will break when hot-reload is used. -->
+    {% if client.isProduction %}
+        <link rel="preload" href="/assets/css/local.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript>
+            <link rel="stylesheet" href="/assets/css/local.css">
+        </noscript>
+
+    {% else %}
+        <link rel="stylesheet" href="/assets/css/local.css"/>
+    {% endif %}
+
+    <!-- To ensure proper validation, prevent errors, and encourage developers to check, schema's are an opt-in feature. They're very bespoke and requires some customising  -->
+    <!-- Uncomment the code below to enable Structured Data, and test it when you deploy to Netlify - https://developers.google.com/search/docs/appearance/structured-data -->
+    <!-- {% include "components/home-schema.html" %} -->
+{% endblock %}
+
+{% block body %}
+
+<!-- GSAP -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+<!-- Splitting.js -->
+<link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css">
+<script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+
+<!-- Hero -->
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+
+<!-- Main -->
+<script src="/assets/js/main.js"></script>
+
+<!-- ============================================ -->
+<!--                    Hero                      -->
+<!-- ============================================ -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+        <h1 class="hero-title">Build, Launch And Grow Your Online Presence</h1>
+        <p class="hero-text">We design &amp; develop modern, high-performing websites built with the same standards and strategies used by top brands.</p>
+        <a class="hero-cta" href="/contact">Contact Us ↗</a>
+    </div>
+
+    <!-- Globe canvas -->
+    <canvas class="hero-globe" id="heroGlobe" aria-hidden="true"></canvas>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator">
+        <div class="scroll-mouse">
+            <div class="scroll-dot"></div>
+        </div>
+        <span class="scroll-label">Scroll Down</span>
+    </div>
+
+</section>
+
+<!-- ============================================ -->
+<!--                Text Section                  -->
+<!-- ============================================ -->
+<section id="text-section">
+  <div class="cs-container">
+    <h2 class="cs-text-large" data-splitting>
+Your business deserves a <span class="cs-highlight">presence</span> that can stand alongside the best in your industry.</h2>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!--               Marquee Cards                  -->
+<!-- ============================================ -->
+
+<section id="marquee-cards">
+    <div class="cs-container">
+        <h2 class="cs-title">Websites That<br>Make An Impression</h2>
+    </div>
+
+    <!-- Row 1 - scrolls left -->
+    <div class="cs-track-wrapper" aria-hidden="true">
+        <div class="cs-track cs-track-left">
+
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-1.webp" alt="Project 1" loading="lazy">
+            </div>
+
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-2.webp" alt="Project 2" loading="lazy">
+            </div>
+
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-3.webp" alt="Project 3" loading="lazy">
+            </div>
+
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-4.webp" alt="Project 4" loading="lazy">
+            </div>
+
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-5.webp" alt="Project 5" loading="lazy">
+            </div>
+
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-6.webp" alt="Project 6" loading="lazy">
+            </div>
+
+            <!-- Duplicates for seamless loop -->
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-1.webp" alt="Project 1" loading="lazy">
+            </div>
+
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-2.webp" alt="Project 2" loading="lazy">
+            </div>
+
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-3.webp" alt="Project 3" loading="lazy">
+            </div>
+
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-4.webp" alt="Project 4" loading="lazy">
+            </div>
+
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-5.webp" alt="Project 5" loading="lazy">
+            </div>
+
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-6.webp" alt="Project 6" loading="lazy">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Row 2 - scrolls right -->
+    <div class="cs-track-wrapper" aria-hidden="true">
+        <div class="cs-track cs-track-right">
+
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-7.webp" alt="Project 7" loading="lazy">
+            </div>
+
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-8.webp" alt="Project 8" loading="lazy">
+            </div>
+
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-9.webp" alt="Project 9" loading="lazy">
+            </div>
+
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-10.webp" alt="Project 10" loading="lazy">
+            </div>
+
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-11.webp" alt="Project 11" loading="lazy">
+            </div>
+
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-12.webp" alt="Project 12" loading="lazy">
+            </div>
+
+            <!-- Duplicates for seamless loop -->
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-7.webp" alt="Project 7" loading="lazy">
+            </div>
+
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-8.webp" alt="Project 8" loading="lazy">
+            </div>
+
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-9.webp" alt="Project 9" loading="lazy">
+            </div>
+
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-10.webp" alt="Project 10" loading="lazy">
+            </div>
+
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-11.webp" alt="Project 11" loading="lazy">
+            </div>
+
+            <div class="cs-card">
+                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-12.webp" alt="Project 12" loading="lazy">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!--                  How We Work                 -->
+<!-- ============================================ -->
+
+<section class="process-1963" id="our-process">
+
+    <!-- Desktop: sticky horizontal scroll (hidden on mobile) -->
+    <div class="cs-sticky-outer">
+        <div class="cs-sticky-inner">
+            <div class="cs-track">
+
+                <div class="cs-left">
+                    <h2 class="cs-title">How it<br>comes<br>together</h2>
+                    <div></div>
+                </div>
+
+                <div class="cs-item">
+                    <div class="cs-number">Step 01<span class="cs-dot">.</span></div>
+                    <div class="cs-bottom">
+                        <h3 class="cs-h3">Strategy</h3>
+                        <p class="cs-item-text">We start by understanding your business, goals, and audience so we can plan a website structure and user journey built to attract and convert.</p>
+                    </div>
+                </div>
+
+                <div class="cs-item">
+                    <div class="cs-number">Step 02<span class="cs-dot">.</span></div>
+                    <div class="cs-bottom">
+                        <h3 class="cs-h3">Design</h3>
+                        <p class="cs-item-text">We create a clean, modern design tailored to your brand, with layouts focused on clarity, trust, and conversion across every device.</p>
+                    </div>
+                </div>
+
+                <div class="cs-item">
+                    <div class="cs-number">Step 03<span class="cs-dot">.</span></div>
+                    <div class="cs-bottom">
+                        <h3 class="cs-h3">Development</h3>
+                        <p class="cs-item-text">We build a fast, responsive, and scalable website that brings the approved design to life while prioritizing performance, speed, and reliability.</p>
+                    </div>
+                </div>
+
+                <div class="cs-item">
+                    <div class="cs-number">Step 04<span class="cs-dot">.</span></div>
+                    <div class="cs-bottom">
+                        <h3 class="cs-h3">Optimization</h3>
+                        <p class="cs-item-text">We test and refine your website across devices and browsers to ensure a smooth, consistent, and polished user experience before launch.</p>
+                    </div>
+                </div>
+
+                <div class="cs-item">
+                    <div class="cs-number">Step 05<span class="cs-dot">.</span></div>
+                    <div class="cs-bottom">
+                        <h3 class="cs-h3">Launch &amp; Growth</h3>
+                        <p class="cs-item-text">We launch your website with the right tracking, analytics, and integrations in place so it is ready for visibility, SEO, and ongoing growth.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile: stacked list (hidden on desktop) -->
+    <div class="cs-mobile">
+        <h2 class="cs-title">How it<br>comes<br>together</h2>
+
+        <div class="cs-item">
+            <span class="cs-number">Step 01<span class="cs-dot">.</span></span>
+            <h3 class="cs-h3">Strategy</h3>
+            <p class="cs-item-text">We start by understanding your business, goals, and audience so we can plan a website structure and user journey built to attract and convert.</p>
+        </div>
+
+        <div class="cs-item">
+            <span class="cs-number">Step 02<span class="cs-dot">.</span></span>
+            <h3 class="cs-h3">Design</h3>
+            <p class="cs-item-text">We create a clean, modern design tailored to your brand, with layouts focused on clarity, trust, and conversion across every device.</p>
+        </div>
+
+        <div class="cs-item">
+            <span class="cs-number">Step 03<span class="cs-dot">.</span></span>
+            <h3 class="cs-h3">Development</h3>
+            <p class="cs-item-text">We build a fast, responsive, and scalable website that brings the approved design to life while prioritizing performance, speed, and reliability.</p>
+        </div>
+
+        <div class="cs-item">
+            <span class="cs-number">Step 04<span class="cs-dot">.</span></span>
+            <h3 class="cs-h3">Optimization</h3>
+            <p class="cs-item-text">We test and refine your website across devices and browsers to ensure a smooth, consistent, and polished user experience before launch.</p>
+        </div>
+
+        <div class="cs-item">
+            <span class="cs-number">Step 05<span class="cs-dot">.</span></span>
+            <h3 class="cs-h3">Launch &amp; Growth</h3>
+            <p class="cs-item-text">We launch your website with the right tracking, analytics, and integrations in place so it is ready for visibility, SEO, and ongoing growth.</p>
+        </div>
+    </div>
+
+</section>
+
+<!-- ============================================ -->
+<!--                  Marquee                     -->
+<!-- ============================================ -->
+<section class="text-rotator-strip">
+  <div class="rotator-inner">
+    <div class="rotator-static-group">
+      <span class="rotator-static rotator-static--built">Websites</span>
+      <span class="rotator-static rotator-static--website">Built</span>
+      <span class="rotator-static rotator-static--built">For:</span>
+    </div>
+    <span class="rotator-wrapper">
+      <span class="rotator-track">
+        <span class="rotator-word">dental</span>
+        <span class="rotator-word">real estate</span>
+        <span class="rotator-word">medical</span>
+        <span class="rotator-word">fitness</span>
+        <span class="rotator-word">restaurants</span>
+        <span class="rotator-word">salons</span>
+        <span class="rotator-word">contractors</span>
+        <span class="rotator-word">law</span>
+        <span class="rotator-word">accounting</span>
+        <span class="rotator-word">local brands</span>
+        <span class="rotator-word">dental</span>
+      </span>
+    </span>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!--                 Portfolio                    -->
+<!-- ============================================ -->
+<section class="lw-section" id="our-portfolio">
+
+  <div class="lw-heading" id="lwHeading">
+    <h2>Recent Work</h2>
+  </div>
+
+  <!-- ── DESKTOP sticky wrapper ── -->
+  <div class="lw-sticky" id="lwSticky" data-project-count="1">
+
+    <!-- LEFT -->
+    <div class="lw-left" id="lwLeft">
+      <div class="lw-meta__title-wrap" id="lwTitleWrap">
+        <p class="lw-meta__counter" id="lwCounter">01 / 01</p>
+        <h3 class="lw-meta__name" id="lwMetaName">Revibe</h3>
+      </div>
+      <div class="lw-meta" id="lwMeta">
+        <p class="lw-meta__desc" id="lwMetaDesc">Health &amp; Wellness Clinic</p>
+        <a class="lw-meta__btn" id="lwMetaBtn" href="https://revibeto.com/" target="_blank" rel="noopener noreferrer">
+          View Project
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+        </a>
+      </div>
+    </div><!-- /lw-left -->
+
+    <!-- RIGHT -->
+    <div class="lw-right" id="lwRight">
+
+      <div class="lw-slide is-active" data-slide="0" data-num="01." data-href="https://example.com/revibe">
+        <div class="lw-slide__info">
+          <h3 class="lw-slide__name">Revibe</h3>
+          <p class="lw-slide__desc">Health &amp; Wellness Clinic</p>
+        </div>
+        <img src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/revibe-portfolio.webp"
+             alt="Revibe project preview" loading="lazy">
+      </div>
+
+    </div><!-- /lw-right -->
+
+  </div><!-- /lw-sticky -->
+
+  <!-- ── MOBILE stacked cards (hidden on desktop) ── -->
+  <div class="lw-mobile-stack">
+
+    <div class="lw-card">
+      <div class="lw-card__img-wrap">
+        <img src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/revibe-portfolio.webp"
+             alt="Revibe project preview" loading="lazy">
+      </div>
+      <div class="lw-card__body">
+        <p class="lw-card__counter">01 / 01</p>
+        <h3 class="lw-card__name">Revibe</h3>
+        <p class="lw-card__desc">Health &amp; Wellness Clinic</p>
+        <a class="lw-card__btn" href="https://example.com/revibe" target="_blank" rel="noopener noreferrer">
+          View Project
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /lw-mobile-stack -->
+
+</section>
+
+<!-- ============================================ -->
+<!--                  Services                    -->
+<!-- ============================================ -->
+<section id="our-services">
+  <div class="cs-container">
+    <div class="cs-header">
+      <h2 class="cs-title">How We Can Help</h2>
+    </div>
+  </div>
+
+  <ul class="cs-card-group">
+
+    <li class="cs-item">
+      <span class="cs-number">01.</span>
+      <div class="cs-item-right">
+        <h3 class="cs-h3">Web Design</h3>
+        <div class="cs-accordion">
+          <p class="cs-service-text">Custom layouts that reflect your brand and convert visitors</p>
+          <ul class="cs-pills">
+            <li class="cs-pill">Responsive Design</li>
+            <li class="cs-pill">UI/UX</li>
+            <li class="cs-pill">Wireframing</li>
+            <li class="cs-pill">Figma</li>
+          </ul>
+        </div>
+      </div>
+      <span class="cs-icon">
+        <span class="cs-icon-plus">+</span>
+        <span class="cs-icon-minus">−</span>
+      </span>
+    </li>
+
+    <li class="cs-item">
+      <span class="cs-number">02.</span>
+      <div class="cs-item-right">
+        <h3 class="cs-h3">Development</h3>
+        <div class="cs-accordion">
+          <p class="cs-service-text">Hand-coded for speed, security, and flawless performance</p>
+          <ul class="cs-pills">
+            <li class="cs-pill">HTML / CSS</li>
+            <li class="cs-pill">JavaScript</li>
+            <li class="cs-pill">No Page Builders</li>
+            <li class="cs-pill">Custom Code</li>
+          </ul>
+        </div>
+      </div>
+      <span class="cs-icon">
+        <span class="cs-icon-plus">+</span>
+        <span class="cs-icon-minus">−</span>
+      </span>
+    </li>
+
+    <li class="cs-item">
+      <span class="cs-number">03.</span>
+      <div class="cs-item-right">
+        <h3 class="cs-h3">Search Engine Optimization</h3>
+        <div class="cs-accordion">
+          <p class="cs-service-text">Get found online with proven SEO strategies</p>
+          <ul class="cs-pills">
+            <li class="cs-pill">On-Page SEO</li>
+            <li class="cs-pill">Local SEO</li>
+            <li class="cs-pill">Keyword Research</li>
+            <li class="cs-pill">Schema Markup</li>
+          </ul>
+        </div>
+      </div>
+      <span class="cs-icon">
+        <span class="cs-icon-plus">+</span>
+        <span class="cs-icon-minus">−</span>
+      </span>
+    </li>
+
+    <li class="cs-item">
+      <span class="cs-number">04.</span>
+      <div class="cs-item-right">
+        <h3 class="cs-h3">Performance Optimization</h3>
+        <div class="cs-accordion">
+          <p class="cs-service-text">Lightning-fast load times that keep visitors engaged</p>
+          <ul class="cs-pills">
+            <li class="cs-pill">Core Web Vitals</li>
+            <li class="cs-pill">Image Optimization</li>
+            <li class="cs-pill">Lazy Loading</li>
+            <li class="cs-pill">Caching</li>
+          </ul>
+        </div>
+      </div>
+      <span class="cs-icon">
+        <span class="cs-icon-plus">+</span>
+        <span class="cs-icon-minus">−</span>
+      </span>
+    </li>
+
+    <li class="cs-item">
+      <span class="cs-number">05.</span>
+      <div class="cs-item-right">
+        <h3 class="cs-h3">Support &amp; Maintenance</h3>
+        <div class="cs-accordion">
+          <p class="cs-service-text">Keep your site secure, updated, and running smoothly</p>
+          <ul class="cs-pills">
+            <li class="cs-pill">Monthly Updates</li>
+            <li class="cs-pill">Security Monitoring</li>
+            <li class="cs-pill">Bug Fixes</li>
+            <li class="cs-pill">24/7 Support</li>
+          </ul>
+        </div>
+      </div>
+      <span class="cs-icon">
+        <span class="cs-icon-plus">+</span>
+        <span class="cs-icon-minus">−</span>
+      </span>
+    </li>
+
+  </ul>
+</section>
+
+{% include 'sections/cta.html' %}
+
+
+ 
+
+{% endblock %}
