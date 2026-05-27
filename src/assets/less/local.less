@@ -510,9 +510,7 @@
             h2 {
                 font-family: var(--headerFont);
                 font-size: clamp(3.25rem, 8vw, 6.875rem);
-                
                 line-height: 0.88em;
-                
                 color: var(--bodyTextColor);
                 margin: 0;
             }
@@ -620,130 +618,23 @@
             }
         }
 
-        .lw-mobile-stack {
+        .lw-sticky {
             display: none;
         }
 
-        .lw-sticky {
+        .lw-mobile-stack {
             display: grid;
-            grid-template-columns: 21.25rem 1fr;
-            height: 100vh;
-            overflow: hidden;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 0 3.75rem 8rem;
         }
 
-        .lw-left {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            gap: 1.5rem;
-            padding: 3.25rem 0 3.25rem 3.75rem;
+        .lw-card__img-wrap {
+            aspect-ratio: 16 / 10;
         }
 
-        .lw-meta__title-wrap {
-            display: flex;
-            flex-direction: column;
-            gap: 0.625rem;
-        }
-
-        .lw-meta__counter {
-            font-size: 0.6875rem;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            color: #555;
-            margin: 0;
-        }
-
-        .lw-meta__name {
-            font-family: var(--headerFont);
-            text-transform: uppercase;
-            font-size: clamp(2.25rem, 4vw, 3.5rem);
-            font-weight: 400;
-            color: #fff;
-            line-height: 1.05em;
-            margin: 0;
-        }
-
-        .lw-meta {
-            display: flex;
-            flex-direction: column;
-            gap: 0.625rem;
-        }
-
-        .lw-meta__desc {
-            font-size: 1.125rem;
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.4);
-            line-height: 1.6em;
-            max-width: 16.25rem;
-            margin: 0;
-        }
-
-        .lw-meta__btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-            padding: 0.625rem 1.25rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            text-decoration: none;
-            width: fit-content;
-            transition: border-color 0.25s ease;
-            border-radius: 50rem;
-
-            &:hover {
-                border-color: rgba(255, 255, 255, 0.55);
-            }
-
-            svg {
-                flex-shrink: 0;
-            }
-        }
-
-        .lw-right {
-            position: relative;
-            overflow: hidden;
-            height: 100%;
-        }
-
-        .lw-slide {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            overflow: hidden;
-
-            &.is-active {
-                opacity: 1;
-            }
-
-            img {
-                width: 90%;
-                max-width: 51.25rem;
-                height: 100%;
-                max-height: 82vh;
-                object-fit: cover;
-                object-position: center;
-                display: block;
-                filter: brightness(0.9);
-                border-radius: 0.75rem;
-            }
-
-            .lw-slide__info {
-                position: absolute;
-                width: 1px;
-                height: 1px;
-                overflow: hidden;
-                clip: rect(0 0 0 0);
-                clip-path: inset(50%);
-                white-space: nowrap;
-            }
+        .lw-card__name {
+            font-size: clamp(2rem, 3vw, 2.75rem);
         }
     }
 }

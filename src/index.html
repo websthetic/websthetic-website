@@ -329,60 +329,24 @@ Your business deserves a <span class="cs-highlight">presence</span> that can sta
 <!--                 Portfolio                    -->
 <!-- ============================================ -->
 <section class="lw-section" id="our-portfolio">
-
   <div class="lw-heading" id="lwHeading">
     <h2>Recent Work</h2>
   </div>
 
-  <!-- ── DESKTOP sticky wrapper ── -->
-  <div class="lw-sticky" id="lwSticky" data-project-count="1">
-
-    <!-- LEFT -->
-    <div class="lw-left" id="lwLeft">
-      <div class="lw-meta__title-wrap" id="lwTitleWrap">
-        <p class="lw-meta__counter" id="lwCounter">01 / 01</p>
-        <h3 class="lw-meta__name" id="lwMetaName">Revibe</h3>
-      </div>
-      <div class="lw-meta" id="lwMeta">
-        <p class="lw-meta__desc" id="lwMetaDesc">Health &amp; Wellness Clinic</p>
-        <a class="lw-meta__btn" id="lwMetaBtn" href="https://revibeto.com/" target="_blank" rel="noopener noreferrer">
-          View Project
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-            <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.2"/>
-          </svg>
-        </a>
-      </div>
-    </div><!-- /lw-left -->
-
-    <!-- RIGHT -->
-    <div class="lw-right" id="lwRight">
-
-      <div class="lw-slide is-active" data-slide="0" data-num="01." data-href="https://example.com/revibe">
-        <div class="lw-slide__info">
-          <h3 class="lw-slide__name">Revibe</h3>
-          <p class="lw-slide__desc">Health &amp; Wellness Clinic</p>
-        </div>
-        <img src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/revibe-portfolio.webp"
-             alt="Revibe project preview" loading="lazy">
-      </div>
-
-    </div><!-- /lw-right -->
-
-  </div><!-- /lw-sticky -->
-
-  <!-- ── MOBILE stacked cards (hidden on desktop) ── -->
   <div class="lw-mobile-stack">
 
+    <!-- Project 1 -->
     <div class="lw-card">
       <div class="lw-card__img-wrap">
-        <img src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/revibe-portfolio.webp"
-             alt="Revibe project preview" loading="lazy">
+        <img
+          src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/revibe-portfolio.webp"
+          alt="Revibe project preview" loading="lazy">
       </div>
       <div class="lw-card__body">
-        <p class="lw-card__counter">01 / 01</p>
+        <p class="lw-card__counter">01 / 02</p>
         <h3 class="lw-card__name">Revibe</h3>
-        <p class="lw-card__desc">Health &amp; Wellness Clinic</p>
-        <a class="lw-card__btn" href="https://example.com/revibe" target="_blank" rel="noopener noreferrer">
+        <p class="lw-card__desc">Health &amp; Social Wellness Club</p>
+        <a class="lw-card__btn" href="https://revibeto.com/" target="_blank" rel="noopener noreferrer">
           View Project
           <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
             <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.2"/>
@@ -391,8 +355,27 @@ Your business deserves a <span class="cs-highlight">presence</span> that can sta
       </div>
     </div>
 
-  </div><!-- /lw-mobile-stack -->
+    <!-- Project 2 -->
+    <div class="lw-card">
+      <div class="lw-card__img-wrap">
+        <img
+          src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/recess-athletics-club.webp"
+          alt="Placeholder project preview" loading="lazy">
+      </div>
+      <div class="lw-card__body">
+        <p class="lw-card__counter">02 / 02</p>
+        <h3 class="lw-card__name">Recess Athletics Club</h3>
+        <p class="lw-card__desc">Recreation Club</p>
+        <a class="lw-card__btn" href="https://therecess.club/" target="_blank" rel="noopener noreferrer">
+          View Project
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+        </a>
+      </div>
+    </div>
 
+  </div>
 </section>
 
 <!-- ============================================ -->
@@ -511,8 +494,5 @@ Your business deserves a <span class="cs-highlight">presence</span> that can sta
 </section>
 
 {% include 'sections/cta.html' %}
-
-
- 
 
 {% endblock %}

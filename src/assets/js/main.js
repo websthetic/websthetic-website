@@ -385,3 +385,4 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .catch(function () { draw(); });
 });
+
