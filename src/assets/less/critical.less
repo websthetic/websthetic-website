@@ -1,231 +1,392 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// CRITICAL PAGE STYLES
+// Above-the-fold and high-priority styles for the home page's landing section.
+// Put the first section of the home page in here, so it loads immediately.
+// The rest of the home page styles in local.css will be deferred and
+// ─────────────────────────────────────────────────────────────────────────────
+
 /*-- -------------------------- -->
-<---         Hero Section        -->
+<---           Hero             -->
 <--- -------------------------- -*/
 
-/* ── Mobile / Base ── */
-@media only screen and (min-width: 0px) {
-    .hero {
-        position: sticky;
-        top: 0;
-        z-index: 0;
-        width: 100%;
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #hero-143 {
+        /* fills the screen and centers the content */
         min-height: 100vh;
+        min-height: 100svh;
+        /* top and bottom match so the content sits in the true center, and clears the fixed navigation */
+        padding: (112/16rem) (16/16rem);
+        /* prevents padding from affecting height */
+        box-sizing: border-box;
         display: flex;
+        justify-content: center;
         align-items: center;
-        padding: 0 clamp(1.5rem, 6vw, 6rem) clamp(6rem, 12vh, 10rem);
+        text-align: center;
+        background-color: var(--dark);
+        position: relative;
+        z-index: 1;
         overflow: hidden;
-        background-color: #0d0c0b;
 
-        /* subtle warm glow bottom-left */
-        &::before {
-            content: "";
+        .cs-background {
+            /* Dark navy space background: a soft blue glow + navy gradient, with three star layers on top (the element itself and its two pseudos). Each layer twinkles on its own timing. Star layers are tiled at different sizes so the pattern doesn't look repeated */
+            width: 100%;
+            height: 100%;
             position: absolute;
-            bottom: -10%;
-            left: -5%;
-            width: 55%;
-            height: 70%;
-            background: radial-gradient(
-                ellipse at bottom left,
-                rgba(100, 40, 10, 0.5) 0%,
-                transparent 70%
-            );
+            top: 0;
+            left: 0;
+            z-index: -2;
             pointer-events: none;
-            z-index: 0;
-        }
+            /* --parallax-bg is set by hero-scroll.js */
+            transform: translateY(var(--parallax-bg, 0px));
+            will-change: transform;
+            background-color: var(--dark);
+            background-image:
+                /* dense layer of tiny faint stars */
+                radial-gradient(circle at 7% 13%, color-mix(in srgb, var(--on-dark) 32%, transparent) 0 0.6px, transparent 1px),
+                radial-gradient(circle at 31% 41%, color-mix(in srgb, var(--on-dark) 26%, transparent) 0 0.6px, transparent 1px),
+                radial-gradient(circle at 54% 19%, color-mix(in srgb, var(--on-dark) 30%, transparent) 0 0.6px, transparent 1px),
+                radial-gradient(circle at 76% 63%, color-mix(in srgb, var(--on-dark) 24%, transparent) 0 0.6px, transparent 1px),
+                radial-gradient(circle at 92% 37%, color-mix(in srgb, var(--on-dark) 28%, transparent) 0 0.6px, transparent 1px),
+                radial-gradient(circle at 18% 79%, color-mix(in srgb, var(--on-dark) 25%, transparent) 0 0.6px, transparent 1px),
+                radial-gradient(circle at 46% 92%, color-mix(in srgb, var(--on-dark) 30%, transparent) 0 0.6px, transparent 1px),
+                radial-gradient(circle at 67% 84%, color-mix(in srgb, var(--on-dark) 22%, transparent) 0 0.6px, transparent 1px),
+                /* soft purple glow at the top */
+                radial-gradient(ellipse 70% 55% at 50% 0%, color-mix(in srgb, var(--glow) 16.8%, transparent), transparent 70%),
+                /* black gradient */
+                linear-gradient(180deg, var(--dark) 0%, var(--dark-2) 100%);
+            /* 8 tiny-star tiles, then the glow and gradient */
+            background-size: (150/16rem) (150/16rem), (150/16rem) (150/16rem), (150/16rem) (150/16rem), (150/16rem) (150/16rem), (150/16rem) (150/16rem), (150/16rem) (150/16rem), (150/16rem) (150/16rem), (150/16rem) (150/16rem), 100% 100%, 100% 100%;
+            background-repeat: repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, no-repeat, no-repeat;
 
-        // ── Globe ──
-        .hero-globe {
-            position: absolute;
-            bottom: -140px;
-            right: -100px;
-            width: 700px;
-            height: 700px;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0;
-            animation: heroRise 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
-        }
+            &:before,
+            &:after,
+            .cs-stars {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background-repeat: repeat;
+                animation: cs-twinkle ease-in-out infinite;
+            }
 
-        // ── Content ──
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: clamp(1.25rem, 3vw, 1.75rem);
-            max-width: (700/16rem);
-        }
+            /* small dim stars */
+            &:before {
+                background-image:
+                    radial-gradient(circle at 12% 18%, color-mix(in srgb, var(--on-dark) 55%, transparent) 0 1px, transparent 1.5px),
+                    radial-gradient(circle at 63% 7%, color-mix(in srgb, var(--on-dark) 40%, transparent) 0 1px, transparent 1.5px),
+                    radial-gradient(circle at 38% 52%, color-mix(in srgb, var(--on-dark) 50%, transparent) 0 1px, transparent 1.5px),
+                    radial-gradient(circle at 84% 71%, color-mix(in srgb, var(--on-dark) 35%, transparent) 0 1px, transparent 1.5px),
+                    radial-gradient(circle at 21% 88%, color-mix(in srgb, var(--on-dark) 45%, transparent) 0 1px, transparent 1.5px);
+                background-size: (240/16rem) (240/16rem);
+                animation-duration: 4s;
+            }
 
-        // ── Headline ──
-        .hero-title {
-            font-family: var(--bodyFont);
-            font-size: clamp(2.5rem, 9vw, 5.5rem);
-            font-weight: 700;
-            line-height: 1.05;
-            letter-spacing: -0.02em;
-            color: var(--bodyTextColor);
-            margin: 0;
-            opacity: 0;
-            transform: translateY(2rem);
-            animation: heroRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
-        }
+            /* medium stars */
+            &:after {
+                background-image:
+                    radial-gradient(circle at 74% 33%, color-mix(in srgb, var(--on-dark) 60%, transparent) 0 1px, transparent 1.6px),
+                    radial-gradient(circle at 9% 61%, color-mix(in srgb, var(--on-dark) 50%, transparent) 0 1px, transparent 1.6px),
+                    radial-gradient(circle at 47% 83%, color-mix(in srgb, var(--on-dark) 55%, transparent) 0 1px, transparent 1.6px),
+                    radial-gradient(circle at 92% 14%, color-mix(in srgb, var(--on-dark) 45%, transparent) 0 1px, transparent 1.6px);
+                background-size: (370/16rem) (370/16rem);
+                animation-duration: 5.5s;
+                animation-delay: -2s;
+            }
 
-        // ── Body text ──
-        .hero-text {
-            font-family: var(--bodyFont);
-            font-size: clamp(1rem, 2.2vw, 1.2rem);
-            font-weight: 400;
-            line-height: 1.7;
-            color: rgba(228, 227, 219, 0.6);
-            margin: 0;
-            max-width: (520/16rem);
-            opacity: 0;
-            transform: translateY(2rem);
-            animation: heroRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
-        }
-
-        // ── CTA ──
-        .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: (14/16rem) (32/16rem);
-            font-family: var(--bodyFont);
-            font-size: (16/16rem);
-            font-weight: 600;
-            letter-spacing: 0.01em;
-            color: var(--bodyTextColor);
-            text-decoration: none;
-            border: 1px solid rgba(228, 227, 219, 0.35);
-            border-radius: (50/16rem);
-            background-color: transparent;
-            transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-            opacity: 0;
-            transform: translateY(2rem);
-            animation: heroRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
-            text-transform: uppercase;
-
-            &:hover {
-                border-color: var(--primary);
-                background-color: var(--primary);
-                color: #fff;
+            /* a few brighter stars */
+            .cs-stars {
+                background-image:
+                    radial-gradient(circle at 28% 24%, color-mix(in srgb, var(--on-dark) 85%, transparent) 0 1.2px, transparent 2px),
+                    radial-gradient(circle at 81% 58%, color-mix(in srgb, var(--on-dark) 75%, transparent) 0 1.2px, transparent 2px),
+                    radial-gradient(circle at 56% 91%, color-mix(in srgb, var(--on-dark) 70%, transparent) 0 1.2px, transparent 2px);
+                background-size: (530/16rem) (530/16rem);
+                animation-duration: 3.2s;
+                animation-delay: -1s;
             }
         }
 
-        // ── Scroll indicator ──
-        .scroll-indicator {
+        .cs-globe {
+            /* faint globe that sits behind the content, slightly below the headline */
+            /* 832px - 1600px */
+            width: clamp(52rem, 125vw, 100rem);
+            height: auto;
+            aspect-ratio: 1;
             position: absolute;
-            bottom: 2.5rem;
-            left: 0;
-            right: 0;
+            /* anchored to the vertical center of the content: the sphere starts 12% into the canvas (50% - the 38% radius in globe.js), so this lands its top just under the headline */
+            top: ~"calc(50% - clamp(52rem, 125vw, 100rem) * 0.12 - 2.5rem)";
+            left: 50%;
+            /* --parallax-globe is set by hero-scroll.js */
+            transform: translateX(-50%) translateY(var(--parallax-globe, 0px));
+            z-index: -1;
+            will-change: transform;
+            opacity: 0.8;
+            pointer-events: none;
+            /* fades the globe out toward its edges so it blends into the background, and dims its top where it sits behind the text */
+            -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 52%, transparent 72%), linear-gradient(180deg, rgba(0, 0, 0, 0.45) 12%, #000 34%);
+            -webkit-mask-composite: source-in;
+            mask-image: radial-gradient(circle at 50% 50%, #000 52%, transparent 72%), linear-gradient(180deg, rgba(0, 0, 0, 0.45) 12%, #000 34%);
+            mask-composite: intersect;
+        }
+
+        /* fade up on page load, one after another */
+        .cs-title,
+        .cs-text,
+        .cs-project-form,
+        .cs-ideas {
+            animation: cs-hero-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .cs-title {
+            animation-delay: 0.1s;
+        }
+
+        .cs-text {
+            animation-delay: 0.25s;
+        }
+
+        .cs-project-form {
+            animation-delay: 0.4s;
+        }
+
+        .cs-ideas {
+            animation-delay: 0.55s;
+        }
+
+        @keyframes cs-hero-fade-up {
+            from {
+                opacity: 0;
+                transform: translateY(1.5rem);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes cs-twinkle {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.25;
+            }
+        }
+
+        /* keep the stars still for visitors who prefer reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .cs-background {
+                &:before,
+                &:after,
+                .cs-stars {
+                    animation: none;
+                }
+            }
+
+            .cs-title,
+            .cs-text,
+            .cs-project-form,
+            .cs-ideas {
+                animation: none;
+            }
+        }
+
+        .cs-container {
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.5rem;
-            opacity: 0;
-            animation: heroRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.1s forwards;
-            z-index: 10;
+            position: relative;
+            z-index: 1;
+            /* blurred by hero-scroll.js as the page scrolls */
+            will-change: filter, opacity, transform;
         }
 
-        .scroll-mouse {
-            width: (28/16rem);
-            height: (44/16rem);
-            border-radius: 999px;
-            border: (1.5/16rem) solid rgba(228, 227, 219, 0.4);
+        .cs-title {
+            /* 32px - 76px - small enough on phones to keep "Our Development Team." on one line */
+            font-size: clamp(2rem, 7.5vw, 4.75rem);
+            font-weight: 600;
+            line-height: 1.2em;
+            text-align: center;
+            max-width: (1000/16rem);
+            /* 16px - 24px */
+            margin: 0 auto clamp(1rem, 4vw, 1.5rem);
+            color: var(--on-dark);
+            position: relative;
+
+            .cs-highlight {
+                /* light-to-bright blue gradient text, light enough to stay readable on the navy */
+                background: linear-gradient(90deg, var(--accent-1) 0%, var(--accent-2) 50%, var(--accent-4) 100%);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                color: transparent;
+            }
+
+            .cs-rotator {
+                /* inline-block so it can slide; hero-rotator.js swaps the phrase */
+                display: inline-block;
+                transition: transform 0.45s ease, opacity 0.45s ease;
+
+                /* leaving: slides up and fades out */
+                &.cs-out {
+                    opacity: 0;
+                    transform: translateY(-0.35em);
+                }
+
+                /* entering: starts below with no animation, then slides up into place */
+                &.cs-in {
+                    opacity: 0;
+                    transform: translateY(0.35em);
+                    transition: none;
+                }
+            }
+        }
+
+        .cs-text {
+            /* 16px - 18px */
+            font-size: clamp(1rem, 1.4vw, 1.125rem);
+            line-height: 1.5em;
+            text-align: center;
+            width: 100%;
+            /* 464px - 800px */
+            max-width: clamp(29rem, 60vw, 50rem);
+            margin: 0 auto;
+            /* 32px - 48px */
+            margin-bottom: clamp(2rem, 4vw, 3rem);
+            color: var(--on-dark);
+        }
+
+        .cs-project-form {
+            /* pill-shaped field with the submit button sitting inside it */
+            width: 100%;
+            max-width: (720/16rem);
+            /* prevents padding and border from affecting height and width */
+            box-sizing: border-box;
+            padding: (8/16rem);
+            /* dark frosted glass so the globe behind doesn't compete with the text */
+            /* dark frosted glass so the globe behind doesn't compete with the text */
+            background-color: color-mix(in srgb, var(--dark) 72%, transparent);
+            border: 1px solid color-mix(in srgb, var(--on-dark) 18%, transparent);
+            border-radius: (999/16rem);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
             display: flex;
+            align-items: center;
+            gap: (8/16rem);
+            transition: border-color 0.3s, background-color 0.3s;
+
+            &:focus-within {
+                border-color: color-mix(in srgb, var(--accent-1) 60%, transparent);
+                background-color: color-mix(in srgb, var(--dark) 85%, transparent);
+            }
+        }
+
+        .cs-project-input {
+            min-width: 0;
+            height: (48/16rem);
+            /* 16px - 24px */
+            padding: 0 clamp(1rem, 2vw, 1.5rem);
+            background: transparent;
+            border: none;
+            outline: none;
+            font-family: inherit;
+            /* 16px - 18px */
+            font-size: clamp(1rem, 1.4vw, 1.125rem);
+            color: var(--on-dark);
+            flex: 1;
+
+            &::placeholder {
+                color: color-mix(in srgb, var(--on-dark) 75%, transparent);
+            }
+        }
+
+        .cs-project-submit {
+            /* lime so it stands out inside the dark field */
+            background-color: var(--accent-4);
+            color: var(--dark);
+
+            &:hover {
+                background-color: var(--surface);
+            }
+
+            border-radius: (999/16rem);
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: (8/16rem);
+            flex: none;
+        }
+
+        .cs-submit-icon {
+            width: (16/16rem);
+            height: (16/16rem);
+        }
+
+        .cs-ideas {
+            width: 100%;
+            max-width: (720/16rem);
+            /* 16px - 24px */
+            margin-top: clamp(1rem, 2vw, 1.5rem);
+        }
+
+        .cs-idea-group {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            padding-top: (6/16rem);
+            /* 8px - 12px */
+            gap: clamp(0.5rem, 1vw, 0.75rem);
         }
 
-        .scroll-dot {
-            width: (5/16rem);
-            height: (5/16rem);
-            border-radius: 50%;
-            background-color: var(--primary);
-            animation: scrollDot 1.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-        }
+        .cs-idea {
+            /* 8px - 10px top and bottom, 14px - 20px left and right */
+            padding: clamp(0.5rem, 1vw, 0.625rem) clamp(0.875rem, 1.6vw, 1.25rem);
+            /* dark frosted glass so the globe dots behind don't compete with the text */
+            /* dark frosted glass so the globe dots behind don't compete with the text */
+            background-color: color-mix(in srgb, var(--dark) 55%, transparent);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid color-mix(in srgb, var(--on-dark) 20%, transparent);
+            border-radius: (999/16rem);
+            font-family: inherit;
+            /* 14px - 15px */
+            font-size: clamp(0.875rem, 1.1vw, 0.9375rem);
+            font-weight: 500;
+            line-height: 1.2em;
+            color: color-mix(in srgb, var(--on-dark) 88%, transparent);
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s, background-color 0.2s;
 
-        .scroll-label {
-            font-family: var(--bodyFont);
-            font-size: (12/16rem);
-            font-weight: 400;
-            letter-spacing: 0.1em;
-            color: rgba(228, 227, 219, 0.45);
-        }
-    }
-
-    @keyframes heroRise {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes scrollDot {
-        0%   { transform: translateY(0); opacity: 1; }
-        80%  { transform: translateY((12/16rem)); opacity: 0; }
-        100% { transform: translateY(0); opacity: 0; }
-    }
-}
-
-/* ── Mobile only - up to 767px ── */
-@media only screen and (max-width: 47.9375rem) {
-    .hero {
-        align-items: flex-start;
-        padding-top: clamp(7rem, 14vh, 9rem);
-
-        .hero-globe {
-            bottom: -250px;
-            right: -100px;
+            &:hover,
+            &:focus-visible {
+                border-color: color-mix(in srgb, var(--accent-1) 60%, transparent);
+                background-color: color-mix(in srgb, var(--dark-2) 85%, transparent);
+                color: var(--on-dark);
+            }
         }
     }
 }
 
-/* ── Tablet - 768px ── */
-@media only screen and (min-width: 48rem) {
-    .hero {
-        .hero-globe {
-            width: 580px;
-            height: 580px;
-            bottom: -100px;
-            right: -80px;
+/* Small mobile - under 480px: the button drops below the field */
+@media only screen and (max-width: 29.9375rem) {
+    #hero-143 {
+        .cs-project-form {
+            border-radius: (24/16rem);
+            flex-direction: column;
+            align-items: stretch;
         }
 
-        .hero-title {
-            font-size: clamp(3.5rem, 7vw, 5.5rem);
-        }
-    }
-}
-
-/* ── Desktop - 1024px ── */
-@media only screen and (min-width: 64rem) {
-    .hero {
-        padding-top: clamp(8rem, 16vh, 12rem);
-        padding-bottom: clamp(6rem, 12vh, 10rem);
-
-        .hero-globe {
-            width: 900px;
-            height: 900px;
-            bottom: -90px;
-            right: -200px;
+        .cs-project-input {
+            text-align: center;
         }
 
-        .hero-content {
-            max-width: (680/16rem);
-            gap: 2rem;
-        }
-
-        .hero-title {
-            font-size: clamp(3rem, 5.5vw, 4.75rem);
-        }
-
-        .hero-text {
-            font-size: (20/16rem);
-        }
-
-        .scroll-indicator {
-            bottom: 3.5rem;
+        .cs-project-submit {
+            justify-content: center;
         }
     }
 }

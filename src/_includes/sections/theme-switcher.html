@@ -1,0 +1,17 @@
+<!-- ============================================ -->
+<!--            Wada Palette Switcher             -->
+<!-- ============================================ -->
+
+<!-- Floating pill that re-colours the site's accents with a random combination from Sanzo Wada's "A Dictionary of Color Combinations" - see theme-switcher.js. Hidden until the script runs, since it does nothing without it -->
+<div class="cs-theme-switcher" id="cs-theme-switcher" role="group" aria-label="Site colours" hidden>
+    <button class="cs-ts-shuffle" type="button" data-theme-action="shuffle">
+        <span class="cs-ts-swatches" aria-hidden="true"></span>
+        Change Colour
+    </button>
+    <!-- only shown while a Wada combination is applied -->
+    <button class="cs-ts-reset" type="button" data-theme-action="reset" aria-label="Reset to Websthetic colours" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+    </button>
+    <!-- read out by screen readers when the colours change -->
+    <p class="cs-visually-hidden" aria-live="polite"></p>
+</div>

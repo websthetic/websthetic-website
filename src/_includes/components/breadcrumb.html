@@ -1,0 +1,10 @@
+<!-- Breadcrumb for the inner page banners. Set "crumb" (this page's name) before including it, and optionally "crumbParent" ({ name, url }) for a page one level deeper -->
+<nav class="cs-breadcrumb" aria-label="Breadcrumb">
+    <ol class="cs-crumbs">
+        <li class="cs-crumb"><a class="cs-crumb-link" href="/">Home</a></li>
+        {% if crumbParent %}
+        <li class="cs-crumb"><a class="cs-crumb-link" href="{{ crumbParent.url }}">{{ crumbParent.name }}</a></li>
+        {% endif %}
+        <li class="cs-crumb" aria-current="page">{{ crumb }}</li>
+    </ol>
+</nav>

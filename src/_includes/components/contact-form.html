@@ -1,0 +1,58 @@
+<!-- The contact form - used on the Contact page and in the home page "Let's Talk" popup (sections/contact-modal.html), so both send the same "Contact Form" to Netlify. Styles live in contact-form.less -->
+<!-- Netlify Forms: data-netlify turns this on at deploy, form-name must match the name attribute, and the hidden "bot-field" catches spam bots -->
+<!-- action: Netlify sends visitors to the thank-you page after a successful submission -->
+<form class="cs-contact-form" id="cs-form-265" name="Contact Form" method="post" action="/thank-you/" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="Contact Form">
+    <p class="cs-hidden-field" aria-hidden="true">
+        <label>Don’t fill this out if you’re human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+    </p>
+    <label class="cs-field" for="first-name-265">
+        <span class="cs-field-label">First Name <abbr title="required">*</abbr></span>
+        <input required type="text" id="first-name-265" name="first-name" placeholder="John" autocomplete="given-name">
+    </label>
+    <label class="cs-field" for="last-name-265">
+        <span class="cs-field-label">Last Name <abbr title="required">*</abbr></span>
+        <input required type="text" id="last-name-265" name="last-name" placeholder="Doe" autocomplete="family-name">
+    </label>
+    <label class="cs-field cs-full" for="email-265">
+        <span class="cs-field-label">Email <abbr title="required">*</abbr></span>
+        <input required type="email" id="email-265" name="email" placeholder="john@company.com" autocomplete="email">
+    </label>
+    <label class="cs-field cs-full" for="company-265">
+        <span class="cs-field-label">Company</span>
+        <input type="text" id="company-265" name="company" placeholder="Your Company" autocomplete="organization">
+    </label>
+    <label class="cs-field cs-full" for="service-265">
+        <span class="cs-field-label">Project Type</span>
+        <select id="service-265" name="project-type">
+            <option value="" selected>Select a service</option>
+            <option value="New Website">New Website</option>
+            <option value="Website Redesign">Website Redesign</option>
+            <option value="White-Label Development">White-Label Development</option>
+            <option value="Overflow Development">Overflow Development</option>
+            <option value="Custom Development">Custom Development</option>
+            <option value="Ongoing Support">Ongoing Support</option>
+            <option value="Something Else">Something Else</option>
+        </select>
+    </label>
+    <label class="cs-field cs-full" for="budget-265">
+        <span class="cs-field-label">Budget Range</span>
+        <select id="budget-265" name="budget">
+            <option value="" selected>Select budget range</option>
+            <option value="Under $5,000">Under $5,000</option>
+            <option value="$5,000 – $10,000">$5,000 – $10,000</option>
+            <option value="$10,000 – $25,000">$10,000 – $25,000</option>
+            <option value="$25,000+">$25,000+</option>
+            <option value="Not sure yet">Not sure yet</option>
+        </select>
+    </label>
+    <label class="cs-field cs-full" for="message-265">
+        <span class="cs-field-label">Message <abbr title="required">*</abbr></span>
+        <!-- id is used by contact-prefill.js to drop in the idea from the home page form -->
+        <textarea required name="Message" id="message-265" placeholder="Tell us about your project..."></textarea>
+    </label>
+    <button class="cs-button-solid cs-submit" type="submit">
+        Send Message
+        <svg class="cs-submit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+    </button>
+</form>

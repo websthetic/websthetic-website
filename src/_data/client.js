@@ -1,20 +1,22 @@
 module.exports = {
-    name: "Code Stitch Web Designs",
-    email: "help@codestitch.app",
+    name: "Websthetic",
+    email: "hello@websthetic.com",
     phoneForTel: "555-779-4407",
     phoneFormatted: "(555) 779-4407",
     address: {
         lineOne: "First Address Line",
         lineTwo: "Second Address Line",
-        city: "Denver",
-        state: "CO",
-        zip: "80206",
-        country: "US",
-        mapLink: "https://maps.app.goo.gl/TEdS5KoLC9ZcULuQ6",
+        city: "Toronto",
+        state: "ON",
+        zip: "",
+        country: "CA",
+        // shown in the footer, e.g. "Toronto, Canada"
+        countryName: "Canada",
+        mapLink: "https://www.google.com/maps/place/Toronto,+ON,+Canada",
     },
     socials: {
-        facebook: "https://www.facebook.com/",
-        instagram: "https://www.instagram.com/",
+        instagram: "https://www.instagram.com/websthetic.co/",
+        linkedin: "https://www.linkedin.com/company/websthetic/",
     },
     //! Make sure you include the file protocol (e.g. https://) and that NO TRAILING SLASH is included
     domain: "https://www.example.com",

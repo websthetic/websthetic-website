@@ -1,0 +1,2747 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// BUSINESSES PAGE STYLES
+// Styles that only exist on the Businesses page (/businesses/). Any styles
+// shared between pages, including repeated sections, should go into
+// global.less
+// ─────────────────────────────────────────────────────────────────────────────
+
+/*-- -------------------------- -->
+<---     Everything Handled     -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #everything-handled {
+        padding: var(--sectionPadding);
+        background-color: var(--background-soft);
+
+        .cs-container {
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cs-content {
+            text-align: center;
+            /* 40px - 56px */
+            margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cs-title {
+            /* 32px - 56px - kept smaller than the hero headline */
+            font-size: clamp(2rem, 4.2vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.1em;
+            letter-spacing: -0.02em;
+            text-align: center;
+            max-width: (720/16rem);
+            /* 16px - 24px */
+            margin-bottom: clamp(1rem, 2vw, 1.5rem);
+        }
+
+        .cs-text {
+            /* 16px - 18px */
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            line-height: 1.65em;
+            text-align: center;
+            max-width: (600/16rem);
+        }
+
+        .cs-card-group {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            /* 16px - 20px */
+            gap: clamp(1rem, 1.6vw, 1.25rem);
+        }
+
+        .cs-item {
+            list-style: none;
+            /* 28px - 40px */
+            padding: clamp(1.75rem, 3.2vw, 2.5rem);
+            /* white so the cards stand out on the soft background */
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: (16/16rem);
+            /* prevents padding and border from affecting height and width */
+            box-sizing: border-box;
+            transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+
+            &:hover {
+                border-color: color-mix(in srgb, var(--dark) 12.5%, transparent);
+                box-shadow: 0 12px 32px color-mix(in srgb, var(--shadow) 6%, transparent);
+                transform: translateY(-2px);
+            }
+        }
+
+        .cs-icon-wrapper {
+            width: (48/16rem);
+            height: (48/16rem);
+            /* 20px - 24px */
+            margin-bottom: clamp(1.25rem, 2.5vw, 1.5rem);
+            background-color: var(--accent-1);
+            border: 1px solid color-mix(in srgb, var(--dark) 6%, transparent);
+            border-radius: (12/16rem);
+            color: var(--accent);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* each tile gets the next pastel accent */
+        .cs-item:nth-child(4n + 2) .cs-icon-wrapper {
+            background-color: var(--accent-2);
+        }
+
+        .cs-item:nth-child(4n + 3) .cs-icon-wrapper {
+            background-color: var(--accent-3);
+        }
+
+        .cs-item:nth-child(4n + 4) .cs-icon-wrapper {
+            background-color: var(--accent-4);
+        }
+
+        .cs-icon {
+            width: (24/16rem);
+            height: (24/16rem);
+        }
+
+        .cs-h3 {
+            /* 20px - 26px */
+            font-size: clamp(1.25rem, 2.2vw, 1.625rem);
+            font-weight: 600;
+            line-height: 1.25em;
+            margin: 0 0 (12/16rem);
+            color: var(--text-primary);
+        }
+
+        .cs-item-text {
+            /* 16px - 17px */
+            font-size: clamp(1rem, 1.3vw, 1.0625rem);
+            line-height: 1.65em;
+            max-width: (500/16rem);
+            margin: 0;
+            color: var(--text-secondary);
+        }
+
+        .cs-cta {
+            /* stands out from the other cards with the same navy gradient as the Our Work project cards */
+            background: radial-gradient(ellipse 80% 70% at 50% 0%, color-mix(in srgb, var(--glow) 21%, transparent), transparent 70%), linear-gradient(160deg, var(--dark-2) 0%, var(--dark) 100%);
+            border-color: transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+
+            &:hover {
+                border-color: transparent;
+                box-shadow: 0 18px 40px color-mix(in srgb, var(--shadow) 18%, transparent);
+            }
+
+            .cs-h3 {
+                color: var(--on-dark);
+            }
+
+            .cs-item-text {
+                color: color-mix(in srgb, var(--on-dark) 75%, transparent);
+                /* 24px - 32px */
+                margin-bottom: clamp(1.5rem, 3vw, 2rem);
+            }
+        }
+
+        .cs-cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: (8/16rem);
+        }
+
+        .cs-cta-icon {
+            width: (16/16rem);
+            height: (16/16rem);
+        }
+    }
+}
+
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    #everything-handled {
+        .cs-card-group {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+
+/* Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+    #everything-handled {
+        .cs-card-group {
+            /* 3 per row - 2 rows of cards */
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
+
+/*-- -------------------------- -->
+<---          One Team          -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #one-team {
+        padding: var(--sectionPadding);
+        /* previews can't push past the screen edge */
+        overflow-x: clip;
+        background-color: var(--background);
+
+        .cs-container {
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+        }
+
+        .cs-content {
+            /* 40px - 64px */
+            margin-bottom: clamp(2.5rem, 6vw, 4rem);
+        }
+
+        .cs-title {
+            /* 32px - 56px - kept smaller than the hero headline */
+            font-size: clamp(2rem, 4.2vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.1em;
+            letter-spacing: -0.02em;
+            max-width: (640/16rem);
+            /* 16px - 24px */
+            margin: 0 0 clamp(1rem, 2vw, 1.5rem);
+            color: var(--text-primary);
+        }
+
+        .cs-text {
+            /* 16px - 18px */
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            line-height: 1.65em;
+            max-width: (600/16rem);
+            margin: 0;
+            color: var(--text-secondary);
+        }
+
+        .cs-list {
+            margin: 0;
+            padding: 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cs-item {
+            list-style: none;
+            /* 24px - 36px top and bottom */
+            padding: clamp(1.5rem, 3vw, 2.25rem) 0;
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            column-gap: (20/16rem);
+            row-gap: (10/16rem);
+            align-items: baseline;
+        }
+
+        .cs-number {
+            font-size: (13/16rem);
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            color: var(--accent);
+        }
+
+        .cs-h3 {
+            /* 22px - 34px */
+            font-size: clamp(1.375rem, 2.8vw, 2.125rem);
+            font-weight: 600;
+            line-height: 1.15em;
+            letter-spacing: -0.01em;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .cs-item-text {
+            /* 15px - 17px */
+            font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
+            line-height: 1.6em;
+            margin: 0;
+            color: var(--text-secondary);
+            grid-column: 2;
+        }
+
+        /* ---- hover preview illustrations ---- */
+        .cs-item {
+            position: relative;
+
+            &:hover {
+                /* lift the hovered row so its preview sits above the rows below */
+                z-index: 2;
+
+                .cs-preview {
+                    opacity: 1;
+                    transform: translate(0, -50%) rotate(-4deg) scale(1);
+                }
+            }
+
+            /* each row's preview card gets the next pastel */
+            &:nth-child(4n + 2) .cs-preview {
+                background-color: var(--accent-2);
+            }
+
+            &:nth-child(4n + 3) .cs-preview {
+                background-color: var(--accent-3);
+            }
+
+            &:nth-child(4n + 4) .cs-preview {
+                background-color: var(--accent-4);
+            }
+        }
+
+        .cs-preview {
+            width: (260/16rem);
+            padding: (14/16rem);
+            background-color: var(--accent-1);
+            border-radius: (20/16rem);
+            box-shadow: 0 24px 50px color-mix(in srgb, var(--shadow) 14%, transparent);
+            /* prevents padding from affecting width */
+            box-sizing: border-box;
+            /* without the script it sits in a fixed spot between the title and description */
+            position: absolute;
+            left: var(--px, 44%);
+            top: var(--py, 50%);
+            z-index: 3;
+            opacity: 0;
+            transform: translate(0, -50%) rotate(-8deg) scale(0.85);
+            transform-origin: left center;
+            transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            pointer-events: none;
+        }
+
+        .cs-pv-window {
+            background-color: var(--surface);
+            border-radius: (12/16rem);
+            overflow: hidden;
+        }
+
+        .cs-pv-bar {
+            height: (20/16rem);
+            padding: 0 (10/16rem);
+            background-color: var(--background-soft);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: (5/16rem);
+
+            i {
+                width: (6/16rem);
+                height: (6/16rem);
+                background-color: var(--border);
+                border-radius: 50%;
+                display: block;
+            }
+        }
+
+        .cs-pv-body {
+            height: (130/16rem);
+            padding: (14/16rem);
+            /* prevents padding from affecting height */
+            box-sizing: border-box;
+        }
+
+        /* shared bar style for the drawings */
+        .cs-pv-lines span,
+        .cs-pv-code span,
+        .cs-result-url,
+        .cs-result-title,
+        .cs-result-text,
+        .cs-launch-line,
+        .cs-label {
+            height: (7/16rem);
+            border-radius: (4/16rem);
+            display: block;
+        }
+
+        /* 01 - sitemap */
+        .cs-pv-sitemap {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cs-node {
+            width: (46/16rem);
+            height: (18/16rem);
+            border: 1.5px solid var(--dark);
+            border-radius: (5/16rem);
+            /* prevents the border from affecting size */
+            box-sizing: border-box;
+            display: block;
+            position: relative;
+
+            &.cs-root {
+                background-color: var(--dark);
+            }
+        }
+
+        .cs-children {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+
+            /* the branch line linking the three pages */
+            &:before {
+                content: "";
+                height: 1.5px;
+                background-color: var(--dark);
+                position: absolute;
+                top: (-9/16rem);
+                left: 16%;
+                right: 16%;
+            }
+
+            .cs-node:before {
+                content: "";
+                width: 1.5px;
+                height: (9/16rem);
+                background-color: var(--dark);
+                position: absolute;
+                bottom: 100%;
+                left: 50%;
+            }
+        }
+
+        .cs-leaves {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: (5/16rem);
+
+            span {
+                height: (10/16rem);
+                background-color: var(--border);
+                border-radius: (3/16rem);
+                display: block;
+            }
+        }
+
+        /* 02 - design */
+        .cs-pv-design {
+            height: 100%;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-template-rows: 1fr auto;
+            column-gap: (14/16rem);
+            row-gap: (12/16rem);
+            align-items: center;
+        }
+
+        .cs-aa {
+            font-size: (48/16rem);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            color: var(--dark);
+        }
+
+        .cs-swatches {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: (6/16rem);
+
+            i {
+                height: (24/16rem);
+                border-radius: (6/16rem);
+                display: block;
+
+                &:nth-child(1) {
+                    background-color: var(--dark);
+                }
+
+                &:nth-child(2) {
+                    background-color: var(--accent-1);
+                }
+
+                &:nth-child(3) {
+                    background-color: var(--accent-2);
+                }
+
+                &:nth-child(4) {
+                    background-color: var(--accent-4);
+                    border: 1px solid color-mix(in srgb, var(--dark) 8%, transparent);
+                }
+            }
+        }
+
+        .cs-pv-lines {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: column;
+            gap: (6/16rem);
+
+            span {
+                width: 100%;
+                background-color: var(--border);
+
+                &.cs-short {
+                    width: 60%;
+                }
+            }
+        }
+
+        /* 03 - code */
+        .cs-pv-code {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: (8/16rem);
+            position: relative;
+
+            .cs-tag-mark {
+                font-size: (13/16rem);
+                font-weight: 700;
+                height: auto;
+                padding: (3/16rem) (8/16rem);
+                background-color: var(--dark);
+                border-radius: (999/16rem);
+                color: var(--accent-4);
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+
+            .cs-c1 {
+                width: 48%;
+                background-color: var(--dark);
+            }
+
+            .cs-c2 {
+                width: 56%;
+                background-color: color-mix(in srgb, var(--accent-1), var(--dark) 25%);
+            }
+
+            .cs-c3 {
+                width: 38%;
+                background-color: color-mix(in srgb, var(--accent-2), var(--dark) 10%);
+            }
+
+            .cs-c4 {
+                width: 50%;
+                background-color: var(--border);
+            }
+
+            .cs-in {
+                margin-left: (14/16rem);
+            }
+
+            .cs-in2 {
+                margin-left: (28/16rem);
+            }
+
+            .cs-short {
+                width: 22%;
+            }
+        }
+
+        /* 04 - form */
+        .cs-pv-form {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: (6/16rem);
+
+            .cs-label {
+                width: 34%;
+                height: (5/16rem);
+                background-color: var(--text-secondary);
+                opacity: 0.5;
+            }
+
+            .cs-field {
+                height: (18/16rem);
+                border: 1.5px solid var(--border);
+                border-radius: (6/16rem);
+                display: block;
+            }
+        }
+
+        .cs-form-row {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cs-toggle {
+            width: (30/16rem);
+            height: (16/16rem);
+            background-color: var(--dark);
+            border-radius: (999/16rem);
+            display: block;
+            position: relative;
+
+            &:after {
+                content: "";
+                width: (12/16rem);
+                height: (12/16rem);
+                background-color: var(--accent-4);
+                border-radius: 50%;
+                position: absolute;
+                top: (2/16rem);
+                right: (2/16rem);
+            }
+        }
+
+        .cs-submit {
+            width: (58/16rem);
+            height: (18/16rem);
+            background-color: var(--dark);
+            border-radius: (999/16rem);
+            display: block;
+        }
+
+        /* 05 - search result */
+        .cs-pv-seo {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: (6/16rem);
+            position: relative;
+        }
+
+        .cs-search {
+            height: (16/16rem);
+            margin-bottom: (4/16rem);
+            border: 1.5px solid var(--border);
+            border-radius: (999/16rem);
+            display: block;
+            position: relative;
+
+            /* magnifier */
+            &:after {
+                content: "";
+                width: (7/16rem);
+                height: (7/16rem);
+                border: 1.5px solid var(--text-secondary);
+                border-radius: 50%;
+                position: absolute;
+                top: 50%;
+                right: (8/16rem);
+                transform: translateY(-50%);
+            }
+        }
+
+        .cs-result-url {
+            width: 40%;
+            height: (5/16rem);
+            background-color: var(--success);
+        }
+
+        .cs-result-title {
+            width: 66%;
+            height: (9/16rem);
+            background-color: var(--dark);
+        }
+
+        .cs-result-text {
+            width: 52%;
+            background-color: var(--border);
+        }
+
+        .cs-chart {
+            height: (44/16rem);
+            display: flex;
+            align-items: flex-end;
+            gap: (4/16rem);
+            position: absolute;
+            right: 0;
+            bottom: 0;
+
+            i {
+                width: (8/16rem);
+                background-color: var(--dark);
+                border-radius: (2/16rem);
+                display: block;
+
+                &:nth-child(1) {
+                    height: 20%;
+                    opacity: 0.25;
+                }
+
+                &:nth-child(2) {
+                    height: 35%;
+                    opacity: 0.4;
+                }
+
+                &:nth-child(3) {
+                    height: 52%;
+                    opacity: 0.55;
+                }
+
+                &:nth-child(4) {
+                    height: 74%;
+                    opacity: 0.75;
+                }
+
+                &:nth-child(5) {
+                    height: 100%;
+                }
+            }
+        }
+
+        /* 06 - launch */
+        .cs-pv-launch {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: (8/16rem);
+            position: relative;
+        }
+
+        .cs-live {
+            font-size: (12/16rem);
+            font-weight: 700;
+            padding: (4/16rem) (10/16rem) (4/16rem) (20/16rem);
+            background-color: var(--accent-4);
+            border: 1px solid color-mix(in srgb, var(--dark) 8%, transparent);
+            border-radius: (999/16rem);
+            color: var(--dark);
+            position: relative;
+
+            /* green "live" dot */
+            &:before {
+                content: "";
+                width: (6/16rem);
+                height: (6/16rem);
+                background-color: var(--success);
+                border-radius: 50%;
+                position: absolute;
+                top: 50%;
+                left: (9/16rem);
+                transform: translateY(-50%);
+            }
+        }
+
+        .cs-check {
+            width: (44/16rem);
+            height: (44/16rem);
+            background-color: var(--dark);
+            border-radius: 50%;
+            color: var(--accent-4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+
+            svg {
+                width: (22/16rem);
+                height: (22/16rem);
+            }
+        }
+
+        .cs-launch-line {
+            width: 62%;
+            margin-top: (6/16rem);
+            background-color: var(--dark);
+
+            &.cs-short {
+                width: 44%;
+                margin-top: 0;
+                background-color: var(--border);
+            }
+        }
+    }
+}
+
+
+/* Touch screens can't hover - no previews */
+@media (hover: none) {
+    #one-team .cs-preview {
+        display: none;
+    }
+}
+
+/* Reduced motion - step illustrations stay still */
+@media (prefers-reduced-motion: reduce) {
+    #steps .cs-item:hover {
+        .cs-art,
+        .cs-magnifier,
+        .cs-dots i,
+        .cs-rocket {
+            transition: none;
+        }
+
+        .cs-art,
+        .cs-magnifier,
+        .cs-rocket {
+            transform: none;
+        }
+
+        .cs-rocket {
+            transform: translateX(-50%);
+        }
+
+        .cs-cl,
+        .cs-dev b,
+        .cs-bubble {
+            animation: none;
+        }
+    }
+}
+
+/* Reduced motion - accessibility highlights fade only, no scaling */
+@media (prefers-reduced-motion: reduce) {
+    #accessibility [data-feature],
+    #accessibility .cs-check-badge {
+        transform: none !important;
+    }
+}
+
+/* Reduced motion - the preview fades in place, no tilt or scale */
+@media (prefers-reduced-motion: reduce) {
+    #one-team .cs-preview,
+    #one-team .cs-item:hover .cs-preview {
+        transform: translate(0, -50%);
+        transition: opacity 0.2s;
+    }
+}
+
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    #one-team {
+        .cs-content {
+            /* heading on the left, intro on the right, lined up along the bottom */
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: (48/16rem);
+        }
+
+        .cs-title {
+            margin-bottom: 0;
+        }
+
+        .cs-text {
+            max-width: (480/16rem);
+        }
+
+        .cs-item {
+            /* number | title | description */
+            grid-template-columns: 8% 38% 1fr;
+            column-gap: (24/16rem);
+        }
+
+        .cs-item-text {
+            grid-column: 3;
+        }
+    }
+}
+
+/*-- -------------------------- -->
+<---        Accessibility       -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #accessibility {
+        padding: var(--sectionPadding);
+        background-color: var(--background);
+
+        .cs-container {
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            /* 40px - 64px */
+            gap: clamp(2.5rem, 6vw, 4rem);
+        }
+
+        .cs-title {
+            /* 32px - 56px - kept smaller than the hero headline */
+            font-size: clamp(2rem, 4.2vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.08em;
+            letter-spacing: -0.02em;
+            max-width: (360/16rem);
+            /* 16px - 24px */
+            margin: 0 0 clamp(1rem, 2vw, 1.5rem);
+            color: var(--text-primary);
+        }
+
+        .cs-text {
+            /* 16px - 18px */
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            line-height: 1.65em;
+            max-width: (360/16rem);
+            margin: 0;
+            color: var(--text-secondary);
+        }
+
+        .cs-access-button {
+            /* same text link style as the FAQ's "Ask Us Anything" */
+            font-size: (16/16rem);
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-primary);
+            /* pastel marker underline */
+            background: linear-gradient(180deg, transparent 62%, var(--accent-4) 62%);
+            /* 20px - 24px */
+            margin-top: clamp(1.25rem, 2.5vw, 1.5rem);
+            display: inline-flex;
+            align-items: center;
+            gap: (8/16rem);
+            transition: gap 0.2s;
+
+            &:hover {
+                gap: (12/16rem);
+            }
+        }
+
+        .cs-access-icon {
+            width: (18/16rem);
+            height: (18/16rem);
+        }
+
+        .cs-lead {
+            /* 20px - 26px */
+            font-size: clamp(1.25rem, 2.2vw, 1.625rem);
+            font-weight: 500;
+            line-height: 1.3em;
+            max-width: (520/16rem);
+            /* 24px - 32px */
+            margin: 0 0 clamp(1.5rem, 3vw, 2rem);
+            color: var(--text-primary);
+        }
+
+        .cs-ul {
+            margin: 0;
+            padding: 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cs-li {
+            list-style: none;
+            /* 16px - 18px */
+            font-size: clamp(1rem, 1.4vw, 1.125rem);
+            font-weight: 500;
+            line-height: 1.4em;
+            /* 14px - 18px top and bottom */
+            padding: clamp(0.875rem, 1.6vw, 1.125rem) 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: (16/16rem);
+        }
+
+
+        /* ---- pastel check badges ---- */
+        .cs-check-badge {
+            width: (28/16rem);
+            height: (28/16rem);
+            background-color: var(--accent-1);
+            border-radius: 50%;
+            color: var(--dark);
+            flex: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.25s ease;
+
+            .cs-check {
+                width: (15/16rem);
+                height: (15/16rem);
+                color: inherit;
+            }
+        }
+
+        .cs-li {
+            cursor: default;
+            transition: padding-left 0.25s ease;
+
+            &:nth-child(4n + 2) .cs-check-badge {
+                background-color: var(--accent-2);
+            }
+
+            &:nth-child(4n + 3) .cs-check-badge {
+                background-color: var(--accent-3);
+            }
+
+            &:nth-child(4n + 4) .cs-check-badge {
+                background-color: var(--accent-4);
+            }
+
+            &:hover {
+                padding-left: (6/16rem);
+
+                .cs-check-badge {
+                    transform: scale(1.12) rotate(-8deg);
+                }
+            }
+        }
+
+        /* ---- accessibility illustration ---- */
+        .cs-a11y {
+            width: 100%;
+            max-width: (380/16rem);
+            /* 32px - 48px */
+            margin-top: clamp(2rem, 4vw, 3rem);
+            padding: (18/16rem);
+            background: linear-gradient(135deg, var(--accent-4) 0%, var(--accent-3) 100%);
+            border-radius: (24/16rem);
+            /* prevents padding from affecting width */
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .cs-a11y-window {
+            background-color: var(--surface);
+            border-radius: (14/16rem);
+            box-shadow: 0 16px 40px color-mix(in srgb, var(--shadow) 10%, transparent);
+            overflow: hidden;
+            transform: rotate(-2deg);
+        }
+
+        .cs-a11y-bar {
+            height: (22/16rem);
+            padding: 0 (10/16rem);
+            background-color: var(--background-soft);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: (5/16rem);
+
+            i {
+                width: (7/16rem);
+                height: (7/16rem);
+                background-color: var(--border);
+                border-radius: 50%;
+                display: block;
+            }
+        }
+
+        .cs-a11y-body {
+            padding: (16/16rem);
+            display: flex;
+            flex-direction: column;
+            gap: (14/16rem);
+        }
+
+        .cs-a11y-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: (10/16rem);
+        }
+
+        /* every part that can be highlighted */
+        [data-feature] {
+            transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, outline-color 0.25s ease;
+        }
+
+        .cs-a11y-aa {
+            font-size: (40/16rem);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            color: var(--dark);
+            display: inline-block;
+        }
+
+        .cs-a11y-badge {
+            font-size: (12/16rem);
+            font-weight: 700;
+            padding: (5/16rem) (10/16rem);
+            background-color: var(--dark);
+            border-radius: (999/16rem);
+            color: var(--accent-4);
+        }
+
+        .cs-a11y-headings {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            column-gap: (8/16rem);
+            row-gap: (7/16rem);
+            border-radius: (6/16rem);
+        }
+
+        .cs-h-tag {
+            font-size: (10/16rem);
+            font-weight: 700;
+            padding: (2/16rem) (5/16rem);
+            background-color: var(--accent-1);
+            border-radius: (4/16rem);
+            color: var(--dark);
+
+            &.cs-h2 {
+                background-color: var(--accent-2);
+            }
+        }
+
+        .cs-h-bar {
+            height: (10/16rem);
+            background-color: var(--dark);
+            border-radius: (4/16rem);
+            display: block;
+
+            &.cs-short {
+                width: 64%;
+                height: (8/16rem);
+                background-color: var(--text-secondary);
+                opacity: 0.6;
+            }
+        }
+
+        .cs-a11y-actions {
+            /* kept to the left so the phone in the corner doesn't cover it */
+            justify-content: flex-start;
+            gap: (18/16rem);
+        }
+
+        .cs-a11y-split {
+            align-items: stretch;
+        }
+
+        .cs-a11y-image {
+            width: 46%;
+            height: (64/16rem);
+            background-color: var(--accent-1);
+            border-radius: (8/16rem);
+            position: relative;
+            overflow: hidden;
+            flex: none;
+
+            .cs-sun {
+                width: (12/16rem);
+                height: (12/16rem);
+                background-color: var(--accent-4);
+                border-radius: 50%;
+                position: absolute;
+                top: (10/16rem);
+                right: (12/16rem);
+            }
+
+            .cs-hill {
+                width: 90%;
+                height: 70%;
+                background-color: color-mix(in srgb, var(--accent-1), var(--dark) 25%);
+                border-radius: 50% 50% 0 0;
+                position: absolute;
+                left: -10%;
+                bottom: -30%;
+            }
+
+            b {
+                font-size: (10/16rem);
+                font-weight: 700;
+                padding: (2/16rem) (6/16rem);
+                background-color: var(--dark);
+                border-radius: (999/16rem);
+                color: var(--on-dark);
+                position: absolute;
+                left: (6/16rem);
+                top: (6/16rem);
+            }
+        }
+
+        .cs-a11y-form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: (5/16rem);
+            flex: 1;
+            border-radius: (6/16rem);
+
+            .cs-form-label {
+                font-size: (10/16rem);
+                font-style: normal;
+                font-weight: 700;
+                color: var(--dark);
+            }
+
+            .cs-form-field {
+                height: (24/16rem);
+                border: 1.5px solid var(--border);
+                border-radius: (6/16rem);
+                display: block;
+            }
+        }
+
+        .cs-a11y-button {
+            font-size: (12/16rem);
+            font-weight: 700;
+            padding: (7/16rem) (16/16rem);
+            background-color: var(--dark);
+            border-radius: (999/16rem);
+            color: var(--on-dark);
+            /* keyboard focus ring, faint until highlighted */
+            outline: 2px dashed transparent;
+            outline-offset: 3px;
+        }
+
+        .cs-a11y-motion {
+            font-size: (11/16rem);
+            font-weight: 600;
+            color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: (6/16rem);
+
+            /* "reduce motion" toggle switched off */
+            i {
+                width: (24/16rem);
+                height: (14/16rem);
+                background-color: var(--border);
+                border-radius: (999/16rem);
+                display: block;
+                position: relative;
+
+                &:after {
+                    content: "";
+                    width: (10/16rem);
+                    height: (10/16rem);
+                    background-color: var(--surface);
+                    border-radius: 50%;
+                    position: absolute;
+                    top: (2/16rem);
+                    left: (2/16rem);
+                    transition: left 0.25s ease;
+                }
+            }
+        }
+
+        /* small phone showing the same site on mobile */
+        .cs-a11y-phone {
+            width: (56/16rem);
+            height: (96/16rem);
+            padding: (14/16rem) (7/16rem) (7/16rem);
+            background-color: var(--surface);
+            border: 2px solid var(--dark);
+            border-radius: (12/16rem);
+            /* prevents padding and border from affecting size */
+            box-sizing: border-box;
+            box-shadow: 0 12px 28px color-mix(in srgb, var(--shadow) 14%, transparent);
+            display: flex;
+            flex-direction: column;
+            gap: (5/16rem);
+            position: absolute;
+            right: (-14/16rem);
+            bottom: (-18/16rem);
+            transform: rotate(6deg);
+
+            i {
+                height: (6/16rem);
+                background-color: var(--dark);
+                border-radius: (3/16rem);
+                display: block;
+
+                &:nth-child(2) {
+                    width: 70%;
+                    background-color: var(--border);
+                }
+
+                &:nth-child(3) {
+                    height: (22/16rem);
+                    margin-top: auto;
+                    background-color: var(--accent-1);
+                }
+            }
+        }
+
+        /* ---- hover a checklist item to highlight its part of the illustration ---- */
+        /* everything dims while any item is hovered ... */
+        &:has(.cs-li:hover) .cs-a11y [data-feature] {
+            opacity: 0.3;
+        }
+
+        /* ... and the matching part comes forward */
+        &:has(.cs-li[data-feature="structure"]:hover) [data-feature="structure"],
+        &:has(.cs-li[data-feature="contrast"]:hover) [data-feature="contrast"],
+        &:has(.cs-li[data-feature="keyboard"]:hover) [data-feature="keyboard"],
+        &:has(.cs-li[data-feature="forms"]:hover) [data-feature="forms"],
+        &:has(.cs-li[data-feature="alt"]:hover) [data-feature="alt"],
+        &:has(.cs-li[data-feature="responsive"]:hover) [data-feature="responsive"],
+        &:has(.cs-li[data-feature="motion"]:hover) [data-feature="motion"] {
+            opacity: 1;
+            transform: scale(1.06);
+        }
+
+        &:has(.cs-li[data-feature="keyboard"]:hover) .cs-a11y-button {
+            outline-color: var(--dark);
+        }
+
+        &:has(.cs-li[data-feature="forms"]:hover) .cs-form-field {
+            border-color: var(--dark);
+        }
+
+        &:has(.cs-li[data-feature="motion"]:hover) .cs-a11y-motion i {
+            background-color: var(--dark);
+
+            &:after {
+                left: (12/16rem);
+                background-color: var(--accent-4);
+            }
+        }
+
+        &:has(.cs-li[data-feature="responsive"]:hover) .cs-a11y-phone {
+            transform: rotate(0deg) scale(1.12);
+        }
+    }
+}
+
+/* Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+    #accessibility {
+        .cs-container {
+            /* heading on the left, checklist on the right */
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .cs-content {
+            width: 30%;
+            flex: none;
+            /* keeps the heading in view while the list scrolls past */
+            position: sticky;
+            top: (120/16rem);
+        }
+
+        .cs-list-group {
+            width: 58%;
+        }
+
+        .cs-lead {
+            /* wider on desktop so the sentence sits on two lines */
+            max-width: (720/16rem);
+        }
+    }
+}
+
+/*-- -------------------------- -->
+<---            Steps           -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #steps {
+        padding: var(--sectionPadding);
+        background-color: var(--background-soft);
+        /* trims the full-bleed carousel at the screen edges */
+        overflow: hidden;
+
+        .cs-container {
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cs-content {
+            text-align: center;
+            /* 40px - 64px */
+            margin-bottom: clamp(2.5rem, 6vw, 4rem);
+        }
+
+        .cs-title {
+            /* 32px - 56px - kept smaller than the hero headline */
+            font-size: clamp(2rem, 4.2vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.08em;
+            letter-spacing: -0.02em;
+            text-align: center;
+            max-width: (620/16rem);
+            margin: 0 auto;
+            color: var(--text-primary);
+        }
+
+        .cs-card-group {
+            /* full-bleed carousel track - runs to both screen edges while the first card lines up with the content */
+            width: auto;
+            /* top/bottom padding gives the hover lift room (the scroller would clip it) */
+            margin: (-8/16rem) ~"calc(50% - 50vw)";
+            padding: (8/16rem) ~"calc(50vw - 50%)";
+            scroll-padding-left: ~"max(1rem, calc((100vw - 80rem) / 2))";
+            display: flex;
+            /* 12px - 16px */
+            column-gap: clamp(0.75rem, 1.4vw, 1rem);
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            overscroll-behavior-x: contain;
+            /* hide the scrollbar - the arrows and progress line replace it */
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
+        .cs-item {
+            list-style: none;
+            /* roomy fixed-width cards - 270px - 320px */
+            width: clamp(16.875rem, 24vw, 20rem);
+            flex: none;
+            scroll-snap-align: start;
+            /* tall enough that the big number and the text sit apart */
+            min-height: (340/16rem);
+            /* 24px - 28px */
+            padding: clamp(1.5rem, 2.2vw, 1.75rem);
+            /* prevents padding and border from affecting height and width */
+            box-sizing: border-box;
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: (20/16rem);
+            /* number and illustration at the top, title and text at the bottom */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: (18/16rem);
+            transition: background-color 0.3s, border-color 0.3s, transform 0.3s;
+
+            /* each card picks up a pastel on hover */
+            &:hover {
+                background-color: var(--accent-1);
+                border-color: transparent;
+                transform: translateY(-3px);
+            }
+
+            &:nth-child(4n + 2):hover {
+                background-color: var(--accent-2);
+            }
+
+            &:nth-child(4n + 3):hover {
+                background-color: var(--accent-3);
+            }
+
+            &:nth-child(4n + 4):hover {
+                background-color: var(--accent-4);
+            }
+        }
+
+        .cs-number {
+            /* small pill - the illustration is now the focal point */
+            font-size: (13/16rem);
+            font-weight: 700;
+            line-height: 1em;
+            letter-spacing: 0.04em;
+            padding: (6/16rem) (10/16rem);
+            background-color: var(--dark);
+            border-radius: (999/16rem);
+            color: var(--on-dark);
+            align-self: flex-start;
+        }
+
+        .cs-h3 {
+            /* 18px - 20px */
+            font-size: clamp(1.125rem, 1.5vw, 1.25rem);
+            font-weight: 600;
+            line-height: 1.25em;
+            margin: 0 0 (10/16rem);
+            color: var(--text-primary);
+        }
+
+        .cs-item-text {
+            font-size: (15/16rem);
+            line-height: 1.6em;
+            margin: 0;
+            color: var(--text-secondary);
+            transition: color 0.3s;
+        }
+
+        .cs-carousel-controls {
+            /* 20px - 32px */
+            margin-top: clamp(1.25rem, 2.5vw, 2rem);
+            display: flex;
+            align-items: center;
+            gap: (24/16rem);
+        }
+
+        .cs-progress {
+            height: 2px;
+            background-color: var(--border);
+            border-radius: 2px;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .cs-progress-fill {
+            /* scaled by work-carousel.js to show how much of the row has been seen */
+            width: 100%;
+            height: 100%;
+            background-color: var(--text-primary);
+            transform-origin: left;
+            transform: scaleX(0.5);
+            transition: transform 0.3s ease;
+            display: block;
+        }
+
+        .cs-arrows {
+            display: flex;
+            gap: (10/16rem);
+            flex: none;
+        }
+
+        .cs-arrow {
+            width: (48/16rem);
+            height: (48/16rem);
+            background-color: transparent;
+            border: 1px solid var(--text-primary);
+            border-radius: 50%;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s, opacity 0.2s;
+
+            svg {
+                width: (18/16rem);
+                height: (18/16rem);
+            }
+
+            &:hover:not(:disabled) {
+                background-color: var(--text-primary);
+                color: var(--on-dark);
+            }
+
+            &:disabled {
+                border-color: var(--border);
+                color: var(--text-secondary);
+                opacity: 0.6;
+                cursor: default;
+            }
+        }
+
+        /* the pastel hover backgrounds are light, so the grey text darkens for contrast */
+        .cs-item:hover .cs-item-text {
+            color: var(--text-on-accent);
+        }
+
+        .cs-item-content {
+            /* pushed to the bottom so the illustrations line up across cards */
+            margin-top: auto;
+        }
+
+        /* ---- step illustrations ---- */
+        .cs-art {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: (12/16rem);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+        }
+
+        .cs-item:hover .cs-art {
+            border-color: transparent;
+            box-shadow: 0 12px 28px color-mix(in srgb, var(--shadow) 10%, transparent);
+            transform: rotate(-2deg);
+        }
+
+        .cs-art-bar {
+            height: (18/16rem);
+            padding: 0 (9/16rem);
+            background-color: var(--background-soft);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: (4/16rem);
+
+            i {
+                width: (6/16rem);
+                height: (6/16rem);
+                background-color: var(--border);
+                border-radius: 50%;
+                display: block;
+            }
+        }
+
+        .cs-art-body {
+            height: (110/16rem);
+            padding: (12/16rem);
+            /* prevents padding from affecting height */
+            box-sizing: border-box;
+
+            > div {
+                width: 100%;
+                height: 100%;
+                position: relative;
+            }
+        }
+
+        /* 01 - discover: sticky notes, a mini sitemap, and a magnifier */
+        .cs-note {
+            width: (30/16rem);
+            height: (30/16rem);
+            border-radius: (4/16rem);
+            box-shadow: 0 3px 6px color-mix(in srgb, var(--shadow) 8%, transparent);
+            position: absolute;
+
+            &.cs-n1 {
+                background-color: var(--accent-3);
+                top: 0;
+                left: 0;
+                transform: rotate(-6deg);
+            }
+
+            &.cs-n2 {
+                background-color: var(--accent-2);
+                top: (40/16rem);
+                left: (14/16rem);
+                transform: rotate(5deg);
+            }
+
+            &.cs-n3 {
+                background-color: var(--accent-1);
+                top: (10/16rem);
+                left: (40/16rem);
+                transform: rotate(2deg);
+            }
+        }
+
+        .cs-mini-map {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: (12/16rem);
+            position: absolute;
+            top: (14/16rem);
+            right: (14/16rem);
+        }
+
+        .cs-m-root {
+            width: (40/16rem);
+            height: (14/16rem);
+            background-color: var(--dark);
+            border-radius: (4/16rem);
+            display: block;
+        }
+
+        .cs-m-kids {
+            display: flex;
+            gap: (12/16rem);
+            position: relative;
+
+            /* branch line */
+            &:before {
+                content: "";
+                height: 1.5px;
+                background-color: var(--dark);
+                position: absolute;
+                top: (-7/16rem);
+                left: 25%;
+                right: 25%;
+            }
+
+            i {
+                width: (32/16rem);
+                height: (14/16rem);
+                border: 1.5px solid var(--dark);
+                border-radius: (4/16rem);
+                /* prevents the border from affecting size */
+                box-sizing: border-box;
+                display: block;
+            }
+        }
+
+        .cs-magnifier {
+            width: (30/16rem);
+            height: (30/16rem);
+            border: 3px solid var(--dark);
+            border-radius: 50%;
+            background-color: color-mix(in srgb, var(--on-dark) 50%, transparent);
+            /* prevents the border from affecting size */
+            box-sizing: border-box;
+            position: absolute;
+            left: (22/16rem);
+            bottom: (2/16rem);
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+
+            /* handle */
+            &:after {
+                content: "";
+                width: (12/16rem);
+                height: 3px;
+                background-color: var(--dark);
+                border-radius: 2px;
+                position: absolute;
+                right: (-11/16rem);
+                bottom: (-4/16rem);
+                transform: rotate(45deg);
+            }
+        }
+
+        /* hover: the magnifier slides across to inspect the sitemap */
+        .cs-item:hover .cs-magnifier {
+            transform: translate((112/16rem), (-30/16rem));
+        }
+
+        /* 02 - design: a wireframe, type, and swatches */
+        .cs-art-design {
+            display: flex;
+            gap: (12/16rem);
+        }
+
+        .cs-wire {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: (6/16rem);
+
+            span {
+                border-radius: (3/16rem);
+                display: block;
+            }
+
+            .cs-w-bar {
+                height: (8/16rem);
+                background-color: var(--dark);
+            }
+
+            .cs-w-line {
+                height: (6/16rem);
+                background-color: var(--border);
+
+                &.cs-short {
+                    width: 60%;
+                }
+            }
+
+            .cs-w-block {
+                margin-top: auto;
+                height: (32/16rem);
+                background-color: var(--accent-1);
+            }
+        }
+
+        .cs-design-side {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .cs-art-aa {
+            font-size: (34/16rem);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            color: var(--dark);
+        }
+
+        .cs-dots {
+            height: (22/16rem);
+            position: relative;
+            width: 100%;
+
+            i {
+                width: (22/16rem);
+                height: (22/16rem);
+                border: 2px solid var(--on-dark);
+                border-radius: 50%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+                &:nth-child(1) {
+                    background-color: var(--dark);
+                    transform: translateX(0);
+                    z-index: 4;
+                }
+
+                &:nth-child(2) {
+                    background-color: var(--accent-1);
+                    transform: translateX((10/16rem));
+                    z-index: 3;
+                }
+
+                &:nth-child(3) {
+                    background-color: var(--accent-2);
+                    transform: translateX((20/16rem));
+                    z-index: 2;
+                }
+
+                &:nth-child(4) {
+                    background-color: var(--accent-4);
+                    transform: translateX((30/16rem));
+                    z-index: 1;
+                }
+            }
+        }
+
+        /* hover: the swatches fan out */
+        .cs-item:hover .cs-dots i {
+            &:nth-child(2) {
+                transform: translateX((24/16rem));
+            }
+
+            &:nth-child(3) {
+                transform: translateX((48/16rem));
+            }
+
+            &:nth-child(4) {
+                transform: translateX((72/16rem));
+            }
+        }
+
+        /* 03 - develop: a code editor */
+        .cs-art-code {
+            display: flex;
+            flex-direction: column;
+            gap: (8/16rem);
+        }
+
+        .cs-code-badge {
+            font-size: (11/16rem);
+            font-weight: 700;
+            padding: (2/16rem) (7/16rem);
+            background-color: var(--dark);
+            border-radius: (999/16rem);
+            color: var(--accent-4);
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .cs-cl {
+            height: (7/16rem);
+            border-radius: (4/16rem);
+            display: block;
+            transform-origin: left;
+
+            &.cs-k1 {
+                width: 46%;
+                background-color: var(--dark);
+            }
+
+            &.cs-k2 {
+                width: 58%;
+                background-color: color-mix(in srgb, var(--accent-1), var(--dark) 25%);
+            }
+
+            &.cs-k3 {
+                width: 40%;
+                background-color: color-mix(in srgb, var(--accent-2), var(--dark) 10%);
+            }
+
+            &.cs-k4 {
+                width: 52%;
+                background-color: var(--border);
+            }
+
+            &.cs-k5 {
+                width: 22%;
+                background-color: var(--dark);
+            }
+
+            &.cs-in {
+                margin-left: (12/16rem);
+            }
+
+            &.cs-in2 {
+                margin-left: (24/16rem);
+            }
+        }
+
+        /* hover: the lines type themselves in, one after another */
+        .cs-item:hover .cs-cl {
+            animation: cs-type 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+            &.cs-k2 {
+                animation-delay: 0.1s;
+            }
+
+            &.cs-k3 {
+                animation-delay: 0.2s;
+            }
+
+            &.cs-k4 {
+                animation-delay: 0.3s;
+            }
+
+            &.cs-k5 {
+                animation-delay: 0.4s;
+            }
+        }
+
+        @keyframes cs-type {
+            from {
+                transform: scaleX(0);
+            }
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        /* 04 - test: three devices, each checked off */
+        .cs-art-test {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: (12/16rem);
+        }
+
+        .cs-dev {
+            border: 2px solid var(--dark);
+            border-radius: (6/16rem);
+            /* prevents the border from affecting size */
+            box-sizing: border-box;
+            display: block;
+            position: relative;
+
+            &.cs-desktop {
+                width: (96/16rem);
+                height: (64/16rem);
+            }
+
+            &.cs-tablet {
+                width: (52/16rem);
+                height: (70/16rem);
+            }
+
+            &.cs-phone {
+                width: (32/16rem);
+                height: (56/16rem);
+                border-radius: (8/16rem);
+            }
+
+            b {
+                width: (22/16rem);
+                height: (22/16rem);
+                background-color: var(--accent-4);
+                border: 2px solid var(--dark);
+                border-radius: 50%;
+                /* prevents the border from affecting size */
+                box-sizing: border-box;
+                color: var(--dark);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                top: (-9/16rem);
+                right: (-9/16rem);
+
+                svg {
+                    width: (11/16rem);
+                    height: (11/16rem);
+                }
+            }
+        }
+
+        /* hover: the checks pop in, one device at a time */
+        .cs-item:hover .cs-dev b {
+            animation: cs-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        .cs-item:hover .cs-tablet b {
+            animation-delay: 0.15s;
+        }
+
+        .cs-item:hover .cs-phone b {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes cs-pop {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        /* 05 - approve: a comment and an approve button */
+        .cs-art-approve {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: (12/16rem);
+        }
+
+        .cs-bubble {
+            font-size: (13/16rem);
+            font-weight: 600;
+            padding: (8/16rem) (12/16rem);
+            background-color: var(--accent-2);
+            border-radius: (12/16rem) (12/16rem) (12/16rem) (3/16rem);
+            color: var(--dark);
+            transform-origin: bottom left;
+        }
+
+        .cs-approve-btn {
+            font-size: (12/16rem);
+            font-weight: 700;
+            padding: (6/16rem) (14/16rem);
+            background-color: var(--dark);
+            border-radius: (999/16rem);
+            color: var(--accent-4);
+            align-self: flex-end;
+        }
+
+        /* hover: the comment bounces in */
+        .cs-item:hover .cs-bubble {
+            animation: cs-bounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        @keyframes cs-bounce {
+            0% {
+                transform: scale(0.6) translateY(8px);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* 06 - launch: live badge, rocket, and a check */
+        .cs-live-pill {
+            font-size: (12/16rem);
+            font-weight: 700;
+            padding: (4/16rem) (10/16rem) (4/16rem) (20/16rem);
+            background-color: var(--accent-4);
+            border: 1px solid color-mix(in srgb, var(--dark) 8%, transparent);
+            border-radius: (999/16rem);
+            color: var(--dark);
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            &:before {
+                content: "";
+                width: (6/16rem);
+                height: (6/16rem);
+                background-color: var(--success);
+                border-radius: 50%;
+                position: absolute;
+                top: 50%;
+                left: (9/16rem);
+                transform: translateY(-50%);
+            }
+        }
+
+        .cs-rocket {
+            width: (52/16rem);
+            height: (52/16rem);
+            color: var(--dark);
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+
+            svg {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .cs-launch-check {
+            width: (32/16rem);
+            height: (32/16rem);
+            background-color: var(--dark);
+            border-radius: 50%;
+            color: var(--accent-4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+
+            svg {
+                width: (16/16rem);
+                height: (16/16rem);
+            }
+        }
+
+        /* hover: lift off */
+        .cs-item:hover .cs-rocket {
+            transform: translate(-30%, (-26/16rem)) rotate(8deg);
+        }
+    }
+}
+
+/*-- -------------------------- -->
+<---          Redesign          -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #redesign {
+        padding: var(--sectionPadding);
+        background-color: var(--background);
+
+        .cs-container {
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+        }
+
+        .cs-panel {
+            /* 28px - 64px */
+            padding: clamp(1.75rem, 5vw, 4rem);
+            /* soft purple-to-pink wash */
+            background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 100%);
+            border-radius: (28/16rem);
+            /* prevents padding from affecting width */
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            /* 40px - 56px */
+            gap: clamp(2.5rem, 5vw, 3.5rem);
+            overflow: hidden;
+        }
+
+        .cs-topper {
+            font-size: (13/16rem);
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            color: var(--text-primary);
+            margin-bottom: (16/16rem);
+        }
+
+        .cs-title {
+            /* 32px - 52px */
+            font-size: clamp(2rem, 4vw, 3.25rem);
+            font-weight: 700;
+            line-height: 1.08em;
+            letter-spacing: -0.02em;
+            max-width: (520/16rem);
+            /* 16px - 24px */
+            margin: 0 0 clamp(1rem, 2vw, 1.5rem);
+            color: var(--text-primary);
+        }
+
+        .cs-text {
+            /* 16px - 18px */
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            line-height: 1.65em;
+            max-width: (500/16rem);
+            margin: 0;
+            /* darker than the usual grey so it reads on the pastel */
+            color: var(--text-on-accent);
+        }
+
+        .cs-redesign-button {
+            /* 24px - 32px */
+            margin-top: clamp(1.5rem, 3vw, 2rem);
+            display: inline-flex;
+            align-items: center;
+            gap: (8/16rem);
+        }
+
+        .cs-redesign-icon {
+            width: (18/16rem);
+            height: (18/16rem);
+            transition: transform 0.2s;
+        }
+
+        .cs-redesign-button:hover .cs-redesign-icon {
+            transform: translateX(3px);
+        }
+
+        /* ---- before / after illustration ---- */
+        .cs-visual {
+            width: 100%;
+            max-width: (520/16rem);
+            /* 280px - 380px */
+            height: clamp(17.5rem, 34vw, 23.75rem);
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .cs-window {
+            width: 74%;
+            border-radius: (14/16rem);
+            box-shadow: 0 20px 50px color-mix(in srgb, var(--shadow) 12%, transparent);
+            position: absolute;
+            transition: transform 0.5s ease;
+        }
+
+        .cs-window-label {
+            font-size: (11/16rem);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: (5/16rem) (10/16rem);
+            border-radius: (999/16rem);
+            position: absolute;
+            top: (-12/16rem);
+            left: (16/16rem);
+            z-index: 2;
+        }
+
+        .cs-window-bar {
+            height: (28/16rem);
+            padding: 0 (12/16rem);
+            border-radius: (14/16rem) (14/16rem) 0 0;
+            display: flex;
+            align-items: center;
+            gap: (6/16rem);
+
+            i {
+                width: (8/16rem);
+                height: (8/16rem);
+                border-radius: 50%;
+                display: block;
+            }
+        }
+
+        .cs-window-body {
+            /* 14px - 20px */
+            padding: clamp(0.875rem, 2vw, 1.25rem);
+            border-radius: 0 0 (14/16rem) (14/16rem);
+            display: flex;
+            flex-direction: column;
+            gap: (10/16rem);
+        }
+
+        /* the old site - greyed out, crooked, cluttered */
+        .cs-before {
+            top: 0;
+            left: 0;
+            background-color: color-mix(in srgb, var(--dark) 9%, var(--surface));
+            transform: rotate(-5deg);
+            filter: saturate(0.4);
+
+            .cs-window-label {
+                background-color: color-mix(in srgb, var(--dark) 46%, var(--surface));
+                color: var(--on-dark);
+            }
+
+            .cs-window-bar {
+                background-color: color-mix(in srgb, var(--dark) 19%, var(--surface));
+
+                i {
+                    background-color: color-mix(in srgb, var(--dark) 34%, var(--surface));
+                }
+            }
+
+            .cs-block {
+                background-color: color-mix(in srgb, var(--dark) 21%, var(--surface));
+                border-radius: 2px;
+                display: block;
+            }
+
+            .cs-block-nav {
+                height: (12/16rem);
+            }
+
+            .cs-block-hero {
+                height: (56/16rem);
+                background-color: color-mix(in srgb, var(--dark) 29%, var(--surface));
+            }
+
+            .cs-block-line {
+                height: (8/16rem);
+                width: 90%;
+
+                &.cs-short {
+                    width: 60%;
+                }
+            }
+
+            .cs-block-row {
+                display: flex;
+                gap: (6/16rem);
+
+                .cs-block {
+                    height: (34/16rem);
+                    flex: 1;
+                }
+            }
+        }
+
+        /* the problems from the copy, pinned to the old site */
+        .cs-tag {
+            font-size: (12/16rem);
+            font-weight: 600;
+            white-space: nowrap;
+            padding: (6/16rem) (10/16rem);
+            background-color: var(--surface);
+            border-radius: (999/16rem);
+            box-shadow: 0 6px 16px color-mix(in srgb, var(--shadow) 10%, transparent);
+            color: var(--text-primary);
+            display: inline-flex;
+            align-items: center;
+            gap: (5/16rem);
+            position: absolute;
+            /* above both windows */
+            z-index: 3;
+            transform: rotate(-2deg);
+        }
+
+        .cs-tag-icon {
+            width: (12/16rem);
+            height: (12/16rem);
+            color: var(--danger);
+        }
+
+        /* stacked down the left edge, clear of the new site */
+        .cs-tag-1 {
+            top: 20%;
+            left: -3%;
+        }
+
+        .cs-tag-2 {
+            top: 42%;
+            left: 2%;
+            transform: rotate(1.5deg);
+        }
+
+        .cs-tag-3 {
+            top: 64%;
+            left: -2%;
+        }
+
+        /* the new site - clean, in the Websthetic palette */
+        .cs-after {
+            right: 0;
+            bottom: 0;
+            background-color: var(--surface);
+            transform: rotate(3deg);
+            z-index: 1;
+
+            .cs-window-label {
+                background-color: var(--dark);
+                color: var(--accent-4);
+            }
+
+            .cs-window-bar {
+                background-color: var(--background-soft);
+                border-bottom: 1px solid var(--border);
+
+                i {
+                    background-color: var(--border);
+                }
+            }
+        }
+
+        .cs-mock-nav {
+            margin-bottom: (6/16rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cs-mock-logo {
+            width: (44/16rem);
+            height: (10/16rem);
+            background-color: var(--dark);
+            border-radius: (3/16rem);
+            display: block;
+        }
+
+        .cs-mock-pill {
+            width: (40/16rem);
+            height: (14/16rem);
+            background-color: var(--accent-4);
+            border: 1px solid color-mix(in srgb, var(--dark) 8%, transparent);
+            border-radius: (999/16rem);
+            display: block;
+        }
+
+        .cs-mock-heading {
+            width: 82%;
+            height: (14/16rem);
+            background-color: var(--dark);
+            border-radius: (4/16rem);
+            display: block;
+
+            &.cs-short {
+                width: 54%;
+            }
+        }
+
+        .cs-mock-text {
+            width: 70%;
+            height: (7/16rem);
+            background-color: var(--border);
+            border-radius: (4/16rem);
+            display: block;
+        }
+
+        .cs-mock-button {
+            width: (64/16rem);
+            height: (18/16rem);
+            margin-top: (2/16rem);
+            background-color: var(--dark);
+            border-radius: (999/16rem);
+            display: block;
+        }
+
+        .cs-mock-cards {
+            margin-top: (4/16rem);
+            display: flex;
+            gap: (6/16rem);
+
+            span {
+                height: (40/16rem);
+                border-radius: (8/16rem);
+                flex: 1;
+                display: block;
+
+                &:nth-child(1) {
+                    background-color: var(--accent-1);
+                }
+
+                &:nth-child(2) {
+                    background-color: var(--accent-3);
+                }
+
+                &:nth-child(3) {
+                    background-color: var(--accent-4);
+                }
+            }
+        }
+
+        /* hovering the panel straightens the new site up */
+        .cs-panel:hover .cs-after {
+            transform: rotate(0deg) translateY(-6px);
+        }
+    }
+}
+
+/* Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+    #redesign {
+        .cs-panel {
+            /* copy on the left, illustration on the right */
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cs-content {
+            width: 46%;
+            flex: none;
+        }
+
+        .cs-visual {
+            width: 48%;
+            margin: 0;
+        }
+    }
+}
+
+/* Reduced motion - no straightening animation */
+@media (prefers-reduced-motion: reduce) {
+    #redesign .cs-window {
+        transition: none;
+    }
+}
+
+/*-- -------------------------- -->
+<---             FAQ            -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #faq {
+        padding: var(--sectionPadding);
+        background-color: var(--background-soft);
+
+        .cs-container {
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            /* 40px - 64px */
+            gap: clamp(2.5rem, 6vw, 4rem);
+        }
+
+        .cs-title {
+            /* 32px - 56px - kept smaller than the hero headline */
+            font-size: clamp(2rem, 4.2vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.08em;
+            letter-spacing: -0.02em;
+            max-width: (420/16rem);
+            /* 16px - 24px */
+            margin: 0 0 clamp(1rem, 2vw, 1.5rem);
+            color: var(--text-primary);
+        }
+
+        .cs-text {
+            /* 16px - 18px */
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            line-height: 1.65em;
+            max-width: (380/16rem);
+            margin: 0 0 (20/16rem);
+            color: var(--text-secondary);
+        }
+
+        .cs-faq-link {
+            font-size: (16/16rem);
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-primary);
+            /* pastel marker underline */
+            background: linear-gradient(180deg, transparent 62%, var(--accent-4) 62%);
+            display: inline-flex;
+            align-items: center;
+            gap: (8/16rem);
+            transition: gap 0.2s;
+
+            &:hover {
+                gap: (12/16rem);
+            }
+        }
+
+        .cs-faq-link-icon {
+            width: (18/16rem);
+            height: (18/16rem);
+        }
+
+        .cs-faq-group {
+            border-top: 1px solid var(--border);
+        }
+
+        .cs-faq-item {
+            border-bottom: 1px solid var(--border);
+
+            &[open] {
+                .cs-faq-icon:after {
+                    /* the vertical bar collapses - plus becomes minus */
+                    transform: translate(-50%, -50%) rotate(90deg) scaleX(0);
+                }
+
+                .cs-question {
+                    padding-bottom: (10/16rem);
+                }
+            }
+        }
+
+        .cs-question {
+            /* 17px - 20px */
+            font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+            font-weight: 600;
+            line-height: 1.35em;
+            /* 20px - 26px top and bottom */
+            padding: clamp(1.25rem, 2.2vw, 1.625rem) 0;
+            color: var(--text-primary);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: (24/16rem);
+            transition: padding 0.2s;
+
+            /* hide the default triangle */
+            &::-webkit-details-marker {
+                display: none;
+            }
+
+            &:hover .cs-faq-icon {
+                background-color: var(--accent-4);
+            }
+
+            &:focus-visible {
+                outline: 2px solid var(--text-primary);
+                outline-offset: 4px;
+                border-radius: (4/16rem);
+            }
+        }
+
+        .cs-faq-icon {
+            /* round plus / minus */
+            width: (32/16rem);
+            height: (32/16rem);
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            flex: none;
+            position: relative;
+            transition: background-color 0.2s;
+
+            &:before,
+            &:after {
+                content: "";
+                width: (12/16rem);
+                height: 2px;
+                background-color: var(--text-primary);
+                border-radius: 2px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                transition: transform 0.3s ease;
+            }
+
+            &:after {
+                transform: translate(-50%, -50%) rotate(90deg);
+            }
+        }
+
+        .cs-answer {
+            /* 15px - 17px */
+            font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
+            line-height: 1.7em;
+            max-width: (620/16rem);
+            /* 20px - 26px bottom */
+            margin: 0 0 clamp(1.25rem, 2.2vw, 1.625rem);
+            padding-right: (56/16rem);
+            color: var(--text-secondary);
+        }
+    }
+}
+
+/* Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+    #faq {
+        .cs-container {
+            /* heading on the left, questions on the right */
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .cs-content {
+            width: 32%;
+            flex: none;
+            /* keeps the heading in view while reading the answers */
+            position: sticky;
+            top: (120/16rem);
+        }
+
+        .cs-faq-group {
+            width: 60%;
+        }
+    }
+}
+
+/*-- -------------------------- -->
+<---          Gallery           -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #gallery-48 {
+        padding: var(--sectionPadding);
+        position: relative;
+
+        .cs-container {
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* 48px - 64px */
+            gap: clamp(3rem, 6vw, 4rem);
+        }
+
+        .cs-content {
+            text-align: center;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cs-image-group {
+            /* used rem so it doesn't scale with the font size of on parent */
+            font-size: ~"min(1.1vw, 1em)";
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            /* 8px - 20px */
+            gap: clamp(0.5rem, 2vw, 1.25rem);
+        }
+
+        .cs-row {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            /* 8px - 20px */
+            gap: clamp(0.5rem, 2vw, 1.25rem);
+        }
+
+        .cs-picture {
+            width: 100%;
+            position: relative;
+            display: block;
+            border-radius: (8/16rem);
+            overflow: hidden;
+
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .cs-row-1 {
+            .cs-picture-1 {
+                height: (567/16em);
+            }
+
+            .cs-picture-2 {
+                height: (629/16em);
+            }
+
+            .cs-picture-3 {
+                height: (512/16em);
+            }
+        }
+
+        .cs-row-2 {
+            .cs-picture-1 {
+                height: (492/16em);
+            }
+
+            .cs-picture-2 {
+                height: (517/16em);
+            }
+
+            .cs-picture-3 {
+                height: (629/16em);
+            }
+        }
+
+        .cs-row-3 {
+            .cs-picture-1 {
+                height: (625/16em);
+            }
+
+            .cs-picture-2 {
+                height: (452/16em);
+            }
+
+            .cs-picture-3 {
+                height: (629/16em);
+            }
+        }
+    }
+}
+

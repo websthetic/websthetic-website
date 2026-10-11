@@ -1,0 +1,85 @@
+---
+title: "Thank You | Websthetic"
+description: "Thanks for getting in touch with Websthetic. We’ll be in touch soon."
+# Netlify sends visitors here after the contact form is submitted (the form's action in components/contact-form.html)
+permalink: "/thank-you/"
+eleventyExcludeFromCollections: true
+---
+
+{% extends "layouts/base.html" %}
+
+{% block head %}
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="/assets/css/thank-you.css">
+{% endblock %}
+
+{% block body %}
+
+    <!-- ============================================ -->
+    <!--                   Banner                     -->
+    <!-- ============================================ -->
+
+    <div id="banner-310">
+        <div class="cs-container">
+            {% set crumb = "Thank You" %}
+            {% include "components/breadcrumb.html" %}
+            <!-- illustration on the right (desktop) - drawings live in components/banner-art/ -->
+            <div class="cs-banner-art" aria-hidden="true">
+                {% include "components/banner-art/contact.html" %}
+            </div>
+            <div class="cs-banner-text">
+                <span class="cs-int-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                    Message Sent
+                </span>
+                <h1 class="cs-int-title">Thanks, We’ll Be <span class="cs-highlight">In Touch.</span></h1>
+                <p class="cs-int-text">
+                    Your message is on its way to our team. We’ll read through your project details and get back to you soon.
+                </p>
+                <div class="cs-int-buttons">
+                    <a href="/work/" class="cs-button-solid cs-int-button">
+                        See Our Work
+                        <svg class="cs-int-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                    <a href="/" class="cs-button-outline cs-int-button">Back To Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!--                 What's Next                  -->
+    <!-- ============================================ -->
+
+    <section id="next-steps">
+        <div class="cs-container">
+            <div class="cs-content">
+                <span class="cs-topper">What Happens Next</span>
+                <h2 class="cs-title">From Here, It’s Simple</h2>
+            </div>
+            <ol class="cs-steps">
+                <li class="cs-step">
+                    <span class="cs-step-number" aria-hidden="true">1</span>
+                    <h3 class="cs-step-title">We Review Your Project</h3>
+                    <p class="cs-step-text">We read through your message and the details you shared, so we come to the conversation prepared.</p>
+                </li>
+                <li class="cs-step">
+                    <span class="cs-step-number" aria-hidden="true">2</span>
+                    <h3 class="cs-step-title">We Reach Out</h3>
+                    <p class="cs-step-text">We’ll email you to set up a quick call about your goals, timeline, and anything we need to know.</p>
+                </li>
+                <li class="cs-step">
+                    <span class="cs-step-number" aria-hidden="true">3</span>
+                    <h3 class="cs-step-title">You Get A Clear Plan</h3>
+                    <p class="cs-step-text">We follow up with a straightforward proposal and next steps, and tell you honestly if we’re the right fit.</p>
+                </li>
+            </ol>
+            <p class="cs-note">
+                In the meantime, explore our <a href="/resources/">free resources</a> or follow along on
+                <a href="{{ client.socials.instagram }}" target="_blank" rel="noopener">Instagram<span class="cs-visually-hidden"> (opens in a new tab)</span></a> and
+                <a href="{{ client.socials.linkedin }}" target="_blank" rel="noopener">LinkedIn<span class="cs-visually-hidden"> (opens in a new tab)</span></a>.
+            </p>
+        </div>
+    </section>
+
+{% endblock %}

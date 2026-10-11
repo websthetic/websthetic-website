@@ -2,7 +2,7 @@
 // PAGE STYLES
 // Interior pages have their own stylesheet for styles that only exist on
 // that page. Any styles shared between pages, including repeated sections,
-// should go into root.less
+// should go into global.less
 // ─────────────────────────────────────────────────────────────────────────────
 
 /*-- -------------------------- -->
@@ -56,9 +56,9 @@
             padding: (60/16rem) clamp(1rem, 3.2vw, 2rem) 0;
             /* 32px - 40px */
             padding-bottom: clamp(2rem, 5.4vw, 2.5rem);
-            box-shadow: 0px 20px 39px 0px rgba(0, 0, 0, 0.05);
+            box-shadow: 0px 20px 39px 0px color-mix(in srgb, var(--shadow) 5%, transparent);
             border-radius: (4/16rem);
-            background: #fff;
+            background: var(--surface);
             position: relative;
             display: flex;
             justify-content: space-between;
@@ -84,8 +84,8 @@
             line-height: 1.5em;
             margin: 0 0 (20/16rem);
             padding-bottom: (20/16rem);
-            color: var(--bodyTextColor);
-            border-bottom: 1px solid #e8e9ec;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
         }
 
         .cs-info {
@@ -105,17 +105,17 @@
         .cs-name {
             font-size: (16/16rem);
             line-height: 1.5em;
-            font-weight: 700;
+            font-weight: 600;
             width: 40%;
             margin: 0;
             display: block;
-            color: var(--headerColor);
+            color: var(--text-primary);
         }
 
         .cs-desc {
             font-size: (14/16rem);
             font-weight: 400;
-            color: #7d799c;
+            color: var(--text-secondary);
             display: block;
         }
 
@@ -144,24 +144,3 @@
     }
 }
 
-/* Dark Mode */
-@media only screen and (min-width: 0rem) {
-    body.dark-mode {
-        #reviews-67 {
-            .cs-title,
-            .cs-text,
-            .cs-item-text,
-            .cs-name {
-                color: var(--bodyTextColorWhite);
-            }
-
-            .cs-item {
-                background: rgba(0, 0, 0, 0.2);
-            }
-
-            .cs-desc {
-                color: var(--primaryLight);
-            }
-        }
-    }
-}

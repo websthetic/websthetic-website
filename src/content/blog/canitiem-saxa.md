@@ -2,7 +2,7 @@
 title: Canitiem Saxa
 url: canitiem-saxa
 description: Lorem markdownum trabeati dicere deus.
-author: Code Stitch
+author: Websthetic
 date: 2023-06-08T15:28:08.486Z
 tags:
     - post

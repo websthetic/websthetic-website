@@ -31,8 +31,8 @@
       ],
     },
     {
-      description: 'Group CodeStitch major updates',
-      groupName: 'codestitch-tools-major',
+      description: 'Group image & minify plugin major updates',
+      groupName: 'build-plugins-major',
       matchUpdateTypes: ['major'],
       matchPackagePatterns: [
         '^@codestitchofficial/',

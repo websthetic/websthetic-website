@@ -6,7 +6,8 @@ backend:
 local_backend: true
 
 # change url to a link to the image you want to use, no file paths, must be a URL
-logo_url: https://codestitch.app/frontend/images/logo.png
+# once deployed, point this at your live logo, e.g. https://www.yourdomain.com/assets/svgs/logo-black.svg
+logo_url: https://www.example.com/assets/svgs/logo-black.svg
 
 # Image folders
 media_folder: "src/assets/images/blog"

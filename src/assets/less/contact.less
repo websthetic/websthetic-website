@@ -1,257 +1,248 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// PAGE STYLES
+// Interior pages have their own stylesheet for styles that only exist on
+// that page. Any styles shared between pages, including repeated sections,
+// should go into global.less
+// ─────────────────────────────────────────────────────────────────────────────
+
 /*-- -------------------------- -->
 <---          Contact           -->
 <--- -------------------------- -*/
 
 /* Mobile - 360px */
 @media only screen and (min-width: 0rem) {
-    #contact {
-        background-color: #080808;
-        position: relative;
-        z-index: 8;
+    #cs-contact-265 {
+        padding: var(--sectionPadding);
+        background-color: var(--background);
 
-        // ── CTA Band ──
-        .contact-band {
-            padding: clamp(5rem, 12vw, 9rem) clamp(1.5rem, 6vw, 5rem) clamp(1rem, 3vw, 2rem);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .contact-heading {
-            font-family: var(--headerFont);
-            font-size: clamp(3.5rem, 15vw, 7rem);
-            
-            color: var(--bodyTextColor);
-            line-height: 1;
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
-            text-align: center;
-            margin: 0;
-            
-        }
-
-        // ── Body: Info + Form ──
-        .contact-body {
-            padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 6vw, 5rem);
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
-        }
-
-        // ── Contact Info ──
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .contact-info__title {
-            font-family: var(--headerFont);
-            font-size: clamp(1.75rem, 5vw, 2.5rem);
-            font-weight: 700;
-            color: var(--bodyTextColor);
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
-            margin: 0 0 (24/16rem);
-        }
-
-        .contact-detail {
-            display: flex;
-            flex-direction: column;
-            gap: (4/16rem);
-            margin-bottom: (24/16rem);
-        }
-
-        .contact-detail__label {
-            font-size: (11/16rem);
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        .contact-detail__value {
-            font-size: (16/16rem);
-            color: var(--bodyTextColor);
-
-            a {
-                color: var(--primary);
-                text-decoration: none;
-                transition: opacity 0.2s ease;
-
-                &:hover {
-                    opacity: 0.75;
-                }
-            }
-        }
-
-        // ── Call line (sits between response time and divider) ──
-        .contact-call-line {
-            font-family: var(--bodyFont);
-            font-size: clamp(0.875rem, 2vw, 1rem);
-            color: rgba(255, 255, 255, 0.35);
-            margin: 0 0 (28/16rem);
-            padding: 0;
-            line-height: 1.6;
-
-            a {
-                color: var(--primary);
-                text-decoration: none;
-                transition: opacity 0.2s ease;
-
-                &:hover {
-                    opacity: 0.75;
-                }
-            }
-        }
-
-        .contact-divider {
+        .cs-container {
             width: 100%;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.08);
-            margin: 0 0 (28/16rem);
+            max-width: (1280/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            /* 48px - 64px */
+            gap: clamp(3rem, 6vw, 4rem);
         }
 
-        .contact-availability {
+        .cs-content {
+            /* 32px - 40px */
+            margin-bottom: clamp(2rem, 4vw, 2.5rem);
+        }
+
+        .cs-title {
+            /* 32px - 52px */
+            font-size: clamp(2rem, 4vw, 3.25rem);
+            font-weight: 700;
+            line-height: 1.08em;
+            letter-spacing: -0.02em;
+            max-width: (560/16rem);
+            /* 16px - 20px */
+            margin: 0 0 clamp(1rem, 1.6vw, 1.25rem);
+            color: var(--text-primary);
+        }
+
+        .cs-text {
+            /* 16px - 18px */
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            line-height: 1.65em;
+            max-width: (520/16rem);
+            margin: 0;
+            color: var(--text-secondary);
+        }
+
+        /* ---- right panel ---- */
+        .cs-right-section {
+            /* 24px - 40px */
+            padding: clamp(1.5rem, 3.5vw, 2.5rem);
+            background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 100%);
+            border-radius: (28/16rem);
+            /* prevents padding from affecting width */
+            box-sizing: border-box;
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            gap: (24/16rem);
+        }
+
+        .cs-chat {
+            padding: (20/16rem);
+            background-color: var(--surface);
+            border-radius: (18/16rem);
+            box-shadow: 0 16px 40px color-mix(in srgb, var(--shadow) 10%, transparent);
+            display: flex;
+            flex-direction: column;
             gap: (10/16rem);
-            font-family: var(--bodyFont);
+            transform: rotate(-2deg);
+        }
+
+        .cs-bubble {
             font-size: (14/16rem);
-            color: rgba(255, 255, 255, 0.4);
-        }
+            font-weight: 500;
+            line-height: 1.4em;
+            max-width: 80%;
+            padding: (10/16rem) (14/16rem);
+            color: var(--dark);
+            /* each bubble pops in after the last */
+            animation: cs-chat-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 
-        .contact-availability__dot {
-            width: (8/16rem);
-            height: (8/16rem);
-            border-radius: 50%;
-            background: #3dba6f;
-            flex-shrink: 0;
-            box-shadow: 0 0 6px rgba(61, 186, 111, 0.5);
-        }
-
-        // ── Form Card ──
-        .contact-form-card {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: (16/16rem);
-            padding: clamp(1.5rem, 4vw, 2rem);
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: (16/16rem);
-        }
-
-        .contact-form__row {
-            display: flex;
-            flex-direction: column;
-            gap: (12/16rem);
-        }
-
-        .contact-form__field {
-            width: 100%;
-
-            input,
-            textarea,
-            select {
-                width: 100%;
-                background: rgba(0, 0, 0, 0.4);
-                border: 1px solid rgba(255, 255, 255, 0.12);
-                border-radius: (10/16rem);
-                padding: (16/16rem) (18/16rem);
-                font-size: (15/16rem);
-                font-family: var(--bodyFont);
-                color: rgba(255, 255, 255, 0.4);
-                outline: none;
-                box-sizing: border-box;
-                transition: border-color 0.25s ease;
-                appearance: none;
-                -webkit-appearance: none;
-
-                &::placeholder {
-                    color: rgba(255, 255, 255, 0.25);
-                }
-
-                &:focus {
-                    border-color: rgba(255, 255, 255, 0.3);
-                    color: rgba(255, 255, 255, 0.75);
-                }
+            &.cs-them {
+                background-color: var(--background-soft);
+                border: 1px solid var(--border);
+                border-radius: (16/16rem) (16/16rem) (16/16rem) (4/16rem);
+                align-self: flex-start;
+                transform-origin: bottom left;
             }
 
-            textarea {
-                resize: vertical;
-                min-height: (120/16rem);
-                line-height: 1.6;
+            &.cs-us {
+                background-color: var(--dark);
+                border-radius: (16/16rem) (16/16rem) (4/16rem) (16/16rem);
+                color: var(--on-dark);
+                align-self: flex-end;
+                transform-origin: bottom right;
+                animation-delay: 0.5s;
             }
 
-            select {
-                cursor: pointer;
-                color: rgba(255, 255, 255, 0.25);
+            &.cs-small {
+                background-color: var(--accent-4);
+                border-color: color-mix(in srgb, var(--dark) 8%, transparent);
+                animation-delay: 1s;
+            }
+        }
 
-                option {
-                    background: #1a1a1a;
-                    color: rgba(255, 255, 255, 0.85);
+        .cs-typing {
+            padding: (10/16rem) (14/16rem);
+            background-color: var(--dark);
+            border-radius: (16/16rem) (16/16rem) (4/16rem) (16/16rem);
+            align-self: flex-end;
+            display: flex;
+            gap: (4/16rem);
+            animation: cs-chat-pop 0.5s 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+
+            i {
+                width: (6/16rem);
+                height: (6/16rem);
+                background-color: var(--surface);
+                border-radius: 50%;
+                display: block;
+                animation: cs-typing 1.2s ease-in-out infinite;
+
+                &:nth-child(2) {
+                    animation-delay: 0.15s;
+                }
+
+                &:nth-child(3) {
+                    animation-delay: 0.3s;
                 }
             }
         }
 
-        .contact-form__footer {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: (16/16rem);
-            padding-top: (8/16rem);
+        @keyframes cs-chat-pop {
+            from {
+                opacity: 0;
+                transform: scale(0.7) translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
         }
 
-        .contact-form__legal {
-            font-size: (12/16rem);
-            color: rgba(255, 255, 255, 0.25);
-            line-height: 1.5;
+        @keyframes cs-typing {
+            0%,
+            60%,
+            100% {
+                opacity: 0.3;
+                transform: translateY(0);
+            }
+            30% {
+                opacity: 1;
+                transform: translateY(-3px);
+            }
+        }
+
+        .cs-details {
             margin: 0;
-
-            a {
-                color: rgba(255, 255, 255, 0.5);
-                text-decoration: none;
-                transition: color 0.2s ease;
-
-                &:hover {
-                    color: rgba(255, 255, 255, 0.75);
-                }
-            }
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: (10/16rem);
         }
 
-        .contact-form__submit {
-            display: inline-flex;
+        .cs-detail {
+            list-style: none;
+            padding: (14/16rem) (16/16rem);
+            background-color: color-mix(in srgb, var(--on-dark) 70%, transparent);
+            border-radius: (16/16rem);
+            display: flex;
             align-items: center;
-            gap: (8/16rem);
-            padding: (14/16rem) (28/16rem);
-            background: transparent;
-            border: 1.5px solid var(--primary);
-            border-radius: (100/16rem);
-            color: var(--primary);
-            font-family: var(--bodyFont);
-            font-size: (12/16rem);
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            gap: (14/16rem);
+        }
+
+        .cs-detail-icon {
+            width: (40/16rem);
+            height: (40/16rem);
+            background-color: var(--dark);
+            border-radius: 50%;
+            color: var(--accent-4);
+            flex: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
             svg {
-                flex-shrink: 0;
-                transition: transform 0.3s ease;
+                width: (18/16rem);
+                height: (18/16rem);
+            }
+        }
+
+        .cs-header {
+            font-size: (12/16rem);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            display: block;
+        }
+
+        .cs-link {
+            font-size: (16/16rem);
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-primary);
+            /* lime marker underline on hover */
+            background: linear-gradient(180deg, transparent 62%, var(--accent-4) 62%) no-repeat;
+            background-size: 0% 100%;
+            transition: background-size 0.3s;
+
+            &:hover {
+                background-size: 100% 100%;
+            }
+        }
+
+        .cs-social {
+            display: flex;
+            gap: (10/16rem);
+        }
+
+        .cs-social-link {
+            width: (44/16rem);
+            height: (44/16rem);
+            background-color: var(--surface);
+            border-radius: 50%;
+            color: var(--dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s, transform 0.2s;
+
+            svg {
+                width: (20/16rem);
+                height: (20/16rem);
             }
 
             &:hover {
-                background-color: var(--primary);
-                color: #fff;
-
-                svg {
-                    transform: translate(2px, -2px);
-                }
+                background-color: var(--accent-4);
+                transform: translateY(-2px);
             }
         }
     }
@@ -259,30 +250,34 @@
 
 /* Desktop - 1024px */
 @media only screen and (min-width: 64rem) {
-    #contact {
-        .contact-body {
+    #cs-contact-265 {
+        .cs-container {
+            /* form on the left, panel on the right */
             flex-direction: row;
-            gap: clamp(3rem, 6vw, 6rem);
+            justify-content: space-between;
             align-items: flex-start;
         }
 
-        .contact-info {
-            flex: 0 0 (320/16rem);
+        .cs-left-section {
+            width: 58%;
         }
 
-        .contact-form-card {
-            flex: 1;
+        .cs-right-section {
+            width: 36%;
+            /* stays in view while filling out the form */
+            position: sticky;
+            top: (120/16rem);
         }
+    }
+}
 
-        .contact-form__row {
-            flex-direction: row;
-            gap: (12/16rem);
-        }
-
-        .contact-form__footer {
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
+/* Reduced motion - chat appears without popping or typing */
+@media (prefers-reduced-motion: reduce) {
+    #cs-contact-265 {
+        .cs-bubble,
+        .cs-typing,
+        .cs-typing i {
+            animation: none;
         }
     }
 }

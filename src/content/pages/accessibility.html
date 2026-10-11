@@ -1,0 +1,80 @@
+---
+title: "Accessibility | Websthetic"
+description: "Websthetic’s commitment to an accessible website, the standards we follow, and how to let us know about any barriers."
+permalink: "/accessibility/"
+---
+
+{% extends "layouts/base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/assets/css/legal.css">
+{% endblock %}
+
+{% block body %}
+
+    <!-- DRAFT - describes what's built into this site today. Review it before launch, and update the "Known Limitations" if you find any issues while testing -->
+
+    <!-- ============================================ -->
+    <!--                   Banner                     -->
+    <!-- ============================================ -->
+
+    <div id="banner-310">
+        <div class="cs-container">
+            {% set crumb = "Accessibility" %}
+            {% include "components/breadcrumb.html" %}
+            <!-- illustration on the right (desktop) - drawings live in components/banner-art/ -->
+            <div class="cs-banner-art" aria-hidden="true">
+                {% include "components/banner-art/colour-contrast-checker.html" %}
+            </div>
+            <div class="cs-banner-text">
+                <h1 class="cs-int-title">Accessibility <span class="cs-highlight">Statement.</span></h1>
+                <p class="cs-int-text">
+                    We want everyone to be able to use our website, whatever device, browser, or assistive technology they use.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!--                 Statement                    -->
+    <!-- ============================================ -->
+
+    <section id="legal">
+        <div class="cs-container">
+            <p class="cs-updated">Last updated: October 11, 2026</p>
+
+            <h2>Our Commitment</h2>
+            <p>
+                Accessibility is part of how we design and build every website, including our own. We aim for this site to meet the <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener">Web Content Accessibility Guidelines (WCAG) 2.2<span class="cs-visually-hidden"> (opens in a new tab)</span></a> at Level AA, in line with the Accessibility for Ontarians with Disabilities Act (AODA).
+            </p>
+
+            <h2>What We’ve Done</h2>
+            <ul>
+                <li><strong>Readable colour contrast.</strong> Text meets WCAG AA contrast ratios. The Change Colour feature only uses colour combinations that keep text readable.</li>
+                <li><strong>Keyboard friendly.</strong> Links, buttons, menus, and form fields can be used with a keyboard and show a visible focus style.</li>
+                <li><strong>Screen reader support.</strong> Pages use clear headings and landmarks, images have text alternatives, and interactive tools announce changes.</li>
+                <li><strong>Labelled forms.</strong> Every form field has a visible label, and required fields are clearly marked.</li>
+                <li><strong>Reduced motion.</strong> If you’ve turned on “reduce motion” in your device settings, animations are switched off or kept to a minimum.</li>
+                <li><strong>Responsive layouts.</strong> The site adapts to any screen size and supports zooming in up to 200%.</li>
+            </ul>
+
+            <h2>Known Limitations</h2>
+            <p>We’re always working to improve, and some areas may not be fully accessible yet:</p>
+            <ul>
+                <li>Websites in our portfolio belong to our clients and are outside of our control.</li>
+                <li>The colour previews in our design tools are visual by nature. We include the colour codes and contrast results as text alongside them.</li>
+            </ul>
+
+            <h2>Tell Us About A Barrier</h2>
+            <p>
+                If anything on this website is difficult to use, or you need information in a different format, please let us know. Tell us the page and what happened, and we’ll do our best to respond within two business days.
+            </p>
+
+            <div class="cs-legal-contact">
+                <h2>Get In Touch</h2>
+                <p>Email us at <a href="mailto:{{ client.email }}">{{ client.email }}</a> or use our <a href="/contact/">contact form</a>.</p>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

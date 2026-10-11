@@ -4,20 +4,27 @@
 		BREAKPOINTS: {
 			MOBILE: 1023.5,
 		},
+		// How far (px) the page scrolls before the nav gets its dark glass background
+		SCROLL_OFFSET: 20,
+		// The nav hides when scrolling down past this point (px) and comes back when scrolling up
+		HIDE_OFFSET: 120,
+		// Ignore scroll movements smaller than this (px) so the nav doesn't flicker
+		SCROLL_TOLERANCE: 6,
 		SELECTORS: {
 			body: "body",
 			navigation: "#cs-navigation",
 			hamburger: "#cs-navigation .cs-toggle",
-			menuWrapper: ".cs-ul-wrapper",
+			menuWrapper: "#cs-ul-wrapper",
 			dropdownToggle: ".cs-dropdown-toggle",
 			dropdown: ".cs-dropdown",
 			dropdownMenu: ".cs-drop-ul",
 			navButton: ".cs-nav-button",
-			darkModeToggle: "#dark-mode-toggle",
 		},
 		CLASSES: {
 			active: "cs-active",
 			menuOpen: "cs-open",
+			scrolled: "cs-scrolled",
+			hidden: "cs-nav-hidden",
 		},
 	};
 
@@ -28,7 +35,6 @@
 		hamburger: document.querySelector(CONFIG.SELECTORS.hamburger),
 		menuWrapper: document.querySelector(CONFIG.SELECTORS.menuWrapper),
 		navButton: document.querySelector(CONFIG.SELECTORS.navButton),
-		darkModeToggle: document.querySelector(CONFIG.SELECTORS.darkModeToggle),
 	};
 
 	// Utilities
@@ -90,17 +96,45 @@
 		toggle() {
 			if (!elements.hamburger || !elements.navigation) return;
 
-			const isClosing = elements.body.classList.contains(CONFIG.CLASSES.menuOpen);
+			const isClosing = elements.navigation.classList.contains(CONFIG.CLASSES.active);
 
-			elements.hamburger.classList.toggle(CONFIG.CLASSES.active);
+			[elements.hamburger, elements.navigation].forEach((el) => el.classList.toggle(CONFIG.CLASSES.active));
 			elements.body.classList.toggle(CONFIG.CLASSES.menuOpen);
 			toggleAttribute(elements.hamburger, "aria-expanded");
 
+			// Only manage inert state on mobile devices
 			if (elements.menuWrapper && isMobile()) {
 				toggleInert(elements.menuWrapper);
 			}
 
+			// When closing the mobile menu, also close any open dropdowns
 			isClosing && dropdownManager.closeAll();
+		},
+	};
+
+	// Scroll Management - transparent nav at the top of the page, dark glass background once scrolled.
+	// Hides when scrolling down, shows again when scrolling up.
+	let lastScrollY = window.scrollY;
+
+	const scrollManager = {
+		update() {
+			if (!elements.navigation) return;
+			const y = window.scrollY;
+			elements.navigation.classList.toggle(CONFIG.CLASSES.scrolled, y > CONFIG.SCROLL_OFFSET);
+
+			const delta = y - lastScrollY;
+			if (Math.abs(delta) < CONFIG.SCROLL_TOLERANCE) return;
+			lastScrollY = y;
+
+			// always show near the top, while the mobile menu is open, or while something in the nav has keyboard focus
+			const menuOpen = elements.navigation.classList.contains(CONFIG.CLASSES.active);
+			const hasFocus = elements.navigation.contains(document.activeElement);
+			const hide = delta > 0 && y > CONFIG.HIDE_OFFSET && !menuOpen && !hasFocus;
+			elements.navigation.classList.toggle(CONFIG.CLASSES.hidden, hide);
+		},
+
+		show() {
+			elements.navigation && elements.navigation.classList.remove(CONFIG.CLASSES.hidden);
 		},
 	};
 
@@ -109,10 +143,12 @@
 		handleEscape() {
 			if (!elements.navigation) return;
 
+			// Close any open dropdown menus first
 			const dropdownsClosed = dropdownManager.closeAll();
 			if (dropdownsClosed) return;
 
-			if (elements.body && elements.body.classList.contains(CONFIG.CLASSES.menuOpen)) {
+			// Then close hamburger menu if open
+			if (elements.hamburger && elements.hamburger.classList.contains(CONFIG.CLASSES.active)) {
 				menuManager.toggle();
 				elements.hamburger.focus();
 			}
@@ -159,14 +195,14 @@
 		},
 
 		handleMobileFocus(event) {
-			if (!isMobile() || !elements.body.classList.contains(CONFIG.CLASSES.menuOpen)) return;
+			if (!isMobile() || !elements.navigation.classList.contains(CONFIG.CLASSES.active)) return;
 			if (elements.menuWrapper.contains(event.target) || elements.hamburger.contains(event.target)) return;
 
 			menuManager.toggle();
 		},
 
 		handleDropdownHover(event) {
-			if (isMobile()) return;
+			if (isMobile()) return; // Only apply hover behavior on desktop
 
 			const dropdown = event.target.closest(CONFIG.SELECTORS.dropdown);
 			if (!dropdown) return;
@@ -177,7 +213,10 @@
 			if (event.type === "mouseenter") {
 				menu.inert = false;
 			} else if (event.type === "mouseleave") {
+				// Only set inert=true if mouse is leaving the entire dropdown area
+				// Use setTimeout to allow mouseleave/mouseenter events to complete
 				setTimeout(() => {
+					// Check if mouse is still over the dropdown or its menu
 					if (!dropdown.matches(":hover")) {
 						menu.inert = true;
 					}
@@ -191,8 +230,11 @@
 		inertState() {
 			if (!elements.menuWrapper) return;
 
+			// On mobile, menu starts closed, so set inert=true
+			// On desktop, menu is always visible, so set inert=false
 			elements.menuWrapper.inert = isMobile();
 
+			// Initialize dropdown menus - they start closed, so inert=true on all devices
 			if (elements.navigation) {
 				const dropdownMenus = elements.navigation.querySelectorAll(CONFIG.SELECTORS.dropdownMenu);
 				dropdownMenus.forEach((dropdown) => {
@@ -204,216 +246,44 @@
 		eventListeners() {
 			if (!elements.hamburger || !elements.navigation) return;
 
+			// Hamburger menu
 			elements.hamburger.addEventListener("click", menuManager.toggle);
 			elements.navigation.addEventListener("click", (e) => {
-				if (e.target === elements.navigation && elements.body.classList.contains(CONFIG.CLASSES.menuOpen)) {
+				if (e.target === elements.navigation && elements.navigation.classList.contains(CONFIG.CLASSES.active)) {
 					menuManager.toggle();
 				}
 			});
 
+			// Dropdown delegation
 			elements.navigation.addEventListener("click", eventManager.handleDropdownClick);
 			elements.navigation.addEventListener("keydown", eventManager.handleDropdownKeydown);
 			elements.navigation.addEventListener("focusout", eventManager.handleFocusOut);
 
+			// Desktop hover listeners for inert management
 			elements.navigation.addEventListener("mouseenter", eventManager.handleDropdownHover, true);
 			elements.navigation.addEventListener("mouseleave", eventManager.handleDropdownHover, true);
 
+			// Scroll state
+			window.addEventListener("scroll", scrollManager.update, { passive: true });
+			// bring the nav back if a keyboard user tabs into it while it's hidden
+			elements.navigation.addEventListener("focusin", scrollManager.show);
+
+			// Global events
 			document.addEventListener("keydown", (e) => e.key === "Escape" && keyboardManager.handleEscape());
 			document.addEventListener("focusin", eventManager.handleMobileFocus);
 
+			// Resize handling
 			window.addEventListener("resize", () => {
 				this.inertState();
-				if (!isMobile() && elements.body.classList.contains(CONFIG.CLASSES.menuOpen)) {
+				if (!isMobile() && elements.navigation.classList.contains(CONFIG.CLASSES.active)) {
 					menuManager.toggle();
 				}
 			});
 		},
 	};
 
+	// Initialize navigation system
 	init.inertState();
 	init.eventListeners();
+	scrollManager.update();
 })();
-
-
-// ============================================
-//           GSAP Nav Animations
-// ============================================
-document.addEventListener('DOMContentLoaded', function() {
-    const links = document.querySelectorAll('.cs-li-link');
-    
-    links.forEach(link => {
-        const wrapper = link.querySelector('.cs-link-wrapper');
-        if (!wrapper) return;
-        
-        const originalText = link.textContent.trim();
-        wrapper.innerHTML = '';
-        
-        const layer1 = document.createElement('span');
-        layer1.className = 'cs-link-text';
-        const layer2 = document.createElement('span');
-        layer2.className = 'cs-link-text';
-        
-        originalText.split('').forEach(char => {
-            const char1 = document.createElement('span');
-            char1.className = 'cs-link-char';
-            char1.textContent = char === ' ' ? '\u00A0' : char;
-            layer1.appendChild(char1);
-            
-            const char2 = document.createElement('span');
-            char2.className = 'cs-link-char';
-            char2.textContent = char === ' ' ? '\u00A0' : char;
-            layer2.appendChild(char2);
-        });
-        
-        wrapper.appendChild(layer1);
-        wrapper.appendChild(layer2);
-        
-        const chars1 = layer1.querySelectorAll('.cs-link-char');
-        const chars2 = layer2.querySelectorAll('.cs-link-char');
-        
-        link.addEventListener('mouseenter', () => {
-            gsap.to(chars1, {
-                y: '-100%',
-                duration: 0.3,
-                ease: 'cubic-bezier(0.76, 0, 0.24, 1)',
-                stagger: 0.03
-            });
-            gsap.to(chars2, {
-                y: '0%',
-                duration: 0.3,
-                ease: 'cubic-bezier(0.76, 0, 0.24, 1)',
-                stagger: 0.03
-            });
-        });
-        
-        link.addEventListener('mouseleave', () => {
-            gsap.to(chars1, {
-                y: '0%',
-                duration: 0.3,
-                ease: 'cubic-bezier(0.76, 0, 0.24, 1)',
-                stagger: 0.03
-            });
-            gsap.to(chars2, {
-                y: '100%',
-                duration: 0.3,
-                ease: 'cubic-bezier(0.76, 0, 0.24, 1)',
-                stagger: 0.03
-            });
-        });
-    });
-
-    // Logo hover animation
-    const logo = document.querySelector('.cs-logo');
-    if (logo) {
-        const logoTexts = logo.querySelectorAll('.cs-logo-text');
-        
-        logo.addEventListener('mouseenter', () => {
-            gsap.to(logoTexts[0], { y: '-100%', duration: 0.5, ease: 'power2.out' });
-            gsap.to(logoTexts[1], { y: '0%',    duration: 0.5, ease: 'power2.out' });
-        });
-        
-        logo.addEventListener('mouseleave', () => {
-            gsap.to(logoTexts[0], { y: '0%',    duration: 0.5, ease: 'power2.out' });
-            gsap.to(logoTexts[1], { y: '100%',  duration: 0.5, ease: 'power2.out' });
-        });
-    }
-
-    // Button animation
-    const buttons = document.querySelectorAll('.cs-button-solid');
-    buttons.forEach(button => {
-        const buttonTexts = button.querySelectorAll('.cs-button-text');
-        if (buttonTexts.length < 2) return;
-        
-        button.addEventListener('mouseenter', () => {
-            gsap.to(buttonTexts[0], { y: '-100%', duration: 0.5, ease: 'power2.out' });
-            gsap.to(buttonTexts[1], { y: '0%',    duration: 0.5, ease: 'power2.out' });
-        });
-        
-        button.addEventListener('mouseleave', () => {
-            gsap.to(buttonTexts[0], { y: '0%',    duration: 0.5, ease: 'power2.out' });
-            gsap.to(buttonTexts[1], { y: '100%',  duration: 0.5, ease: 'power2.out' });
-        });
-    });
-});
-
-
-// ============================================
-//           Scroll Nav Background
-// ============================================
-let navScrolled = false;
-
-window.addEventListener('scroll', function() {
-    const nav = document.querySelector('#cs-navigation');
-    const scrollThreshold = 100;
-    
-    if (window.scrollY > scrollThreshold && !navScrolled) {
-        nav.classList.add('nav-scrolled');
-        navScrolled = true;
-    } else if (window.scrollY <= scrollThreshold && navScrolled) {
-        nav.classList.remove('nav-scrolled');
-        navScrolled = false;
-    }
-});
-
-
-// ============================================
-//           Hamburger Ripple Effect
-// ============================================
-document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.querySelector('.cs-toggle');
-    
-    if (hamburger) {
-        hamburger.addEventListener('click', function(e) {
-            this.classList.remove('rippling');
-            void this.offsetWidth;
-            this.classList.add('rippling');
-            setTimeout(() => this.classList.remove('rippling'), 500);
-        });
-    }
-});
-
-window.addEventListener('scroll', () => {
-    const nav = document.getElementById('cs-navigation');
-    if (window.scrollY > 50) {
-        nav.classList.add('nav-scrolled');
-    } else {
-        nav.classList.remove('nav-scrolled');
-    }
-});
-
-
-// ============================================
-//         Active Nav Link on Scroll
-// ============================================
-document.addEventListener('DOMContentLoaded', function () {
-    const sections = [
-        { id: 'home',          link: document.querySelector('.cs-li-link[href="/"]') },
-        { id: 'our-process',   link: document.querySelector('.cs-li-link[href="/#our-process"]') },
-        { id: 'our-portfolio', link: document.querySelector('.cs-li-link[href="/#our-portfolio"]') },
-        { id: 'our-services',  link: document.querySelector('.cs-li-link[href="/#our-services"]') },
-    ];
-
-    function setActive(link) {
-        document.querySelectorAll('.cs-li-link').forEach(l => l.classList.remove('cs-active'));
-        if (link) link.classList.add('cs-active');
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const match = sections.find(s => s.id === entry.target.id);
-                if (match) setActive(match.link);
-            }
-        });
-    }, { threshold: 0.3 });
-
-    sections.forEach(s => {
-        const el = document.getElementById(s.id);
-        if (el) observer.observe(el);
-    });
-
-    // Contact page
-    if (window.location.pathname.includes('/contact')) {
-        setActive(document.querySelector('.cs-li-link[href="/contact/"]'));
-    }
-});

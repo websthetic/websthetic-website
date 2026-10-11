@@ -1,0 +1,413 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// COLOUR PALETTE GENERATOR
+// Styles for Resources > Colour Palette Generator: the toolbar, the five
+// swatches, and the info box. The banner and CTA styles live in global.less,
+// the behaviour in palette-generator.js.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/*-- -------------------------- -->
+<---        Palette Tool        -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #palette-tool {
+        padding: var(--sectionPadding);
+        background-color: var(--background);
+
+        .cs-container {
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+        }
+
+        /* buttons on the left, harmony picker on the right */
+        .cs-toolbar {
+            /* 16px - 24px */
+            padding: clamp(1rem, 2vw, 1.5rem);
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: (24/16rem);
+            box-shadow: 0 (12/16rem) (32/16rem) color-mix(in srgb, var(--shadow) 6%, transparent);
+            display: flex;
+            flex-direction: column;
+            gap: (16/16rem);
+        }
+
+        .cs-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: (10/16rem);
+        }
+
+        .cs-tool-button {
+            display: inline-flex;
+            align-items: center;
+            gap: (8/16rem);
+
+            svg {
+                width: (18/16rem);
+                height: (18/16rem);
+            }
+        }
+
+        /* the export dropdown */
+        .cs-export {
+            position: relative;
+        }
+
+        .cs-export-menu {
+            min-width: (220/16rem);
+            margin: 0;
+            padding: (6/16rem);
+            list-style: none;
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: (16/16rem);
+            box-shadow: 0 (16/16rem) (40/16rem) color-mix(in srgb, var(--shadow) 14%, transparent);
+            position: absolute;
+            top: calc(100% + (8/16rem));
+            left: 0;
+            z-index: 20;
+
+            &[hidden] {
+                display: none;
+            }
+        }
+
+        .cs-export-option {
+            width: 100%;
+            padding: (10/16rem) (14/16rem);
+            background-color: transparent;
+            border: none;
+            border-radius: (10/16rem);
+            font-family: inherit;
+            font-size: (15/16rem);
+            font-weight: 500;
+            line-height: 1.2em;
+            text-align: left;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: background-color 0.2s;
+
+            &:hover,
+            &:focus-visible {
+                background-color: var(--accent-1);
+                outline: none;
+            }
+        }
+
+        .cs-harmony {
+            display: flex;
+            align-items: center;
+            gap: (12/16rem);
+        }
+
+        .cs-harmony-label {
+            font-size: (14/16rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            flex: none;
+        }
+
+        select {
+            width: 100%;
+            min-width: (200/16rem);
+            height: (48/16rem);
+            padding: 0 (44/16rem) 0 (16/16rem);
+            background-color: var(--background-soft);
+            /* a small down-pointing triangle drawn as two halves, so it follows the colour tokens */
+            background-image: linear-gradient(45deg, transparent 50%, var(--text-primary) 50%), linear-gradient(135deg, var(--text-primary) 50%, transparent 50%);
+            background-repeat: no-repeat;
+            background-position: right (23/16rem) center, right (18/16rem) center;
+            background-size: (5/16rem) (5/16rem);
+            border: 1px solid var(--field-border);
+            border-radius: (999/16rem);
+            font-family: inherit;
+            font-size: (15/16rem);
+            font-weight: 500;
+            color: var(--text-primary);
+            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+            transition: border-color 0.2s;
+
+            &:hover {
+                border-color: color-mix(in srgb, var(--field-border), var(--dark) 25%);
+            }
+
+            &:focus {
+                outline: none;
+                border-color: var(--dark);
+                box-shadow: 0 0 0 3px var(--accent-1);
+            }
+        }
+
+        .cs-tip {
+            font-size: (14/16rem);
+            line-height: 1.6em;
+            /* 16px - 24px */
+            margin: clamp(1rem, 2vw, 1.5rem) 0;
+            color: var(--text-secondary);
+
+            kbd {
+                font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+                font-size: (12/16rem);
+                font-weight: 600;
+                padding: (2/16rem) (8/16rem);
+                background-color: var(--accent-2);
+                border: 1px solid color-mix(in srgb, var(--dark) 12%, transparent);
+                border-radius: (6/16rem);
+                color: var(--dark);
+            }
+        }
+
+        /* five swatches - stacked rows on mobile, tall columns from tablet up */
+        .cs-palette {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border-radius: (24/16rem);
+            box-shadow: 0 (20/16rem) (50/16rem) color-mix(in srgb, var(--shadow) 12%, transparent);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .cs-swatch {
+            height: (104/16rem);
+            /* 16px - 24px */
+            padding: (16/16rem) clamp(1rem, 2vw, 1.5rem);
+            /* the colour itself, set by palette-generator.js */
+            background-color: var(--swatch);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            transition: background-color 0.35s ease, flex-grow 0.35s ease;
+
+            /* black or white details, whichever reads better on the colour - fixed on purpose, since they sit on the generated colour rather than the site colours (like the contrast checker preview) */
+            &[data-text="dark"] {
+                --swatch-ink: #000000;
+                --swatch-ink-soft: rgba(0, 0, 0, 0.12);
+            }
+
+            &[data-text="light"] {
+                --swatch-ink: #FFFFFF;
+                --swatch-ink-soft: rgba(255, 255, 255, 0.18);
+            }
+        }
+
+        /* lock - shows on hover, stays visible once locked */
+        .cs-lock {
+            width: (44/16rem);
+            height: (44/16rem);
+            padding: 0;
+            background-color: transparent;
+            border: 1.5px solid var(--swatch-ink-soft);
+            border-radius: 50%;
+            color: var(--swatch-ink);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s, border-color 0.2s, opacity 0.2s;
+
+            svg {
+                width: (18/16rem);
+                height: (18/16rem);
+            }
+
+            .cs-lock-closed {
+                display: none;
+            }
+
+            &:hover {
+                background-color: var(--swatch-ink-soft);
+            }
+
+            &:focus-visible {
+                outline: 2px solid var(--swatch-ink);
+                outline-offset: 2px;
+            }
+        }
+
+        .cs-locked .cs-lock {
+            background-color: var(--swatch-ink-soft);
+            border-color: var(--swatch-ink);
+
+            .cs-lock-open {
+                display: none;
+            }
+
+            .cs-lock-closed {
+                display: block;
+            }
+        }
+
+        /* the colour code - a white pill, readable on any colour. Click to copy */
+        .cs-hex {
+            min-width: (104/16rem);
+            padding: (9/16rem) (16/16rem);
+            background-color: var(--surface);
+            border: none;
+            border-radius: (999/16rem);
+            box-shadow: 0 (4/16rem) (14/16rem) color-mix(in srgb, var(--shadow) 14%, transparent);
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: (15/16rem);
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: transform 0.2s;
+
+            &:hover {
+                transform: translateY(-2px);
+            }
+
+            &:focus-visible {
+                outline: 2px solid var(--swatch-ink);
+                outline-offset: 3px;
+            }
+        }
+
+        .cs-info {
+            /* 32px - 48px */
+            margin-top: clamp(2rem, 4vw, 3rem);
+            /* 24px - 32px */
+            padding: clamp(1.5rem, 2.8vw, 2rem);
+            background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 50%, var(--accent-4) 100%);
+            border-radius: (24/16rem);
+            display: flex;
+            gap: (16/16rem);
+        }
+
+        .cs-info-icon {
+            width: (28/16rem);
+            height: (28/16rem);
+            font-size: (15/16rem);
+            font-weight: 700;
+            font-style: italic;
+            font-family: Georgia, serif;
+            background-color: var(--dark);
+            border-radius: 50%;
+            color: var(--on-dark);
+            flex: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cs-info-title {
+            /* 17px - 19px */
+            font-size: clamp(1.0625rem, 1.5vw, 1.1875rem);
+            font-weight: 600;
+            margin: (2/16rem) 0 (10/16rem);
+            color: var(--text-primary);
+        }
+
+        .cs-info-text {
+            p,
+            li {
+                font-size: (15/16rem);
+                line-height: 1.6em;
+                color: var(--text-on-accent);
+            }
+
+            p {
+                margin: 0 0 (12/16rem);
+            }
+
+            ul {
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                gap: (6/16rem);
+            }
+
+            li {
+                list-style: none;
+            }
+
+            strong {
+                color: var(--dark);
+            }
+        }
+
+        .cs-disclaimer {
+            font-size: (14/16rem);
+            line-height: 1.6em;
+            margin: (20/16rem) 0 0;
+            color: var(--text-secondary);
+
+            a {
+                font-size: inherit;
+                font-weight: 600;
+                color: var(--text-primary);
+                text-underline-offset: 0.2em;
+            }
+        }
+    }
+}
+
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    #palette-tool {
+        .cs-toolbar {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        select {
+            width: auto;
+        }
+
+        .cs-palette {
+            /* 380px - 520px tall columns */
+            height: clamp(23.75rem, 45vw, 32.5rem);
+            flex-direction: row;
+        }
+
+        .cs-swatch {
+            height: auto;
+            padding: (24/16rem) (12/16rem) (28/16rem);
+            flex: 1 1 0;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* the swatch you're on grows a little */
+        .cs-swatch:hover,
+        .cs-swatch:focus-within {
+            flex-grow: 1.35;
+        }
+
+        .cs-lock {
+            opacity: 0;
+        }
+
+        .cs-swatch:hover .cs-lock,
+        .cs-lock:focus-visible,
+        .cs-locked .cs-lock {
+            opacity: 1;
+        }
+    }
+}
+
+/* Touch screens - no hover, so the lock is always shown */
+@media (hover: none) {
+    #palette-tool .cs-lock {
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #palette-tool {
+        .cs-swatch,
+        .cs-hex {
+            transition: none;
+        }
+    }
+}

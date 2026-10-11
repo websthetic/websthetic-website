@@ -1,0 +1,155 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// CONTACT POPUP
+// The "Let's Talk" popup on the home page (sections/contact-modal.html),
+// opened by hero-form.js. The form inside is styled by contact-form.less.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/*-- -------------------------- -->
+<---       Contact Popup        -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    /* stops the page behind from scrolling while the popup is open */
+    html.cs-modal-open {
+        overflow: hidden;
+    }
+
+    .cs-contact-modal {
+        /* 16px from the screen edges, 736px at most */
+        width: min((736/16rem), calc(100% - 2rem));
+        max-width: none;
+        max-height: calc(100dvh - 2rem);
+        margin: auto;
+        padding: 0;
+        background-color: var(--surface);
+        border: none;
+        border-radius: (24/16rem);
+        box-shadow: 0 (30/16rem) (80/16rem) color-mix(in srgb, var(--shadow) 30%, transparent);
+        color: var(--text-primary);
+        /* long forms scroll inside the popup */
+        overflow-y: auto;
+        overscroll-behavior: contain;
+
+        &[open] {
+            animation: cs-modal-in 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        &::backdrop {
+            /* fallback for browsers where the backdrop can't read the colour tokens */
+            background-color: rgba(0, 0, 0, 0.6);
+            background-color: color-mix(in srgb, var(--dark) 60%, transparent);
+            -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+        }
+
+        &[open]::backdrop {
+            animation: cs-backdrop-in 0.3s ease;
+        }
+    }
+
+    @keyframes cs-modal-in {
+        from {
+            opacity: 0;
+            transform: translateY(1.5rem) scale(0.98);
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    @keyframes cs-backdrop-in {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    .cs-modal-inner {
+        /* 24px - 48px */
+        padding: clamp(1.5rem, 5vw, 3rem);
+        position: relative;
+    }
+
+    .cs-modal-close {
+        width: (44/16rem);
+        height: (44/16rem);
+        padding: 0;
+        background-color: var(--background-soft);
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        color: var(--text-primary);
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        /* 12px - 20px */
+        top: clamp(0.75rem, 2vw, 1.25rem);
+        right: clamp(0.75rem, 2vw, 1.25rem);
+        transition: background-color 0.2s, transform 0.2s;
+
+        svg {
+            width: (20/16rem);
+            height: (20/16rem);
+        }
+
+        &:hover {
+            background-color: var(--accent-1);
+            transform: rotate(90deg);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--dark);
+            outline-offset: 2px;
+        }
+    }
+
+    .cs-modal-header {
+        /* leaves room for the close button */
+        padding-right: (48/16rem);
+        /* 24px - 32px */
+        margin-bottom: clamp(1.5rem, 3vw, 2rem);
+    }
+
+    .cs-modal-topper {
+        font-size: (13/16rem);
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+        margin-bottom: (8/16rem);
+        display: block;
+    }
+
+    .cs-modal-title {
+        /* 28px - 40px */
+        font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+        font-weight: 700;
+        line-height: 1.1em;
+        letter-spacing: -0.02em;
+        margin: 0 0 (12/16rem);
+        color: var(--text-primary);
+    }
+
+    .cs-modal-text {
+        font-size: (16/16rem);
+        line-height: 1.6em;
+        margin: 0;
+        color: var(--text-secondary);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cs-contact-modal[open],
+    .cs-contact-modal[open]::backdrop {
+        animation: none;
+    }
+
+    .cs-modal-close:hover {
+        transform: none;
+    }
+}

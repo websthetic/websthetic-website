@@ -1,0 +1,538 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// WEBSITE LAUNCH CHECKLIST
+// Styles for Resources > Website Launch Checklist: the progress card and the
+// collapsible categories of checks. The banner and CTA styles live in
+// global.less, the behaviour in launch-checklist.js. The rings and bars are
+// drawn from a --p (0 - 100) custom property the script keeps up to date.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/*-- -------------------------- -->
+<---         Checklist          -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #launch-checklist {
+        padding: var(--sectionPadding);
+        background-color: var(--background-soft);
+
+        .cs-container {
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            /* 24px - 40px */
+            gap: clamp(1.5rem, 3vw, 2.5rem);
+        }
+
+        /* shared ring styles - the progress card ring and the small category rings */
+        .cs-ring-track,
+        .cs-ring-fill {
+            fill: none;
+        }
+
+        .cs-ring-track {
+            stroke: var(--border);
+        }
+
+        .cs-ring-fill {
+            stroke: var(--button-bg);
+            stroke-linecap: round;
+            /* --p is the percentage, out of the pathLength of 100 */
+            stroke-dasharray: var(--p) 100;
+            transition: stroke-dasharray 0.6s cubic-bezier(0.22, 1, 0.36, 1), stroke 0.3s;
+        }
+
+        /* Progress card */
+        .cs-progress-card {
+            /* 24px - 32px */
+            padding: clamp(1.5rem, 3vw, 2rem);
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: (24/16rem);
+            box-shadow: 0 (12/16rem) (32/16rem) color-mix(in srgb, var(--shadow) 6%, transparent);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .cs-progress-label {
+            font-size: (13/16rem);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: (16/16rem);
+        }
+
+        .cs-progress-ring {
+            width: (160/16rem);
+            height: (160/16rem);
+            position: relative;
+
+            svg {
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+
+            circle {
+                stroke-width: 10;
+            }
+        }
+
+        .cs-ring-value {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            b {
+                font-size: (36/16rem);
+                font-weight: 700;
+                line-height: 1em;
+                letter-spacing: -0.02em;
+                color: var(--text-primary);
+                font-variant-numeric: tabular-nums;
+            }
+
+            i {
+                font-size: (13/16rem);
+                font-style: normal;
+                margin-top: (4/16rem);
+                color: var(--text-secondary);
+            }
+        }
+
+        .cs-progress-count {
+            font-size: (15/16rem);
+            margin: (16/16rem) 0 (4/16rem);
+            color: var(--text-primary);
+
+            b {
+                font-variant-numeric: tabular-nums;
+            }
+        }
+
+        .cs-progress-message {
+            font-size: (14/16rem);
+            line-height: 1.5em;
+            margin: 0;
+            color: var(--text-secondary);
+        }
+
+        /* the category list under the ring */
+        .cs-progress-list {
+            width: 100%;
+            /* 20px - 28px */
+            margin: clamp(1.25rem, 2.5vw, 1.75rem) 0 0;
+            padding: clamp(1.25rem, 2.5vw, 1.75rem) 0 0;
+            border-top: 1px solid var(--border);
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: (6/16rem);
+            text-align: left;
+        }
+
+        .cs-progress-link {
+            padding: (8/16rem) (10/16rem);
+            border-radius: (10/16rem);
+            text-decoration: none;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            row-gap: (6/16rem);
+            transition: background-color 0.2s;
+
+            &:hover,
+            &:focus-visible {
+                background-color: var(--background-soft);
+                outline: none;
+            }
+        }
+
+        .cs-progress-name {
+            font-size: (14/16rem);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .cs-progress-fraction {
+            font-size: (13/16rem);
+            font-variant-numeric: tabular-nums;
+            color: var(--text-secondary);
+        }
+
+        .cs-progress-bar {
+            height: (6/16rem);
+            background-color: var(--border);
+            border-radius: (999/16rem);
+            grid-column: 1 / -1;
+            display: block;
+            overflow: hidden;
+
+            &:after {
+                content: "";
+                width: calc(var(--p) * 1%);
+                height: 100%;
+                background-color: var(--button-bg);
+                border-radius: inherit;
+                display: block;
+                transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            }
+        }
+
+        .cs-progress-actions {
+            width: 100%;
+            margin-top: (20/16rem);
+            display: flex;
+            justify-content: space-between;
+            gap: (12/16rem);
+        }
+
+        .cs-text-button {
+            padding: (6/16rem) 0;
+            background: none;
+            border: none;
+            font-family: inherit;
+            font-size: (14/16rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: underline;
+            text-underline-offset: 0.25em;
+            cursor: pointer;
+
+            &:hover {
+                color: var(--accent-hover);
+            }
+        }
+
+        /* everything ticked - the ring turns green */
+        &.cs-complete {
+            .cs-progress-ring .cs-ring-fill {
+                stroke: var(--success);
+            }
+
+            .cs-progress-message {
+                font-weight: 600;
+                color: var(--text-primary);
+            }
+        }
+
+        /* Categories */
+        .cs-groups {
+            display: flex;
+            flex-direction: column;
+            gap: (16/16rem);
+        }
+
+        .cs-group {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: (20/16rem);
+            box-shadow: 0 (8/16rem) (24/16rem) color-mix(in srgb, var(--shadow) 5%, transparent);
+            /* leaves room for the fixed navigation when a category is scrolled to */
+            scroll-margin-top: (100/16rem);
+
+            /* the icon tiles rotate through the four accents */
+            &:nth-child(4n + 1) .cs-group-icon {
+                background-color: var(--accent-1);
+            }
+
+            &:nth-child(4n + 2) .cs-group-icon {
+                background-color: var(--accent-2);
+            }
+
+            &:nth-child(4n + 3) .cs-group-icon {
+                background-color: var(--accent-3);
+            }
+
+            &:nth-child(4n + 4) .cs-group-icon {
+                background-color: var(--accent-4);
+            }
+        }
+
+        .cs-group-heading {
+            margin: 0;
+        }
+
+        .cs-group-toggle {
+            width: 100%;
+            /* 16px - 24px */
+            padding: clamp(1rem, 2vw, 1.25rem) clamp(1rem, 2.4vw, 1.5rem);
+            background: none;
+            border: none;
+            border-radius: (20/16rem);
+            font-family: inherit;
+            text-align: left;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: (14/16rem);
+
+            &:focus-visible {
+                outline: 2px solid var(--dark);
+                outline-offset: -2px;
+            }
+        }
+
+        .cs-group-icon {
+            width: (44/16rem);
+            height: (44/16rem);
+            border-radius: (12/16rem);
+            color: var(--dark);
+            flex: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            svg {
+                width: (20/16rem);
+                height: (20/16rem);
+            }
+        }
+
+        .cs-group-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: (2/16rem);
+        }
+
+        .cs-group-title {
+            /* 18px - 21px */
+            font-size: clamp(1.125rem, 1.8vw, 1.3125rem);
+            font-weight: 600;
+            line-height: 1.2em;
+        }
+
+        .cs-group-count {
+            font-size: (14/16rem);
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .cs-group-ring {
+            width: (48/16rem);
+            height: (48/16rem);
+            flex: none;
+            position: relative;
+
+            svg {
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+
+            circle {
+                stroke-width: 4;
+            }
+        }
+
+        .cs-group-percent {
+            font-size: (11/16rem);
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+            color: var(--text-primary);
+            position: absolute;
+            inset: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cs-chevron {
+            width: (20/16rem);
+            height: (20/16rem);
+            color: var(--text-secondary);
+            flex: none;
+            transition: transform 0.3s;
+        }
+
+        .cs-open .cs-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* a finished category gets a green ring */
+        .cs-group-done .cs-group-ring .cs-ring-fill {
+            stroke: var(--success);
+        }
+
+        .cs-group-panel {
+            /* 16px - 24px */
+            padding: 0 clamp(1rem, 2.4vw, 1.5rem) clamp(1rem, 2.4vw, 1.5rem);
+
+            &[hidden] {
+                display: none;
+            }
+        }
+
+        .cs-checks {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: (10/16rem);
+        }
+
+        /* one check */
+        .cs-check {
+            /* 14px - 18px */
+            padding: clamp(0.875rem, 1.6vw, 1.125rem);
+            background-color: var(--background-soft);
+            border: 1px solid var(--border);
+            border-radius: (14/16rem);
+            position: relative;
+            transition: background-color 0.3s, border-color 0.3s;
+
+            /* ticked */
+            &:has(.cs-checkbox:checked) {
+                background-color: color-mix(in srgb, var(--accent-4) 30%, var(--surface));
+                border-color: color-mix(in srgb, var(--accent-4), var(--dark) 12%);
+            }
+        }
+
+        /* the real checkbox stays in the page for keyboards and screen readers, the .cs-box is what you see */
+        .cs-checkbox {
+            width: (24/16rem);
+            height: (24/16rem);
+            margin: 0;
+            opacity: 0;
+            position: absolute;
+            top: clamp(0.875rem, 1.6vw, 1.125rem);
+            left: clamp(0.875rem, 1.6vw, 1.125rem);
+        }
+
+        .cs-check-label {
+            cursor: pointer;
+            display: flex;
+            align-items: flex-start;
+            gap: (14/16rem);
+        }
+
+        .cs-box {
+            width: (24/16rem);
+            height: (24/16rem);
+            margin-top: (1/16rem);
+            background-color: var(--surface);
+            border: 2px solid var(--field-border);
+            border-radius: (7/16rem);
+            color: var(--button-text);
+            flex: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s, border-color 0.2s;
+
+            svg {
+                width: (14/16rem);
+                height: (14/16rem);
+                opacity: 0;
+                transform: scale(0.6);
+                transition: opacity 0.2s, transform 0.2s;
+            }
+        }
+
+        .cs-check-label:hover .cs-box {
+            border-color: var(--dark);
+        }
+
+        .cs-checkbox:checked + .cs-check-label .cs-box {
+            background-color: var(--button-bg);
+            border-color: var(--button-bg);
+
+            svg {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .cs-checkbox:focus-visible + .cs-check-label .cs-box {
+            outline: 2px solid var(--dark);
+            outline-offset: 2px;
+        }
+
+        .cs-check-text {
+            display: flex;
+            flex-direction: column;
+            gap: (4/16rem);
+        }
+
+        .cs-check-title {
+            font-size: (16/16rem);
+            font-weight: 600;
+            line-height: 1.35em;
+            color: var(--text-primary);
+        }
+
+        .cs-check-desc {
+            font-size: (15/16rem);
+            line-height: 1.55em;
+            color: var(--text-secondary);
+        }
+
+        /* the ticked state tints the card, so the description switches to the colour that reads on the accents */
+        .cs-checkbox:checked + .cs-check-label .cs-check-desc {
+            color: var(--text-on-accent);
+        }
+
+        /* optional "learn more" link, lined up with the text */
+        .cs-check-link {
+            /* 24px box + 14px gap */
+            margin: (8/16rem) 0 0 (38/16rem);
+            font-size: (14/16rem);
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 0.2em;
+            color: var(--text-primary);
+            display: inline-flex;
+            align-items: center;
+            gap: (4/16rem);
+
+            svg {
+                width: (14/16rem);
+                height: (14/16rem);
+            }
+
+            &:hover {
+                color: var(--accent-hover);
+            }
+        }
+    }
+}
+
+/* Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+    #launch-checklist {
+        .cs-container {
+            /* progress card on the left, checklist on the right */
+            display: grid;
+            grid-template-columns: (320/16rem) minmax(0, 1fr);
+            align-items: start;
+        }
+
+        .cs-progress-card {
+            /* follows you down the page */
+            position: sticky;
+            top: (100/16rem);
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #launch-checklist {
+        .cs-ring-fill,
+        .cs-progress-bar:after,
+        .cs-chevron,
+        .cs-box svg {
+            transition: none;
+        }
+    }
+}

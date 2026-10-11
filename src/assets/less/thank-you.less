@@ -1,0 +1,138 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// THANK YOU PAGE
+// Shown after the contact form is sent (Netlify redirects to /thank-you/).
+// The banner styles live in global.less.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/*-- -------------------------- -->
+<---         Next Steps         -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #next-steps {
+        padding: var(--sectionPadding);
+        background-color: var(--background-soft);
+
+        .cs-container {
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cs-content {
+            text-align: center;
+            /* 40px - 56px */
+            margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cs-title {
+            /* 32px - 56px - kept smaller than the hero headline */
+            font-size: clamp(2rem, 4.2vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.1em;
+            letter-spacing: -0.02em;
+            text-align: center;
+            margin: 0;
+        }
+
+        .cs-steps {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr;
+            /* 16px - 20px */
+            gap: clamp(1rem, 1.6vw, 1.25rem);
+        }
+
+        .cs-step {
+            /* 28px - 40px */
+            padding: clamp(1.75rem, 3.2vw, 2.5rem);
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: (16/16rem);
+
+            /* the number tiles rotate through the accents */
+            &:nth-child(3n + 1) .cs-step-number {
+                background-color: var(--accent-1);
+            }
+
+            &:nth-child(3n + 2) .cs-step-number {
+                background-color: var(--accent-2);
+            }
+
+            &:nth-child(3n + 3) .cs-step-number {
+                background-color: var(--accent-4);
+            }
+        }
+
+        .cs-step-number {
+            width: (48/16rem);
+            height: (48/16rem);
+            /* 20px - 24px */
+            margin-bottom: clamp(1.25rem, 2.5vw, 1.5rem);
+            border: 1px solid color-mix(in srgb, var(--dark) 6%, transparent);
+            border-radius: (12/16rem);
+            font-size: (20/16rem);
+            font-weight: 700;
+            color: var(--dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cs-step-title {
+            /* 20px - 24px */
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            font-weight: 600;
+            line-height: 1.25em;
+            margin: 0 0 (12/16rem);
+            color: var(--text-primary);
+        }
+
+        .cs-step-text {
+            /* 15px - 17px */
+            font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
+            line-height: 1.65em;
+            margin: 0;
+            color: var(--text-secondary);
+        }
+
+        .cs-note {
+            font-size: (16/16rem);
+            line-height: 1.6em;
+            text-align: center;
+            max-width: (640/16rem);
+            /* 32px - 48px */
+            margin: clamp(2rem, 4vw, 3rem) 0 0;
+            color: var(--text-secondary);
+
+            a {
+                font-size: inherit;
+                font-weight: 600;
+                color: var(--text-primary);
+                text-decoration: underline;
+                text-underline-offset: 0.2em;
+
+                &:hover {
+                    color: var(--accent-hover);
+                }
+            }
+        }
+    }
+}
+
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    #next-steps .cs-steps {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

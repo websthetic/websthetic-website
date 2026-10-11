@@ -1,106 +1,85 @@
 ---
-title: "Contact | Code Stitch Web Designs"
-description: "Meta description for the page"
+title: "Contact | Websthetic"
+description: "Tell us about your project. Get in touch with Websthetic to talk through your goals, timeline, and next steps for your website."
 permalink: "/contact/"
 ---
 
 {% extends "layouts/base.html" %}
 
 {% block head %}
+    <link rel="stylesheet" href="/assets/css/contact-form.css">
     <link rel="stylesheet" href="/assets/css/contact.css">
-    <link rel="preload" as="image" href="{% getUrl "/assets/images/cabinets.jpg" | resize({ width: 640, height: 600 }) | avif %}"/>
-    <link rel="preload" as="image" href="{% getUrl "/assets/images/construction.jpg" | resize({ width: 576, height: 640 }) | avif %}"/>
+    <script defer src="/assets/js/contact-prefill.js"></script>
 {% endblock %}
 
 {% block body %}
 
-<!-- ============================================ -->
-<!--                   Contact                    -->
-<!-- ============================================ -->
-<section id="contact">
+    <!-- ============================================ -->
+    <!--                   Banner                     -->
+    <!-- ============================================ -->
 
-  <!-- CTA Band -->
-  <div class="contact-band">
-    <h2 class="contact-heading">Contact Us</h2>
-  </div>
-
-  <!-- Form + Info -->
-  <div class="contact-body">
-
-    <!-- Left: Contact Info -->
-    <div class="contact-info">
-      <h3 class="contact-info__title">Let's Work Together</h3>
-
-      <div class="contact-detail">
-        <span class="contact-detail__label">Email</span>
-        <span class="contact-detail__value">
-          <a href="mailto:hello@websthetic.co">hello@websthetic.com</a>
-        </span>
-      </div>
-
-      <div class="contact-detail">
-        <span class="contact-detail__label">Response time</span>
-        <span class="contact-detail__value">Within 24 hours</span>
-      </div>
-
-      <p class="contact-call-line">
-        Prefer to hop on a call? <a href="#">Book a call</a> instead.
-      </p>
-
-      <div class="contact-divider"></div>
-
-      <div class="contact-availability">
-        <span class="contact-availability__dot"></span>
-        Available for new projects
-      </div>
+    <div id="banner-310">
+        <div class="cs-container">
+            {% set crumb = "Contact" %}
+            {% include "components/breadcrumb.html" %}
+            <!-- illustration on the right (desktop) - drawings live in components/banner-art/ -->
+            <div class="cs-banner-art" aria-hidden="true">
+                {% include "components/banner-art/contact.html" %}
+            </div>
+            <div class="cs-banner-text">
+                <h1 class="cs-int-title">A Good Conversation Can <span class="cs-highlight">Spark</span> Great Things.</h1>
+                <p class="cs-int-text">
+                    Whether you’re starting fresh or scaling up, tell us what you’re working on and we’ll help bring it to life with design and development that works.
+                </p>
+            </div>
+        </div>
     </div>
 
-    <!-- Right: Form -->
-    <div class="contact-form-card">
-      <form class="contact-form" name="contact" method="POST" data-netlify="true">
+    <!-- ============================================ -->
+    <!--                Contact Form                  -->
+    <!-- ============================================ -->
 
-        <div class="contact-form__row">
-          <div class="contact-form__field">
-            <input type="text" name="name" placeholder="Enter your name" required>
-          </div>
-          <div class="contact-form__field">
-            <input type="email" name="email" placeholder="Email" required>
-          </div>
+    <section id="cs-contact-265">
+        <div class="cs-container">
+            <div class="cs-left-section">
+                <div class="cs-content">
+                    <h2 class="cs-title">Let’s Talk About Your Project.</h2>
+                    <p class="cs-text">
+                        Share a few details and we’ll get back to you to talk through your goals, timeline, and next steps.
+                    </p>
+                </div>
+                {% include "components/contact-form.html" %}
+            </div>
+            <div class="cs-right-section">
+                <!-- Chat illustration, drawn in CSS - decorative -->
+                <div class="cs-chat" aria-hidden="true">
+                    <span class="cs-bubble cs-them">Hi! We need a new website 👋</span>
+                    <span class="cs-bubble cs-us">Love it. Tell us what you’re building.</span>
+                    <span class="cs-bubble cs-them cs-small">Here’s our brief ✓</span>
+                    <span class="cs-typing"><i></i><i></i><i></i></span>
+                </div>
+                <ul class="cs-details">
+                    <li class="cs-detail">
+                        <span class="cs-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+                        <span class="cs-detail-text">
+                            <span class="cs-header">Email</span>
+                            <a class="cs-link" href="mailto:{{ client.email }}">{{ client.email }}</a>
+                        </span>
+                    </li>
+                    <li class="cs-detail">
+                        <span class="cs-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></span>
+                        <span class="cs-detail-text">
+                            <span class="cs-header">Location</span>
+                            <a class="cs-link" href="{{ client.address.mapLink }}" target="_blank" rel="noopener">{{ client.address.city }}, {{ client.address.countryName }}</a>
+                        </span>
+                    </li>
+                </ul>
+                <div class="cs-social">
+                    <a class="cs-social-link" aria-label="visit our instagram profile" href="{{ client.socials.instagram }}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
+                    <a class="cs-social-link" aria-label="visit our linkedin profile" href="{{ client.socials.linkedin }}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
+                </div>
+            </div>
         </div>
-
-        <div class="contact-form__field">
-          <select name="service" required>
-            <option value="" disabled selected>What do you need?</option>
-            <option value="web-design">Web Design</option>
-            <option value="development">Development</option>
-            <option value="seo">SEO</option>
-            <option value="support">Support &amp; Maintenance</option>
-          </select>
-        </div>
-
-        <div class="contact-form__field">
-          <textarea name="message" placeholder="Message" rows="5" required></textarea>
-        </div>
-
-        <div class="contact-form__footer">
-          <p class="contact-form__legal">
-            By submitting you agree to our
-            <a href="/privacy-policy/">Terms of Service</a> and
-            <a href="/terms-of-service/">Privacy Policy</a>
-          </p>
-          <button type="submit" class="contact-form__submit">
-            Submit
-            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-              <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.2"/>
-            </svg>
-          </button>
-        </div>
-
-      </form>
-    </div>
-
-  </div>
-
-</section>
+    </section>
 
 {% endblock %}

@@ -1,0 +1,165 @@
+---
+title: "Colour Contrast Checker | Websthetic"
+description: "Free WCAG colour contrast checker. Test text and background colours against AA and AAA accessibility standards."
+permalink: "/resources/colour-contrast-checker/"
+---
+
+{% extends "layouts/base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/assets/css/contrast-checker.css">
+    <script defer src="/assets/js/contrast-checker.js"></script>
+{% endblock %}
+
+{% block body %}
+
+    <!-- ============================================ -->
+    <!--                   Banner                     -->
+    <!-- ============================================ -->
+
+    <div id="banner-310">
+        <div class="cs-container">
+            {% set crumb = "Colour Contrast Checker" %}
+            {% set crumbParent = { name: "Resources", url: "/resources/" } %}
+            {% include "components/breadcrumb.html" %}
+            <!-- illustration on the right (desktop) - drawings live in components/banner-art/ -->
+            <div class="cs-banner-art" aria-hidden="true">
+                {% include "components/banner-art/colour-contrast-checker.html" %}
+            </div>
+            <div class="cs-banner-text">
+                <span class="cs-int-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></svg>
+                    Accessibility Tool
+                </span>
+                <h1 class="cs-int-title">Colour Contrast <span class="cs-highlight">Checker.</span></h1>
+                <p class="cs-int-text">
+                    Test text and background colour combinations against the Web Content Accessibility Guidelines (WCAG) so your designs stay readable for more people.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!--                Contrast Tool                 -->
+    <!-- ============================================ -->
+
+    <!-- Interactive tool - the maths and live updates are in /assets/js/contrast-checker.js -->
+    <section id="contrast-tool">
+        <div class="cs-container">
+            <!-- colour controls -->
+            <div class="cs-controls">
+                <div class="cs-colour">
+                    <label class="cs-colour-label" for="bg-hex">Background Colour</label>
+                    <div class="cs-colour-row">
+                        <input class="cs-swatch" type="color" id="bg-picker" value="#000000" aria-label="Background Colour picker">
+                        <input class="cs-hex" type="text" id="bg-hex" value="#000000" maxlength="7" spellcheck="false" autocomplete="off">
+                        <button class="cs-copy" type="button" data-copy="bg-hex" aria-label="Copy background colour hex code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
+                    </div>
+                </div>
+                <button class="cs-swap" type="button" id="contrast-swap" aria-label="Swap background and text colours">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
+                </button>
+                <div class="cs-colour">
+                    <label class="cs-colour-label" for="fg-hex">Text Colour</label>
+                    <div class="cs-colour-row">
+                        <input class="cs-swatch" type="color" id="fg-picker" value="#F5FFAF" aria-label="Text Colour picker">
+                        <input class="cs-hex" type="text" id="fg-hex" value="#F5FFAF" maxlength="7" spellcheck="false" autocomplete="off">
+                        <button class="cs-copy" type="button" data-copy="fg-hex" aria-label="Copy text colour hex code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cs-tool">
+                <!-- live preview - a small website painted in the chosen colours (set by the script) -->
+                <div class="cs-mockup">
+                    <div class="cs-mockup-bar" aria-hidden="true"><i></i><i></i><i></i><span class="cs-mockup-url">yourwebsite.com</span></div>
+                    <div class="cs-preview" id="contrast-preview">
+                        <div class="cs-site-nav" aria-hidden="true">
+                            <span class="cs-site-logo">Brand</span>
+                            <span class="cs-site-links"><i>About</i><i>Work</i><i>Contact</i></span>
+                        </div>
+                        <p class="cs-preview-title">Sample Headline</p>
+                        <p class="cs-preview-text">The quick brown fox jumps over the lazy dog. Readable text helps more people use your website.</p>
+                        <span class="cs-preview-button">Get Started</span>
+                        <div class="cs-site-cards" aria-hidden="true">
+                            <span><b></b><i></i><i class="cs-short"></i></span>
+                            <span><b></b><i></i><i class="cs-short"></i></span>
+                            <span><b></b><i></i><i class="cs-short"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cs-results">
+                    <h2 class="cs-results-title">WCAG Compliance</h2>
+                    <!-- dial fills with the ratio (out of 21) - set by the script -->
+                    <div class="cs-dial">
+                        <div class="cs-dial-inner">
+                            <span class="cs-ratio" id="contrast-ratio" aria-live="polite">–</span>
+                            <span class="cs-rating" id="contrast-rating"></span>
+                        </div>
+                    </div>
+                    <ul class="cs-checks">
+                        <li class="cs-check" data-min="4.5">
+                            <span class="cs-status" aria-hidden="true"><svg class="cs-status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="cs-x">✕</span></span>
+                            <span class="cs-check-text"><strong>Normal Text <em>AA</em></strong><span>Needs 4.5:1</span></span>
+                            <span class="cs-result">Pass</span>
+                        </li>
+                        <li class="cs-check" data-min="7">
+                            <span class="cs-status" aria-hidden="true"><svg class="cs-status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="cs-x">✕</span></span>
+                            <span class="cs-check-text"><strong>Normal Text <em>AAA</em></strong><span>Needs 7:1</span></span>
+                            <span class="cs-result">Pass</span>
+                        </li>
+                        <li class="cs-check" data-min="3">
+                            <span class="cs-status" aria-hidden="true"><svg class="cs-status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="cs-x">✕</span></span>
+                            <span class="cs-check-text"><strong>Large Text <em>AA</em></strong><span>Needs 3:1</span></span>
+                            <span class="cs-result">Pass</span>
+                        </li>
+                        <li class="cs-check" data-min="4.5">
+                            <span class="cs-status" aria-hidden="true"><svg class="cs-status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="cs-x">✕</span></span>
+                            <span class="cs-check-text"><strong>Large Text <em>AAA</em></strong><span>Needs 4.5:1</span></span>
+                            <span class="cs-result">Pass</span>
+                        </li>
+                        <li class="cs-check" data-min="3">
+                            <span class="cs-status" aria-hidden="true"><svg class="cs-status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="cs-x">✕</span></span>
+                            <span class="cs-check-text"><strong>UI Components <em>AA</em></strong><span>Needs 3:1</span></span>
+                            <span class="cs-result">Pass</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cs-info">
+                <span class="cs-info-icon" aria-hidden="true">i</span>
+                <div class="cs-info-text">
+                    <h2 class="cs-info-title">About WCAG Standards</h2>
+                    <p>The Web Content Accessibility Guidelines (WCAG) define contrast ratios to make sure text and interface elements are readable by people with visual impairments, including colour blindness and low vision.</p>
+                    <ul>
+                        <li><strong>Level AA:</strong> the minimum standard for web accessibility, and the one most commonly required.</li>
+                        <li><strong>Level AAA:</strong> an enhanced standard for maximum readability.</li>
+                        <li><strong>Large text:</strong> 18pt (24px) or larger, or 14pt (18.5px) bold or larger.</li>
+                        <li><strong>Normal text:</strong> anything smaller than the large text thresholds.</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="cs-disclaimer">This tool is designed to help you quickly check colour contrast and readability. It follows general accessibility principles but is not a substitute for official WCAG compliance testing.</p>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--                     CTA                      -->
+    <!-- ============================================ -->
+
+    <!-- page-specific copy, uses the shared CTA styles in global.less -->
+    <section id="cta-51">
+        <div class="cs-container">
+            <h2 class="cs-title">Need Help Making Your Website Accessible?</h2>
+            <p class="cs-text">
+                We consider accessibility throughout design and development. Let’s build a website more people can comfortably use.
+            </p>
+            <a href="/contact/?project=I%E2%80%99d%20like%20help%20making%20my%20website%20accessible." class="cs-button-white cs-cta-button">
+                Start A Project
+                <svg class="cs-cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 17 5-5-5-5"/><path d="m13 17 5-5-5-5"/></svg>
+            </a>
+        </div>
+    </section>
+{% endblock %}

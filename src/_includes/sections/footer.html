@@ -1,26 +1,77 @@
 <!-- ============================================ -->
 <!--                   Footer                     -->
 <!-- ============================================ -->
-<footer id="cs-footer-105">
-  <div class="cs-top">
-    <ul class="cs-ul">
-      <li class="cs-li"><a href="/" class="cs-link">Home</a></li>
-      <li class="cs-li"><a href="/#process" class="cs-link">Process</a></li>
-      <li class="cs-li"><a href="/#work" class="cs-link">Work</a></li>
-      <li class="cs-li"><a href="/#services" class="cs-link">Services</a></li>
-      <li class="cs-li"><a href="/contact" class="cs-link">Contact</a></li>
-      <li class="cs-li"><a href="mailto:hello@websthetic.com" class="cs-link">hello@websthetic.com</a></li>
-    </ul>
-    <div class="cs-bottom">
-      <span class="cs-copyright">© 2026 Websthetic. All rights reserved.</span>
-      <a class="cs-social-link" aria-label="visit instagram profile" href="">
-        <img aria-hidden="true" loading="lazy" decoding="async" src="https://csimg.nyc3.digitaloceanspaces.com/Social/instagram.svg" alt="instagram" width="11" height="11">
-      </a>
-    </div>
-  </div>
 
-  <div class="cs-brand-bar">
-    <p class="cs-brand-name">Websthetic</p>
-    <p class="cs-brand-tagline">Build<br>Launch<br>and Grow</p>
-  </div>
+<footer id="cs-footer-275">
+    <div class="cs-container">
+        <!-- Logo and tagline -->
+        <div class="cs-logo-group">
+            <a aria-label="go back to home" class="cs-logo" href="/">
+                <svg class="cs-logo-img" viewBox="0 0 160.89 32" width="161" height="32" aria-hidden="true" focusable="false"><use href="/assets/svgs/logo.svg#logo"/></svg>
+            </a>
+            <p class="cs-text">
+                A design and development studio building websites that mean something, for agencies, creative teams, and growing businesses.
+            </p>
+        </div>
+        <!-- Sitemap - matches the main navigation -->
+        <ul class="cs-nav">
+            <li class="cs-nav-li">
+                <span class="cs-header">Sitemap</span>
+            </li>
+            <li class="cs-nav-li">
+                <a class="cs-nav-link" href="/work/">Work</a>
+            </li>
+            <li class="cs-nav-li">
+                <a class="cs-nav-link" href="/agencies/">Agencies</a>
+            </li>
+            <li class="cs-nav-li">
+                <a class="cs-nav-link" href="/businesses/">Businesses</a>
+            </li>
+            <li class="cs-nav-li">
+                <a class="cs-nav-link" href="/resources/">Resources</a>
+            </li>
+            <li class="cs-nav-li">
+                <a class="cs-nav-link" href="/about/">About</a>
+            </li>
+            <li class="cs-nav-li">
+                <a class="cs-nav-link" href="/contact/">Contact</a>
+            </li>
+        </ul>
+        <!-- Contact Info - details come from _data/client.js -->
+        <ul class="cs-contact">
+            <li class="cs-nav-li">
+                <span class="cs-header">Contact</span>
+            </li>
+            <li class="cs-contact-li">
+                <a class="cs-contact-link" href="{{ client.address.mapLink }}" target="_blank" rel="noopener">
+                    {{ client.address.city }}, {{ client.address.countryName }}
+                </a>
+            </li>
+            <li class="cs-contact-li">
+                <a class="cs-contact-link" href="mailto:{{ client.email }}">{{ client.email }}</a>
+            </li>
+            <li class="cs-contact-li cs-social">
+                <a class="cs-social-link" aria-label="visit our instagram profile" href="{{ client.socials.instagram }}" target="_blank" rel="noopener">
+                    <svg class="cs-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                </a>
+                <a class="cs-social-link" aria-label="visit our linkedin profile" href="{{ client.socials.linkedin }}" target="_blank" rel="noopener">
+                    <svg class="cs-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- Bottom bar: copyright and legal links -->
+    <div class="cs-bottom">
+        <div class="cs-bottom-container">
+            <div class="cs-bottom-text">
+                <p class="cs-copyright">&copy; {% year %} {{ client.name }}. All rights reserved.</p>
+                <!-- credit for the palette switcher (theme-switcher.js) -->
+                <p class="cs-copyright cs-credit">Colour palettes from Sanzo Wada’s <cite>A Dictionary of Color Combinations</cite>, via <a href="https://github.com/mattdesl/dictionary-of-colour-combinations" target="_blank" rel="noopener">dictionary-of-colour-combinations</a> (MIT).</p>
+            </div>
+            <ul class="cs-legal-list">
+                <li><a class="cs-legal-link" href="/privacy-policy/">Privacy Policy</a></li>
+                <li><a class="cs-legal-link" href="/accessibility/">Accessibility</a></li>
+            </ul>
+        </div>
+    </div>
 </footer>

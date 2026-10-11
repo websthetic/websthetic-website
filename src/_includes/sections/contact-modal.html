@@ -1,0 +1,20 @@
+<!-- ============================================ -->
+<!--            "Let's Talk" Contact Popup        -->
+<!-- ============================================ -->
+
+<!-- Opened by the home page hero form (hero-form.js), with the visitor's idea dropped into the message field. Uses the same form as the Contact page. A native <dialog>, so focus, Escape, and the backdrop are handled by the browser -->
+<dialog class="cs-contact-modal" id="contact-modal" aria-labelledby="contact-modal-title">
+    <div class="cs-modal-inner">
+        <button class="cs-modal-close" type="button" data-modal-close aria-label="Close the contact form">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+        <div class="cs-modal-header">
+            <span class="cs-modal-topper">Let’s Talk</span>
+            <h2 class="cs-modal-title" id="contact-modal-title">Tell Us About Your Project.</h2>
+            <p class="cs-modal-text">
+                Share a few details and we’ll get back to you to talk through your goals, timeline, and next steps.
+            </p>
+        </div>
+        {% include "components/contact-form.html" %}
+    </div>
+</dialog>

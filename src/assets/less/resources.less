@@ -1,0 +1,380 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// RESOURCES PAGE STYLES
+// Styles that only exist on the Resources page (/resources/). Any styles
+// shared between pages, including repeated sections, should go into
+// global.less
+// ─────────────────────────────────────────────────────────────────────────────
+
+/*-- -------------------------- -->
+<---          Resources         -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #resources {
+        padding: var(--sectionPadding);
+        background-color: var(--background);
+
+        .cs-container {
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+        }
+
+        .cs-content {
+            text-align: center;
+            /* 40px - 64px */
+            margin-bottom: clamp(2.5rem, 6vw, 4rem);
+        }
+
+        .cs-title {
+            /* 32px - 52px */
+            font-size: clamp(2rem, 4vw, 3.25rem);
+            font-weight: 700;
+            line-height: 1.1em;
+            letter-spacing: -0.02em;
+            text-align: center;
+            max-width: none;
+            margin: 0 0 (12/16rem);
+            color: var(--text-primary);
+        }
+
+        .cs-text {
+            /* 16px - 18px */
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            line-height: 1.6em;
+            text-align: center;
+            max-width: none;
+            margin: 0;
+            color: var(--text-secondary);
+        }
+
+        .cs-card-group {
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            /* 40px - 56px row, 24px - 32px column */
+            gap: clamp(2.5rem, 4vw, 3.5rem) clamp(1.5rem, 2.5vw, 2rem);
+        }
+
+        .cs-card {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            &:hover {
+                .cs-card-art {
+                    transform: translateY(-4px);
+                }
+
+                .cs-card-window {
+                    transform: rotate(-2deg) scale(1.03);
+                }
+            }
+        }
+
+        /* ---- illustration panel ---- */
+        .cs-card-art {
+            width: 100%;
+            aspect-ratio: 16 / 11;
+            /* 20px - 24px */
+            margin-bottom: clamp(1.25rem, 2.5vw, 1.5rem);
+            border-radius: (20/16rem);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition: transform 0.4s ease;
+
+            &.cs-bg-lime {
+                background: linear-gradient(135deg, var(--accent-4) 0%, var(--accent-3) 100%);
+            }
+
+            &.cs-bg-purple {
+                background: linear-gradient(135deg, var(--accent-1) 0%, color-mix(in srgb, var(--accent-1) 50%, var(--surface)) 100%);
+            }
+
+            &.cs-bg-pink {
+                background: linear-gradient(135deg, var(--accent-2) 0%, color-mix(in srgb, var(--accent-2) 50%, var(--surface)) 100%);
+            }
+
+            &.cs-bg-yellow {
+                background: linear-gradient(135deg, var(--accent-3) 0%, color-mix(in srgb, var(--accent-3) 50%, var(--surface)) 100%);
+            }
+
+            &.cs-bg-mix {
+                background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 50%, var(--accent-4) 100%);
+            }
+        }
+
+        .cs-card-window {
+            width: 64%;
+            max-width: (420/16rem);
+            background-color: var(--surface);
+            border-radius: (14/16rem);
+            box-shadow: 0 20px 44px color-mix(in srgb, var(--shadow) 12%, transparent);
+            overflow: hidden;
+            transform: rotate(-3deg);
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .cs-card-bar {
+            height: (22/16rem);
+            padding: 0 (11/16rem);
+            background-color: var(--background-soft);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: (5/16rem);
+
+            i {
+                width: (7/16rem);
+                height: (7/16rem);
+                background-color: var(--border);
+                border-radius: 50%;
+                display: block;
+            }
+        }
+
+        .cs-card-body {
+            /* 120px - 170px */
+            height: clamp(7.5rem, 13vw, 10.625rem);
+            /* 14px - 20px */
+            padding: clamp(0.875rem, 1.6vw, 1.25rem);
+            /* prevents padding from affecting height */
+            box-sizing: border-box;
+
+            > div {
+                width: 100%;
+                height: 100%;
+                position: relative;
+            }
+        }
+
+        /* ---- card text ---- */
+        .cs-tag {
+            font-size: (12/16rem);
+            font-weight: 600;
+            line-height: 1.2em;
+            padding: (5/16rem) (10/16rem);
+            background-color: var(--background-soft);
+            border: 1px solid var(--border);
+            border-radius: (999/16rem);
+            color: var(--text-primary);
+            margin-bottom: (12/16rem);
+        }
+
+        .cs-h3 {
+            /* 20px - 24px */
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            font-weight: 600;
+            line-height: 1.25em;
+            margin: 0 0 (10/16rem);
+            color: var(--text-primary);
+        }
+
+        .cs-card-text {
+            /* 15px - 16px */
+            font-size: clamp(0.9375rem, 1.2vw, 1rem);
+            line-height: 1.6em;
+            max-width: (620/16rem);
+            margin: 0 0 (20/16rem);
+            color: var(--text-secondary);
+        }
+
+        .cs-read-more {
+            /* smaller version of the site button */
+            font-size: (14/16rem);
+            padding: (10/16rem) (18/16rem);
+            margin-top: auto;
+        }
+
+        /* ---- drawing: contrast checker ---- */
+        .cs-card-art {
+            text-decoration: none;
+        }
+
+        .cs-card-window,
+        .cs-card-bar,
+        .cs-card-body {
+            display: block;
+        }
+
+        .cs-card-bar {
+            display: flex;
+        }
+
+        /* a mini checklist for the launch checklist card */
+        .cs-r-checklist {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: (8/16rem);
+        }
+
+        .cs-r-progress {
+            height: (8/16rem);
+            margin-bottom: (4/16rem);
+            background-color: var(--border);
+            border-radius: (999/16rem);
+            display: block;
+            overflow: hidden;
+
+            i {
+                width: 66%;
+                height: 100%;
+                background-color: var(--button-bg);
+                border-radius: inherit;
+                display: block;
+            }
+        }
+
+        .cs-r-row {
+            padding: (8/16rem) (10/16rem);
+            background-color: var(--background-soft);
+            border: 1px solid var(--border);
+            border-radius: (8/16rem);
+            display: flex;
+            align-items: center;
+            gap: (10/16rem);
+
+            /* the tick box */
+            b {
+                width: (14/16rem);
+                height: (14/16rem);
+                background-color: var(--surface);
+                border: 1.5px solid var(--field-border);
+                border-radius: (4/16rem);
+                flex: none;
+                display: block;
+            }
+
+            /* the line of text */
+            i {
+                width: 70%;
+                height: (6/16rem);
+                background-color: color-mix(in srgb, var(--dark) 20%, transparent);
+                border-radius: (999/16rem);
+                display: block;
+            }
+
+            &.cs-r-done {
+                background-color: color-mix(in srgb, var(--accent-4) 40%, var(--surface));
+
+                b {
+                    background-color: var(--button-bg);
+                    border-color: var(--button-bg);
+                }
+
+                i {
+                    background-color: var(--dark);
+                }
+            }
+        }
+
+        /* five colour swatches for the palette generator card */
+        .cs-r-palette {
+            width: 100%;
+            height: 100%;
+            border-radius: (10/16rem);
+            display: flex;
+            overflow: hidden;
+
+            i {
+                flex: 1;
+                display: block;
+
+                &:nth-child(1) {
+                    background-color: var(--accent-1);
+                }
+
+                &:nth-child(2) {
+                    background-color: var(--accent-2);
+                }
+
+                &:nth-child(3) {
+                    background-color: var(--accent-3);
+                }
+
+                &:nth-child(4) {
+                    background-color: var(--accent-4);
+                }
+
+                &:nth-child(5) {
+                    background-color: var(--dark);
+                }
+            }
+        }
+
+        .cs-r-contrast {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            gap: (12/16rem);
+        }
+
+        .cs-r-sample {
+            /* 36px - 52px */
+            font-size: clamp(2.25rem, 4vw, 3.25rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            background-color: var(--dark);
+            border-radius: (10/16rem);
+            color: var(--accent-4);
+            flex: 1.3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cs-r-ratio {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: (6/16rem);
+
+            b {
+                /* 20px - 26px */
+                font-size: clamp(1.25rem, 2vw, 1.625rem);
+                font-weight: 700;
+                letter-spacing: -0.02em;
+                color: var(--dark);
+            }
+
+            i {
+                font-size: (11/16rem);
+                font-style: normal;
+                font-weight: 700;
+                padding: (3/16rem) (9/16rem);
+                background-color: var(--accent-4);
+                border: 1px solid color-mix(in srgb, var(--dark) 10%, transparent);
+                border-radius: (999/16rem);
+                color: var(--dark);
+            }
+        }
+    }
+}
+
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    #resources {
+        .cs-card-group {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+    }
+}
+
+/* Reduced motion - no hover lift */
+@media (prefers-reduced-motion: reduce) {
+    #resources .cs-card:hover {
+        .cs-card-art,
+        .cs-card-window {
+            transform: none;
+        }
+    }
+}

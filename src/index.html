@@ -1,6 +1,6 @@
 ---
 title: "Websthetic | Toronto, Canada"
-description: "Meta description for the page"
+description: "Websthetic is a Toronto web design and development studio building websites for agencies, creative teams, and growing businesses."
 permalink: "/"
 tags: "sitemap" # content/content.json will make sure that all pages in content/ are marked with a "sitemap" tag, for automatic sitemap generation. As index.html is not in content/, we need to add it here to ensure the root page is included in the sitemap generation
 ---
@@ -10,6 +10,17 @@ tags: "sitemap" # content/content.json will make sure that all pages in content/
 {% block head %}
     <!-- Critical styles are loaded first -->
     <link rel="stylesheet" href="/assets/css/critical.css"/>
+    <!-- the "Let's Talk" popup and the form inside it -->
+    <link rel="stylesheet" href="/assets/css/contact-form.css"/>
+    <link rel="stylesheet" href="/assets/css/contact-modal.css"/>
+    <script defer src="/assets/js/globe.js"></script>
+    <script defer src="/assets/js/hero-rotator.js"></script>
+    <script defer src="/assets/js/hero-scroll.js"></script>
+    <script defer src="/assets/js/hero-form.js"></script>
+    <script defer src="/assets/js/work-carousel.js"></script>
+    <script defer src="/assets/js/one-team-preview.js"></script>
+    <script defer src="/assets/js/timeline.js"></script>
+    <script defer src="/assets/js/section-blur.js"></script>
 
     <!-- If we're in production, defer the rest of the home page styles. In development, always load it. Otherwise the site will break when hot-reload is used. -->
     {% if client.isProduction %}
@@ -29,470 +40,404 @@ tags: "sitemap" # content/content.json will make sure that all pages in content/
 
 {% block body %}
 
-<!-- GSAP -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <!-- ============================================ -->
+    <!--                    Hero                      -->
+    <!-- ============================================ -->
 
-<!-- Splitting.js -->
-<link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css">
-<script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
-
-<!-- Hero -->
-<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
-
-<!-- Main -->
-<script src="/assets/js/main.js"></script>
-
-<!-- ============================================ -->
-<!--                    Hero                      -->
-<!-- ============================================ -->
-
-<section class="hero" id="home">
-
-    <div class="hero-content">
-        <h1 class="hero-title">Build, Launch And Grow Your Online Presence</h1>
-        <p class="hero-text">We design &amp; develop modern, high-performing websites built with the same standards and strategies used by top brands.</p>
-        <a class="hero-cta" href="/contact">Contact Us ↗</a>
-    </div>
-
-    <!-- Globe canvas -->
-    <canvas class="hero-globe" id="heroGlobe" aria-hidden="true"></canvas>
-
-    <!-- Scroll indicator -->
-    <div class="scroll-indicator">
-        <div class="scroll-mouse">
-            <div class="scroll-dot"></div>
+    <section id="hero-143">
+        <div class="cs-container">
+            <h1 class="cs-title">
+                We Build Websites That<br>
+                <!-- Rotating phrase - edit the list in data-words, hero-rotator.js cycles through it. The first one is the default for search engines and no-JS -->
+                <span class="cs-highlight cs-rotator" data-words='["Mean Something.", "Earn Attention.", "Inspire Trust.", "Do The Work."]'>Mean Something.</span>
+            </h1>
+            <p class="cs-text">
+                Whether you’re starting with an idea, a rough concept, or a brand ready for a refresh, we bring the strategy, design, and development to get it launched.
+            </p>
+            <!-- Project idea form - "Let's Talk" opens the contact popup with the idea in the message field (hero-form.js, sections/contact-modal.html). Without JavaScript it goes to the contact page as ?project=... (contact-prefill.js) -->
+            <form class="cs-project-form" action="/contact/" method="get">
+                <label for="project-idea" class="cs-visually-hidden">What are you looking to build?</label>
+                <input class="cs-project-input" id="project-idea" type="text" name="project" placeholder="Tell us about your project..." autocomplete="off" required>
+                <button type="submit" class="cs-button-solid cs-project-submit">
+                    Let's Talk
+                    <svg class="cs-submit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                </button>
+            </form>
+            <div class="cs-ideas">
+                <span class="cs-visually-hidden">Or start with an idea:</span>
+                <ul class="cs-idea-group">
+                    <li><button type="button" class="cs-idea" data-value="Turn our approved Figma designs into a responsive website">Figma to Website</button></li>
+                    <li><button type="button" class="cs-idea" data-value="A white-label website build for one of our agency clients">White-Label Build</button></li>
+                    <li><button type="button" class="cs-idea" data-value="Extra development support while our team is at capacity">Overflow Support</button></li>
+                    <li><button type="button" class="cs-idea" data-value="A custom build with CMS, integrations, or e-commerce">Custom Development</button></li>
+                </ul>
+            </div>
         </div>
-        <span class="scroll-label">Scroll Down</span>
-    </div>
 
-</section>
-
-<!-- ============================================ -->
-<!--                Text Section                  -->
-<!-- ============================================ -->
-<section id="text-section">
-  <div class="cs-container">
-    <h2 class="cs-text-large" data-splitting>
-Your business deserves a <span class="cs-highlight">presence</span> that can stand alongside the best in your industry.</h2>
-  </div>
-</section>
-
-<!-- ============================================ -->
-<!--               Marquee Cards                  -->
-<!-- ============================================ -->
-
-<section id="marquee-cards">
-    <div class="cs-container">
-        <h2 class="cs-title">Websites That<br>Make An Impression</h2>
-    </div>
-
-    <!-- Row 1 - scrolls left -->
-    <div class="cs-track-wrapper" aria-hidden="true">
-        <div class="cs-track cs-track-left">
-
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-1.webp" alt="Project 1" loading="lazy">
-            </div>
-
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-2.webp" alt="Project 2" loading="lazy">
-            </div>
-
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-3.webp" alt="Project 3" loading="lazy">
-            </div>
-
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-4.webp" alt="Project 4" loading="lazy">
-            </div>
-
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-5.webp" alt="Project 5" loading="lazy">
-            </div>
-
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-6.webp" alt="Project 6" loading="lazy">
-            </div>
-
-            <!-- Duplicates for seamless loop -->
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-1.webp" alt="Project 1" loading="lazy">
-            </div>
-
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-2.webp" alt="Project 2" loading="lazy">
-            </div>
-
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-3.webp" alt="Project 3" loading="lazy">
-            </div>
-
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-4.webp" alt="Project 4" loading="lazy">
-            </div>
-
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-5.webp" alt="Project 5" loading="lazy">
-            </div>
-
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-6.webp" alt="Project 6" loading="lazy">
-            </div>
-
+        <!-- Space background - navy gradient + stars drawn in CSS (critical.less) -->
+        <div class="cs-background" aria-hidden="true">
+            <span class="cs-stars"></span>
         </div>
-    </div>
 
-    <!-- Row 2 - scrolls right -->
-    <div class="cs-track-wrapper" aria-hidden="true">
-        <div class="cs-track cs-track-right">
+        <!-- Decorative rotating globe behind the content, drawn by /assets/js/globe.js -->
+        <canvas class="cs-globe" width="1000" height="1000" aria-hidden="true"></canvas>
+    </section>
 
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-7.webp" alt="Project 7" loading="lazy">
+    <!-- ============================================ -->
+    <!--                   Our Work                   -->
+    <!-- ============================================ -->
+
+    <section id="work">
+        <div class="cs-container">
+            <div class="cs-content">
+                <h2 class="cs-title">Projects Brought To Life</h2>
+                <p class="cs-text">
+                    A look at the websites and digital experiences we’ve helped bring to life.
+                </p>
             </div>
-
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-8.webp" alt="Project 8" loading="lazy">
-            </div>
-
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-9.webp" alt="Project 9" loading="lazy">
-            </div>
-
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-10.webp" alt="Project 10" loading="lazy">
-            </div>
-
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-11.webp" alt="Project 11" loading="lazy">
-            </div>
-
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-12.webp" alt="Project 12" loading="lazy">
-            </div>
-
-            <!-- Duplicates for seamless loop -->
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-7.webp" alt="Project 7" loading="lazy">
-            </div>
-
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-8.webp" alt="Project 8" loading="lazy">
-            </div>
-
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-9.webp" alt="Project 9" loading="lazy">
-            </div>
-
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-10.webp" alt="Project 10" loading="lazy">
-            </div>
-
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-11.webp" alt="Project 11" loading="lazy">
-            </div>
-
-            <div class="cs-card">
-                <img class="cs-card-img" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/web-design-12.webp" alt="Project 12" loading="lazy">
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- ============================================ -->
-<!--                  How We Work                 -->
-<!-- ============================================ -->
-
-<section class="process-1963" id="our-process">
-
-    <!-- Desktop: sticky horizontal scroll (hidden on mobile) -->
-    <div class="cs-sticky-outer">
-        <div class="cs-sticky-inner">
-            <div class="cs-track">
-
-                <div class="cs-left">
-                    <h2 class="cs-title">How it<br>comes together</h2>
-                    <div></div>
-                </div>
-
-                <div class="cs-item">
-                    <div class="cs-number">Step 01<span class="cs-dot">.</span></div>
-                    <div class="cs-bottom">
-                        <h3 class="cs-h3">Strategy</h3>
-                        <p class="cs-item-text">We start by understanding your business, goals, and audience so we can plan a website structure and user journey built to attract and convert.</p>
+            <!-- Carousel - scrolls sideways, the arrows and progress line are driven by work-carousel.js -->
+            <ul class="cs-project-group" id="work-carousel" data-carousel aria-label="Projects">
+                <li class="cs-project">
+                    <div class="cs-project-media">
+                        <img src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-site/landing-page/recess-athletics-club-portfolio_compressed.webp" alt="Recess Athletics Club website shown on a laptop" width="6000" height="4000" loading="lazy" decoding="async">
+                        <div class="cs-project-overlay">
+                            <span class="cs-project-category">Gym Facility</span>
+                            <h3 class="cs-project-title">Recess Athletics Club</h3>
+                            <p class="cs-project-text">Project description coming soon. A short summary of the goals, the build, and the results will go here.</p>
+                            <div class="cs-project-buttons">
+                                <!-- this link also covers the whole card, so clicking anywhere opens the live site -->
+                                <a class="cs-button-white cs-card-button cs-site-link" href="https://therecess.club/" target="_blank" rel="noopener" aria-label="Visit the Recess Athletics Club website (opens in a new tab)">
+                                    Visit Site
+                                    <svg class="cs-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                                </a>
+                            </div>
+                        </div>
                     </div>
+                </li>
+                <li class="cs-project">
+                    <div class="cs-project-media">
+                        <img src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-site/landing-page/revibe-wellness-portfolio_compressed.webp" alt="Revibe Social Wellness Club website shown on a laptop" width="6000" height="4000" loading="lazy" decoding="async">
+                        <div class="cs-project-overlay">
+                            <span class="cs-project-category">Social Wellness Club</span>
+                            <h3 class="cs-project-title">Revibe</h3>
+                            <p class="cs-project-text">Project description coming soon. A short summary of the goals, the build, and the results will go here.</p>
+                            <div class="cs-project-buttons">
+                                <!-- this link also covers the whole card, so clicking anywhere opens the live site -->
+                                <a class="cs-button-white cs-card-button cs-site-link" href="https://revibeto.com/" target="_blank" rel="noopener" aria-label="Visit the Revibe website (opens in a new tab)">
+                                    Visit Site
+                                    <svg class="cs-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="cs-project">
+                    <div class="cs-project-media">
+                        <img src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-site/landing-page/jayden-kennedy-portfolio_compressed.webp" alt="Jayden Kennedy real estate website shown on a laptop" width="6000" height="4000" loading="lazy" decoding="async">
+                        <div class="cs-project-overlay">
+                            <span class="cs-project-category">Real Estate</span>
+                            <h3 class="cs-project-title">Jayden Kennedy</h3>
+                            <p class="cs-project-text">Project description coming soon. A short summary of the goals, the build, and the results will go here.</p>
+                            <div class="cs-project-buttons">
+                                <!-- this link also covers the whole card, so clicking anywhere opens the live site -->
+                                <a class="cs-button-white cs-card-button cs-site-link" href="https://soldbykennedy.ca/" target="_blank" rel="noopener" aria-label="Visit the Jayden Kennedy website (opens in a new tab)">
+                                    Visit Site
+                                    <svg class="cs-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="cs-carousel-controls">
+                <div class="cs-progress" aria-hidden="true">
+                    <span class="cs-progress-fill"></span>
                 </div>
+                <div class="cs-arrows">
+                    <button type="button" class="cs-arrow cs-prev" aria-controls="work-carousel" aria-label="Previous projects">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+                    </button>
+                    <button type="button" class="cs-arrow cs-next" aria-controls="work-carousel" aria-label="Next projects">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </button>
+                </div>
+            </div>
+            <!-- <a href="/work/" class="cs-button-outline cs-more-button">
+                View More Work
+                <svg class="cs-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 17 5-5-5-5"/><path d="m13 17 5-5-5-5"/></svg>
+            </a> -->
+        </div>
+    </section>
 
-                <div class="cs-item">
-                    <div class="cs-number">Step 02<span class="cs-dot">.</span></div>
-                    <div class="cs-bottom">
+    <!-- ============================================ -->
+    <!--                  What We Do                  -->
+    <!-- ============================================ -->
+
+    <section id="what-we-do">
+        <div class="cs-container">
+            <div class="cs-content">
+                <h2 class="cs-title">Everything Your <br>Project Needs</h2>
+                <p class="cs-text">
+                    We bring strategy, design, and development together to create digital experiences that feel considered from the first click to the final detail.
+                </p>
+            </div>
+            <ul class="cs-card-group">
+                <li class="cs-item">
+                    <!-- illustration, drawn in CSS and animated on hover - decorative -->
+                    <div class="cs-art" aria-hidden="true">
+                        <div class="cs-art-bar"><i></i><i></i><i></i></div>
+                        <div class="cs-art-body"><div class="cs-wd-board"><div class="cs-col"><b>To do</b><i></i><i></i></div><div class="cs-col"><b>Doing</b><i></i></div><div class="cs-col"><b>Done</b><i></i></div><span class="cs-moving-card"></span></div></div>
+                    </div>
+                    <h3 class="cs-h3">Strategy</h3>
+                    <p class="cs-item-text">
+                        We help define the structure, direction, and experience before design begins.
+                    </p>
+                </li>
+                <li class="cs-item">
+                    <!-- illustration, drawn in CSS and animated on hover - decorative -->
+                    <div class="cs-art" aria-hidden="true">
+                        <div class="cs-art-bar"><i></i><i></i><i></i></div>
+                        <div class="cs-art-body"><div class="cs-wd-layout"><span class="cs-l-nav"></span><span class="cs-l-hero"></span><div class="cs-l-row"><span class="cs-l-tile"></span><span class="cs-l-tile cs-target"><i></i><i></i><i></i><i></i></span><span class="cs-l-tile"></span></div><svg class="cs-cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2l16 10.5-7 1.5-3.5 7z" style="fill: var(--dark); stroke: var(--on-dark)" stroke-width="1.5" stroke-linejoin="round"/></svg></div></div>
+                    </div>
+                    <h3 class="cs-h3">Web Design</h3>
+                    <p class="cs-item-text">
+                        Thoughtful, modern interfaces built around your brand, audience, and goals.
+                    </p>
+                </li>
+                <li class="cs-item">
+                    <!-- illustration, drawn in CSS and animated on hover - decorative -->
+                    <div class="cs-art" aria-hidden="true">
+                        <div class="cs-art-bar"><i></i><i></i><i></i></div>
+                        <div class="cs-art-body"><div class="cs-wd-code"><span class="cs-code-badge">&lt;/&gt;</span><span class="cs-cl cs-k1"></span><span class="cs-cl cs-k2 cs-in"></span><span class="cs-cl cs-k3 cs-in2"></span><span class="cs-cl cs-k4 cs-in"></span><span class="cs-cl cs-k5"></span></div></div>
+                    </div>
+                    <h3 class="cs-h3">Web Development</h3>
+                    <p class="cs-item-text">
+                        Responsive, high-performing websites built with clean, scalable development.
+                    </p>
+                </li>
+                <li class="cs-item">
+                    <!-- illustration, drawn in CSS and animated on hover - decorative -->
+                    <div class="cs-art" aria-hidden="true">
+                        <div class="cs-art-bar"><i></i><i></i><i></i></div>
+                        <div class="cs-art-body"><div class="cs-wd-support"><span class="cs-uptime">99.9%</span><div class="cs-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="cs-toast">Updated ✓</span></div></div>
+                    </div>
+                    <h3 class="cs-h3">Ongoing Support</h3>
+                    <p class="cs-item-text">
+                        Continued updates, improvements, and technical support after launch.
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--               Who We Work With               -->
+    <!-- ============================================ -->
+
+    <section id="who-we-work-with">
+        <div class="cs-container">
+            <div class="cs-content">
+                <h2 class="cs-title">Built For Different Kinds Of Teams.</h2>
+                <p class="cs-text">
+                    Whether you already have the creative direction or need help shaping the entire experience, we adapt to how you work.
+                </p>
+            </div>
+            <ul class="cs-list">
+                <li class="cs-item">
+                    <div class="cs-item-heading">
+                        <span class="cs-label">Growing Businesses</span>
+                        <h3 class="cs-h3">Need a stronger digital presence but don’t have an internal web team?</h3>
+                    </div>
+                    <div class="cs-item-body">
+                        <p class="cs-item-text">
+                            We help businesses plan, design, build, and launch websites from start to finish.
+                        </p>
+                        <a href="/businesses/" class="cs-item-link">
+                            Explore Websites for Businesses
+                            <svg class="cs-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                    <!-- illustration, drawn in CSS and animated on hover - decorative -->
+                    <div class="cs-row-art cs-row-art-2" aria-hidden="true">
+                        <div class="cs-ww-growth">
+                            <div class="cs-ww-win cs-ww-biz">
+                                <div class="cs-ww-bar"><i></i><i></i><i></i></div>
+                                <div class="cs-ww-biz-body">
+                                    <span class="cs-biz-nav"></span>
+                                    <span class="cs-biz-title"></span>
+                                    <svg class="cs-chart-line" viewBox="0 0 200 70" preserveAspectRatio="none"><polyline points="0,62 34,54 64,58 98,40 132,44 166,22 200,8" fill="none" style="stroke: var(--dark)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg>
+                                </div>
+                            </div>
+                            <span class="cs-ww-toast">New inquiry ✓</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="cs-item">
+                    <div class="cs-item-heading">
+                        <span class="cs-label">Agencies &amp; Creative Teams</span>
+                        <h3 class="cs-h3">Need reliable development behind your creative work?</h3>
+                    </div>
+                    <div class="cs-item-body">
+                        <p class="cs-item-text">
+                            We partner with agencies and design teams to bring approved designs to life, provide overflow support, and work white-label when needed.
+                        </p>
+                        <a href="/agencies/" class="cs-item-link">
+                            Explore Agency Partnerships
+                            <svg class="cs-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                    <!-- illustration, drawn in CSS and animated on hover - decorative -->
+                    <div class="cs-row-art" aria-hidden="true">
+                        <div class="cs-ww-handoff">
+                            <div class="cs-ww-win cs-ww-design">
+                                <div class="cs-ww-bar"><i></i><i></i><i></i></div>
+                                <div class="cs-ww-canvas"><span class="cs-shape cs-circle"></span><span class="cs-shape cs-rect"></span><span class="cs-pen"></span></div>
+                            </div>
+                            <span class="cs-ww-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+                            <div class="cs-ww-win cs-ww-built">
+                                <div class="cs-ww-bar"><i></i><i></i><i></i></div>
+                                <div class="cs-ww-site"><span class="cs-site-nav"></span><span class="cs-shape cs-circle"></span><span class="cs-shape cs-rect"></span></div>
+                            </div>
+                            <span class="cs-ww-tag">White-label ✓</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--                  How We Work                 -->
+    <!-- ============================================ -->
+
+    <section id="how-we-work">
+        <div class="cs-container">
+            <div class="cs-content">
+                <h2 class="cs-title">A Clear Process From Start To Finish.</h2>
+                <p class="cs-text">
+                    No unnecessary layers. No disappearing for weeks. Just a collaborative process designed to keep projects moving.
+                </p>
+            </div>
+            <!-- The blue line fills as you scroll and each dot fills when the line reaches it (see timeline.js) -->
+            <div class="cs-timeline">
+                <div class="cs-track" aria-hidden="true">
+                    <div class="cs-track-fill"></div>
+                </div>
+                <ol class="cs-step-list">
+                    <li class="cs-step">
+                        <span class="cs-dot" aria-hidden="true"></span>
+                        <span class="cs-number">01</span>
+                        <h3 class="cs-h3">Discover</h3>
+                        <p class="cs-step-text">We learn about your business, audience, goals, and what the website needs to accomplish.</p>
+                    </li>
+                    <li class="cs-step">
+                        <span class="cs-dot" aria-hidden="true"></span>
+                        <span class="cs-number">02</span>
+                        <h3 class="cs-h3">Define</h3>
+                        <p class="cs-step-text">We establish the structure, creative direction, functionality, and project requirements.</p>
+                    </li>
+                    <li class="cs-step">
+                        <span class="cs-dot" aria-hidden="true"></span>
+                        <span class="cs-number">03</span>
                         <h3 class="cs-h3">Design</h3>
-                        <p class="cs-item-text">We create a clean, modern design tailored to your brand, with layouts focused on clarity, trust, and conversion across every device.</p>
-                    </div>
-                </div>
-
-                <div class="cs-item">
-                    <div class="cs-number">Step 03<span class="cs-dot">.</span></div>
-                    <div class="cs-bottom">
-                        <h3 class="cs-h3">Development</h3>
-                        <p class="cs-item-text">We build a fast, responsive, and scalable website that brings the approved design to life while prioritizing performance, speed, and reliability.</p>
-                    </div>
-                </div>
-
-                <div class="cs-item">
-                    <div class="cs-number">Step 04<span class="cs-dot">.</span></div>
-                    <div class="cs-bottom">
-                        <h3 class="cs-h3">Optimization</h3>
-                        <p class="cs-item-text">We test and refine your website across devices and browsers to ensure a smooth, consistent, and polished user experience before launch.</p>
-                    </div>
-                </div>
-
-                <div class="cs-item">
-                    <div class="cs-number">Step 05<span class="cs-dot">.</span></div>
-                    <div class="cs-bottom">
-                        <h3 class="cs-h3">Launch &amp; Growth</h3>
-                        <p class="cs-item-text">We launch your website with the right tracking, analytics, and integrations in place so it is ready for visibility, SEO, and ongoing growth.</p>
-                    </div>
-                </div>
-
+                        <p class="cs-step-text">We turn the strategy into a polished visual experience and refine it with your feedback.</p>
+                    </li>
+                    <li class="cs-step">
+                        <span class="cs-dot" aria-hidden="true"></span>
+                        <span class="cs-number">04</span>
+                        <h3 class="cs-h3">Develop</h3>
+                        <p class="cs-step-text">We bring the approved design to life with responsive development, interactions, and integrations.</p>
+                    </li>
+                    <li class="cs-step">
+                        <span class="cs-dot" aria-hidden="true"></span>
+                        <span class="cs-number">05</span>
+                        <h3 class="cs-h3">Launch</h3>
+                        <p class="cs-step-text">We test, refine, and prepare everything for a confident launch.</p>
+                    </li>
+                </ol>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Mobile: stacked list (hidden on desktop) -->
-    <div class="cs-mobile">
-        <h2 class="cs-title">How it comes together</h2>
+    <!-- ============================================ -->
+    <!--                Why Websthetic                -->
+    <!-- ============================================ -->
 
-        <div class="cs-item">
-            <span class="cs-number">Step 01<span class="cs-dot">.</span></span>
-            <h3 class="cs-h3">Strategy</h3>
-            <p class="cs-item-text">We start by understanding your business, goals, and audience so we can plan a website structure and user journey built to attract and convert.</p>
+    <section id="why-websthetic">
+        <div class="cs-container">
+            <div class="cs-content">
+                <h2 class="cs-title">Good Work Comes From Good Collaboration.</h2>
+                <p class="cs-text">
+                    We’ve built Websthetic around a simple idea: the best digital work happens when design, technology, and communication work together.
+                </p>
+            </div>
+            <ul class="cs-card-group">
+                <li class="cs-item">
+                    <span class="cs-icon-wrapper" aria-hidden="true">
+                        <!-- users icon -->
+                        <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle fill="currentColor" fill-opacity=".14" cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </span>
+                    <h3 class="cs-h3">Direct Collaboration</h3>
+                    <p class="cs-item-text">
+                        Work directly with the people designing and building your project.
+                    </p>
+                </li>
+                <li class="cs-item">
+                    <span class="cs-icon-wrapper" aria-hidden="true">
+                        <!-- target icon -->
+                        <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="2" x2="5" y1="12" y2="12"/><line x1="19" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="5"/><line x1="12" x2="12" y1="19" y2="22"/><circle fill="currentColor" fill-opacity=".14" cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="3"/></svg>
+                    </span>
+                    <h3 class="cs-h3">Thoughtful Execution</h3>
+                    <p class="cs-item-text">
+                        We pay attention to the details that shape the final experience, not just what the page looks like.
+                    </p>
+                </li>
+                <li class="cs-item">
+                    <span class="cs-icon-wrapper" aria-hidden="true">
+                        <!-- lightning icon -->
+                        <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" fill-opacity=".14" d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+                    </span>
+                    <h3 class="cs-h3">Modern Workflows</h3>
+                    <p class="cs-item-text">
+                        We use modern tools and AI-assisted workflows to move faster while keeping human judgment at the centre.
+                    </p>
+                </li>
+                <li class="cs-item">
+                    <span class="cs-icon-wrapper" aria-hidden="true">
+                        <!-- trending up icon -->
+                        <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                    </span>
+                    <h3 class="cs-h3">Built Beyond Launch</h3>
+                    <p class="cs-item-text">
+                        Our websites are designed with performance, maintainability, and future growth in mind.
+                    </p>
+                </li>
+                <li class="cs-item">
+                    <span class="cs-icon-wrapper" aria-hidden="true">
+                        <!-- calendar check icon -->
+                        <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect fill="currentColor" fill-opacity=".14" width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg>
+                    </span>
+                    <h3 class="cs-h3">Reliable Delivery</h3>
+                    <p class="cs-item-text">
+                        Clear timelines, consistent communication, and a structured process that keeps projects moving from start to launch.
+                    </p>
+                </li>
+                <!-- Call to action card -->
+                <li class="cs-item cs-cta">
+                    <h3 class="cs-h3">Ready To Start Your Project?</h3>
+                    <p class="cs-item-text">
+                        Tell us what you’re building and we’ll show you how we can help bring it to life.
+                    </p>
+                    <a href="/contact/" class="cs-button-white cs-cta-button">
+                        Let's Talk
+                        <svg class="cs-cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                    </a>
+                </li>
+            </ul>
         </div>
+    </section>
 
-        <div class="cs-item">
-            <span class="cs-number">Step 02<span class="cs-dot">.</span></span>
-            <h3 class="cs-h3">Design</h3>
-            <p class="cs-item-text">We create a clean, modern design tailored to your brand, with layouts focused on clarity, trust, and conversion across every device.</p>
-        </div>
-
-        <div class="cs-item">
-            <span class="cs-number">Step 03<span class="cs-dot">.</span></span>
-            <h3 class="cs-h3">Development</h3>
-            <p class="cs-item-text">We build a fast, responsive, and scalable website that brings the approved design to life while prioritizing performance, speed, and reliability.</p>
-        </div>
-
-        <div class="cs-item">
-            <span class="cs-number">Step 04<span class="cs-dot">.</span></span>
-            <h3 class="cs-h3">Optimization</h3>
-            <p class="cs-item-text">We test and refine your website across devices and browsers to ensure a smooth, consistent, and polished user experience before launch.</p>
-        </div>
-
-        <div class="cs-item">
-            <span class="cs-number">Step 05<span class="cs-dot">.</span></span>
-            <h3 class="cs-h3">Launch &amp; Growth</h3>
-            <p class="cs-item-text">We launch your website with the right tracking, analytics, and integrations in place so it is ready for visibility, SEO, and ongoing growth.</p>
-        </div>
-    </div>
-
-</section>
-
-<!-- ============================================ -->
-<!--                  Marquee                     -->
-<!-- ============================================ -->
-<section class="text-rotator-strip">
-  <div class="rotator-inner">
-    <div class="rotator-static-group">
-      <span class="rotator-static rotator-static--built">Websites</span>
-      <span class="rotator-static rotator-static--website">Built</span>
-      <span class="rotator-static rotator-static--built">For:</span>
-    </div>
-    <span class="rotator-wrapper">
-      <span class="rotator-track">
-        <span class="rotator-word">dental</span>
-        <span class="rotator-word">real estate</span>
-        <span class="rotator-word">medical</span>
-        <span class="rotator-word">fitness</span>
-        <span class="rotator-word">restaurants</span>
-        <span class="rotator-word">salons</span>
-        <span class="rotator-word">contractors</span>
-        <span class="rotator-word">law</span>
-        <span class="rotator-word">accounting</span>
-        <span class="rotator-word">local brands</span>
-        <span class="rotator-word">dental</span>
-      </span>
-    </span>
-  </div>
-</section>
-
-<!-- ============================================ -->
-<!--                 Portfolio                    -->
-<!-- ============================================ -->
-<section class="lw-section" id="our-portfolio">
-  <div class="lw-heading" id="lwHeading">
-    <h2>Recent Work</h2>
-  </div>
-
-  <div class="lw-mobile-stack">
-
-    <!-- Project 1 -->
-    <div class="lw-card">
-      <div class="lw-card__img-wrap">
-        <img
-          src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/revibe-portfolio.webp"
-          alt="Revibe project preview" loading="lazy">
-      </div>
-      <div class="lw-card__body">
-        <p class="lw-card__counter">01 / 02</p>
-        <h3 class="lw-card__name">Revibe</h3>
-        <p class="lw-card__desc">Health &amp; Social Wellness Club</p>
-        <a class="lw-card__btn" href="https://revibeto.com/" target="_blank" rel="noopener noreferrer">
-          View Project
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-            <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.2"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-
-    <!-- Project 2 -->
-    <div class="lw-card">
-      <div class="lw-card__img-wrap">
-        <img
-          src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/landing-page/recess-athletics-club.webp"
-          alt="Placeholder project preview" loading="lazy">
-      </div>
-      <div class="lw-card__body">
-        <p class="lw-card__counter">02 / 02</p>
-        <h3 class="lw-card__name">Recess Athletics Club</h3>
-        <p class="lw-card__desc">Recreation Club</p>
-        <a class="lw-card__btn" href="https://therecess.club/" target="_blank" rel="noopener noreferrer">
-          View Project
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-            <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.2"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============================================ -->
-<!--                  Services                    -->
-<!-- ============================================ -->
-<section id="our-services">
-  <div class="cs-container">
-    <div class="cs-header">
-      <h2 class="cs-title">How We Can Help</h2>
-    </div>
-  </div>
-
-  <ul class="cs-card-group">
-
-    <li class="cs-item">
-      <span class="cs-number">01.</span>
-      <div class="cs-item-right">
-        <h3 class="cs-h3">Web Design</h3>
-        <div class="cs-accordion">
-          <p class="cs-service-text">Custom layouts that reflect your brand and convert visitors</p>
-          <ul class="cs-pills">
-            <li class="cs-pill">Responsive Design</li>
-            <li class="cs-pill">UI/UX</li>
-            <li class="cs-pill">Wireframing</li>
-            <li class="cs-pill">Figma</li>
-          </ul>
-        </div>
-      </div>
-      <span class="cs-icon">
-        <span class="cs-icon-plus">+</span>
-        <span class="cs-icon-minus">−</span>
-      </span>
-    </li>
-
-    <li class="cs-item">
-      <span class="cs-number">02.</span>
-      <div class="cs-item-right">
-        <h3 class="cs-h3">Development</h3>
-        <div class="cs-accordion">
-          <p class="cs-service-text">Hand-coded for speed, security, and flawless performance</p>
-          <ul class="cs-pills">
-            <li class="cs-pill">HTML / CSS</li>
-            <li class="cs-pill">JavaScript</li>
-            <li class="cs-pill">No Page Builders</li>
-            <li class="cs-pill">Custom Code</li>
-          </ul>
-        </div>
-      </div>
-      <span class="cs-icon">
-        <span class="cs-icon-plus">+</span>
-        <span class="cs-icon-minus">−</span>
-      </span>
-    </li>
-
-    <li class="cs-item">
-      <span class="cs-number">03.</span>
-      <div class="cs-item-right">
-        <h3 class="cs-h3">Search Engine Optimization</h3>
-        <div class="cs-accordion">
-          <p class="cs-service-text">Get found online with proven SEO strategies</p>
-          <ul class="cs-pills">
-            <li class="cs-pill">On-Page SEO</li>
-            <li class="cs-pill">Local SEO</li>
-            <li class="cs-pill">Keyword Research</li>
-            <li class="cs-pill">Schema Markup</li>
-          </ul>
-        </div>
-      </div>
-      <span class="cs-icon">
-        <span class="cs-icon-plus">+</span>
-        <span class="cs-icon-minus">−</span>
-      </span>
-    </li>
-
-    <li class="cs-item">
-      <span class="cs-number">04.</span>
-      <div class="cs-item-right">
-        <h3 class="cs-h3">Performance Optimization</h3>
-        <div class="cs-accordion">
-          <p class="cs-service-text">Lightning-fast load times that keep visitors engaged</p>
-          <ul class="cs-pills">
-            <li class="cs-pill">Core Web Vitals</li>
-            <li class="cs-pill">Image Optimization</li>
-            <li class="cs-pill">Lazy Loading</li>
-            <li class="cs-pill">Caching</li>
-          </ul>
-        </div>
-      </div>
-      <span class="cs-icon">
-        <span class="cs-icon-plus">+</span>
-        <span class="cs-icon-minus">−</span>
-      </span>
-    </li>
-
-    <li class="cs-item">
-      <span class="cs-number">05.</span>
-      <div class="cs-item-right">
-        <h3 class="cs-h3">Support &amp; Maintenance</h3>
-        <div class="cs-accordion">
-          <p class="cs-service-text">Keep your site secure, updated, and running smoothly</p>
-          <ul class="cs-pills">
-            <li class="cs-pill">Monthly Updates</li>
-            <li class="cs-pill">Security Monitoring</li>
-            <li class="cs-pill">Bug Fixes</li>
-            <li class="cs-pill">24/7 Support</li>
-          </ul>
-        </div>
-      </div>
-      <span class="cs-icon">
-        <span class="cs-icon-plus">+</span>
-        <span class="cs-icon-minus">−</span>
-      </span>
-    </li>
-
-  </ul>
-</section>
-
-{% include 'sections/cta.html' %}
+    {% include 'sections/cta.html' %}
+    {% include "sections/contact-modal.html" %}
 
 {% endblock %}

@@ -1,0 +1,643 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// COLOUR CONTRAST CHECKER STYLES
+// Styles for the Resources > Colour Contrast Checker tool page
+// (/resources/colour-contrast-checker/). The banner and CTA use the shared
+// styles in global.less.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/*-- -------------------------- -->
+<---        Contrast Tool       -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #contrast-tool {
+        /* 0 - 1, set by contrast-checker.js */
+        --score: 0.9;
+        padding: var(--sectionPadding);
+        background-color: var(--background-soft);
+
+        .cs-container {
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+        }
+
+        /* ---- colour controls bar ---- */
+        .cs-controls {
+            /* 24px - 32px */
+            margin-bottom: clamp(1.5rem, 3vw, 2rem);
+            padding: (16/16rem);
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: (20/16rem);
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: (12/16rem);
+            align-items: end;
+        }
+
+        .cs-colour {
+            min-width: 0;
+        }
+
+        .cs-colour-label {
+            font-size: (13/16rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: (10/16rem);
+            display: block;
+        }
+
+        .cs-colour-row {
+            display: flex;
+            align-items: center;
+            gap: (8/16rem);
+        }
+
+        .cs-swatch {
+            width: (44/16rem);
+            height: (40/16rem);
+            padding: 0;
+            background: none;
+            border: 1px solid var(--field-border);
+            border-radius: (8/16rem);
+            cursor: pointer;
+            flex: none;
+
+            &::-webkit-color-swatch-wrapper {
+                padding: (3/16rem);
+            }
+
+            &::-webkit-color-swatch {
+                border: none;
+                border-radius: (5/16rem);
+            }
+
+            &::-moz-color-swatch {
+                border: none;
+                border-radius: (5/16rem);
+            }
+        }
+
+        .cs-hex {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: (15/16rem);
+            min-width: 0;
+            height: (40/16rem);
+            padding: 0 (12/16rem);
+            background-color: var(--surface);
+            border: 1px solid var(--field-border);
+            border-radius: (8/16rem);
+            /* prevents padding from affecting width */
+            box-sizing: border-box;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            flex: 1;
+
+            &:focus {
+                outline: none;
+                border-color: var(--dark);
+                box-shadow: 0 0 0 3px var(--accent-1);
+            }
+
+            &[aria-invalid] {
+                border-color: var(--danger);
+                box-shadow: 0 0 0 3px color-mix(in srgb, var(--danger) 15%, transparent);
+            }
+        }
+
+        .cs-copy {
+            width: (40/16rem);
+            height: (40/16rem);
+            background-color: var(--background-soft);
+            border: 1px solid var(--field-border);
+            border-radius: (8/16rem);
+            color: var(--text-primary);
+            cursor: pointer;
+            flex: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transition: background-color 0.2s;
+
+            svg {
+                width: (16/16rem);
+                height: (16/16rem);
+            }
+
+            &:hover {
+                background-color: var(--accent-4);
+            }
+
+            /* brief "Copied" note */
+            &.cs-copied {
+                background-color: var(--accent-4);
+
+                &:after {
+                    content: "Copied";
+                    font-size: (11/16rem);
+                    font-weight: 600;
+                    padding: (3/16rem) (7/16rem);
+                    background-color: var(--dark);
+                    border-radius: (6/16rem);
+                    color: var(--on-dark);
+                    white-space: nowrap;
+                    position: absolute;
+                    bottom: ~"calc(100% + 6px)";
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+            }
+        }
+
+        .cs-swap {
+            width: (44/16rem);
+            height: (44/16rem);
+            padding: 0;
+            background-color: var(--dark);
+            border: none;
+            border-radius: 50%;
+            color: var(--accent-4);
+            cursor: pointer;
+            justify-self: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+
+            svg {
+                width: (18/16rem);
+                height: (18/16rem);
+            }
+
+            &:hover {
+                transform: rotate(180deg);
+            }
+        }
+
+        .cs-tool {
+            display: flex;
+            flex-direction: column;
+            /* 24px - 32px */
+            gap: clamp(1.5rem, 3vw, 2rem);
+        }
+
+        /* ---- website mockup preview ---- */
+        .cs-mockup {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: (20/16rem);
+            box-shadow: 0 24px 50px color-mix(in srgb, var(--shadow) 8%, transparent);
+            overflow: hidden;
+        }
+
+        .cs-mockup-bar {
+            height: (36/16rem);
+            padding: 0 (14/16rem);
+            background-color: var(--background-soft);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: (6/16rem);
+
+            i {
+                width: (10/16rem);
+                height: (10/16rem);
+                background-color: var(--border);
+                border-radius: 50%;
+                display: block;
+            }
+        }
+
+        .cs-mockup-url {
+            font-size: (12/16rem);
+            padding: (4/16rem) (14/16rem);
+            margin-left: (12/16rem);
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: (999/16rem);
+            color: var(--text-secondary);
+        }
+
+        .cs-preview {
+            /* 24px - 40px */
+            padding: clamp(1.5rem, 3.5vw, 2.5rem);
+            /* colours are set live by contrast-checker.js */
+            background-color: #000000;
+            color: #F5FFAF;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .cs-site-nav {
+            width: 100%;
+            /* 32px - 48px */
+            margin-bottom: clamp(2rem, 4.5vw, 3rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cs-site-logo {
+            font-size: (18/16rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .cs-site-links {
+            display: flex;
+            gap: (16/16rem);
+
+            i {
+                font-size: (14/16rem);
+                font-style: normal;
+                font-weight: 500;
+            }
+        }
+
+        .cs-preview-title {
+            /* 32px - 52px */
+            font-size: clamp(2rem, 4.6vw, 3.25rem);
+            font-weight: 700;
+            line-height: 1.05em;
+            letter-spacing: -0.03em;
+            max-width: (440/16rem);
+            margin: 0 0 (14/16rem);
+            color: inherit;
+        }
+
+        .cs-preview-text {
+            /* 15px - 18px */
+            font-size: clamp(0.9375rem, 1.5vw, 1.125rem);
+            line-height: 1.55em;
+            max-width: (440/16rem);
+            margin: 0 0 (22/16rem);
+            color: inherit;
+        }
+
+        .cs-preview-button {
+            font-size: (14/16rem);
+            font-weight: 600;
+            padding: (11/16rem) (22/16rem);
+            /* the button flips the two colours */
+            background-color: var(--preview-fg, #F5FFAF);
+            border-radius: (999/16rem);
+            color: var(--preview-bg, #000000);
+        }
+
+        .cs-site-cards {
+            width: 100%;
+            /* 28px - 40px */
+            margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: (10/16rem);
+
+            span {
+                padding: (12/16rem);
+                border: 1.5px solid currentColor;
+                border-radius: (12/16rem);
+                display: flex;
+                flex-direction: column;
+                gap: (6/16rem);
+                opacity: 0.9;
+            }
+
+            b {
+                width: (20/16rem);
+                height: (20/16rem);
+                margin-bottom: (4/16rem);
+                background-color: currentColor;
+                border-radius: 50%;
+                display: block;
+            }
+
+            i {
+                height: (6/16rem);
+                background-color: currentColor;
+                border-radius: (3/16rem);
+                display: block;
+                opacity: 0.7;
+
+                &.cs-short {
+                    width: 60%;
+                }
+            }
+        }
+
+        /* ---- results ---- */
+        .cs-results {
+            /* 24px - 32px */
+            padding: clamp(1.5rem, 2.8vw, 2rem);
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: (20/16rem);
+            /* prevents padding from affecting width */
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cs-results-title {
+            /* 18px - 22px */
+            font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+            font-weight: 600;
+            margin: 0 0 (20/16rem);
+            color: var(--text-primary);
+            align-self: flex-start;
+        }
+
+        .cs-dial {
+            /* 190px - 220px */
+            width: clamp(11.875rem, 18vw, 13.75rem);
+            aspect-ratio: 1;
+            margin-bottom: (24/16rem);
+            border-radius: 50%;
+            /* filled arc - the score's pastel, the rest light grey */
+            background: conic-gradient(var(--dial-colour, var(--accent-4)) calc(var(--score) * 360deg), var(--background-soft) 0);
+            border: 1px solid var(--border);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .cs-dial-inner {
+            width: 78%;
+            aspect-ratio: 1;
+            background-color: var(--surface);
+            border-radius: 50%;
+            box-shadow: inset 0 0 0 1px var(--border);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: (2/16rem);
+        }
+
+        /* the dial colour follows the score */
+        &[data-level="excellent"] {
+            --dial-colour: var(--accent-4);
+        }
+
+        &[data-level="good"] {
+            --dial-colour: var(--accent-1);
+        }
+
+        &[data-level="fair"] {
+            --dial-colour: var(--accent-3);
+        }
+
+        &[data-level="poor"] {
+            --dial-colour: var(--accent-2);
+        }
+
+        .cs-ratio {
+            /* 32px - 40px */
+            font-size: clamp(2rem, 3.2vw, 2.5rem);
+            font-weight: 700;
+            line-height: 1.1em;
+            letter-spacing: -0.03em;
+            color: var(--dark);
+        }
+
+        .cs-rating {
+            font-size: (14/16rem);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .cs-checks {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: (8/16rem);
+        }
+
+        .cs-check {
+            list-style: none;
+            padding: (10/16rem) (12/16rem);
+            background-color: var(--background-soft);
+            border-radius: (12/16rem);
+            display: flex;
+            align-items: center;
+            gap: (10/16rem);
+        }
+
+        .cs-check-text {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+
+            strong {
+                font-size: (14/16rem);
+                font-weight: 600;
+                color: var(--text-primary);
+
+                em {
+                    font-style: normal;
+                    font-weight: 700;
+                }
+            }
+
+            span {
+                font-size: (12/16rem);
+                color: var(--text-secondary);
+            }
+        }
+
+        .cs-status {
+            width: (26/16rem);
+            height: (26/16rem);
+            background-color: var(--dark);
+            border-radius: 50%;
+            color: var(--accent-4);
+            flex: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .cs-status-icon {
+                width: (14/16rem);
+                height: (14/16rem);
+            }
+
+            .cs-x {
+                font-size: (13/16rem);
+                font-weight: 700;
+                display: none;
+            }
+        }
+
+        .cs-result {
+            font-size: (13/16rem);
+            font-weight: 700;
+            padding: (4/16rem) (12/16rem);
+            background-color: var(--accent-4);
+            border: 1px solid color-mix(in srgb, var(--dark) 10%, transparent);
+            border-radius: (999/16rem);
+            color: var(--dark);
+            flex: none;
+        }
+
+        /* failing checks - pink with a cross, and the word "Fail" so it doesn't rely on colour alone */
+        .cs-fail {
+            .cs-status {
+                background-color: var(--accent-2);
+                border: 1.5px solid var(--dark);
+                /* prevents the border from affecting size */
+                box-sizing: border-box;
+                color: var(--dark);
+
+                .cs-status-icon {
+                    display: none;
+                }
+
+                .cs-x {
+                    display: block;
+                }
+            }
+
+            .cs-result {
+                background-color: var(--accent-2);
+            }
+        }
+
+        /* ---- info box ---- */
+        .cs-info {
+            /* 32px - 48px */
+            margin-top: clamp(2rem, 4vw, 3rem);
+            /* 24px - 32px */
+            padding: clamp(1.5rem, 2.8vw, 2rem);
+            background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 50%, var(--accent-4) 100%);
+            border-radius: (24/16rem);
+            display: flex;
+            gap: (16/16rem);
+        }
+
+        .cs-info-icon {
+            width: (28/16rem);
+            height: (28/16rem);
+            font-size: (15/16rem);
+            font-weight: 700;
+            font-style: italic;
+            font-family: Georgia, serif;
+            background-color: var(--dark);
+            border-radius: 50%;
+            color: var(--on-dark);
+            flex: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cs-info-title {
+            /* 17px - 19px */
+            font-size: clamp(1.0625rem, 1.5vw, 1.1875rem);
+            font-weight: 600;
+            margin: (2/16rem) 0 (10/16rem);
+            color: var(--text-primary);
+        }
+
+        .cs-info-text {
+            p,
+            li {
+                font-size: (15/16rem);
+                line-height: 1.6em;
+                color: var(--text-on-accent);
+            }
+
+            p {
+                margin: 0 0 (12/16rem);
+            }
+
+            ul {
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                gap: (6/16rem);
+            }
+
+            li {
+                list-style: none;
+            }
+
+            strong {
+                color: var(--dark);
+            }
+        }
+
+        .cs-disclaimer {
+            font-size: (14/16rem);
+            line-height: 1.6em;
+            margin: (20/16rem) 0 0;
+            color: var(--text-secondary);
+        }
+    }
+}
+
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    #contrast-tool {
+        .cs-controls {
+            /* background | swap | text in one row */
+            grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        }
+
+        .cs-checks {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        /* the last check spans both columns */
+        .cs-check:last-child {
+            grid-column: 1 / -1;
+        }
+    }
+}
+
+/* Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+    #contrast-tool {
+        .cs-tool {
+            /* website mockup on the left, score on the right */
+            flex-direction: row;
+            align-items: flex-start;
+        }
+
+        .cs-mockup {
+            width: 62%;
+            flex: none;
+        }
+
+        .cs-results {
+            flex: 1;
+            /* stays in view while scrolling the preview */
+            position: sticky;
+            top: (120/16rem);
+        }
+
+        .cs-checks {
+            grid-template-columns: 1fr;
+        }
+
+        .cs-check:last-child {
+            grid-column: auto;
+        }
+    }
+}
+
+/* Reduced motion - no spinning swap button */
+@media (prefers-reduced-motion: reduce) {
+    #contrast-tool .cs-swap:hover {
+        transform: none;
+    }
+}

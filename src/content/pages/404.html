@@ -1,0 +1,47 @@
+---
+title: "Page Not Found | Websthetic"
+description: "The page you’re looking for doesn’t exist or has moved."
+# Netlify serves /404.html automatically for any address that doesn't exist
+permalink: "/404.html"
+eleventyExcludeFromCollections: true
+---
+
+{% extends "layouts/base.html" %}
+
+{% block head %}
+    <meta name="robots" content="noindex">
+{% endblock %}
+
+{% block body %}
+
+    <!-- ============================================ -->
+    <!--                   Banner                     -->
+    <!-- ============================================ -->
+
+    <div id="banner-310">
+        <div class="cs-container">
+            {% set crumb = "Page Not Found" %}
+            {% include "components/breadcrumb.html" %}
+            <!-- illustration on the right (desktop) - drawings live in components/banner-art/ -->
+            <div class="cs-banner-art" aria-hidden="true">
+                {% include "components/banner-art/website.html" %}
+            </div>
+            <div class="cs-banner-text">
+                <span class="cs-int-badge">Error 404</span>
+                <h1 class="cs-int-title">This Page Took A <span class="cs-highlight">Wrong Turn.</span></h1>
+                <p class="cs-int-text">
+                    The page you’re looking for doesn’t exist or has moved. Try one of these instead:
+                    <a href="/work/">our work</a>, <a href="/businesses/">websites for businesses</a>, <a href="/agencies/">agency partnerships</a>, or <a href="/resources/">free resources</a>.
+                </p>
+                <div class="cs-int-buttons">
+                    <a href="/" class="cs-button-solid cs-int-button">
+                        Back To Home
+                        <svg class="cs-int-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                    <a href="/contact/" class="cs-button-outline cs-int-button">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

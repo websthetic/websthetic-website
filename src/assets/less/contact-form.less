@@ -1,0 +1,130 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// CONTACT FORM
+// The contact form (components/contact-form.html), shared by the Contact page
+// and the home page "Let's Talk" popup (contact-modal.less) - simple bordered
+// fields, two columns from 600px up.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/*-- -------------------------- -->
+<---        Contact Form        -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    .cs-contact-form {
+        & {
+            display: grid;
+            grid-template-columns: 1fr;
+            column-gap: (24/16rem);
+            /* 20px - 24px */
+            row-gap: clamp(1.25rem, 2vw, 1.5rem);
+        }
+
+        /* spam honeypot - hidden from people, still in the form for bots */
+        .cs-hidden-field {
+            display: none;
+        }
+
+        .cs-field-label {
+            font-size: (14/16rem);
+            font-weight: 500;
+            line-height: 1.3em;
+            color: var(--text-primary);
+            margin-bottom: (8/16rem);
+            display: block;
+
+            abbr {
+                text-decoration: none;
+                color: var(--text-primary);
+            }
+        }
+
+        .cs-field {
+            display: block;
+
+            input,
+            select,
+            textarea {
+                font-family: inherit;
+                font-size: (16/16rem);
+                width: 100%;
+                /* prevents padding and border from affecting width */
+                box-sizing: border-box;
+                padding: (13/16rem) (16/16rem);
+                background-color: var(--surface);
+                border: 1px solid var(--field-border);
+                border-radius: (8/16rem);
+                color: var(--text-primary);
+                transition: border-color 0.2s, box-shadow 0.2s;
+
+                &::placeholder {
+                    color: color-mix(in srgb, var(--text-secondary) 80%, var(--surface));
+                }
+
+                &:hover {
+                    border-color: color-mix(in srgb, var(--field-border), var(--dark) 25%);
+                }
+
+                &:focus {
+                    outline: none;
+                    border-color: var(--dark);
+                    box-shadow: 0 0 0 3px var(--accent-1);
+                }
+            }
+
+            select {
+                /* custom arrow */
+                padding-right: (44/16rem);
+                cursor: pointer;
+                -webkit-appearance: none;
+                appearance: none;
+                /* a small down-pointing triangle drawn as two halves, so it follows the colour tokens */
+                background-image: linear-gradient(45deg, transparent 50%, var(--text-primary) 50%), linear-gradient(135deg, var(--text-primary) 50%, transparent 50%);
+                background-repeat: no-repeat;
+                background-position: right (23/16rem) center, right (18/16rem) center;
+                background-size: (5/16rem) (5/16rem);
+            }
+
+            textarea {
+                min-height: (170/16rem);
+                resize: vertical;
+            }
+        }
+
+        .cs-submit {
+            /* full width pill */
+            width: 100%;
+            margin-top: (8/16rem);
+            padding-top: (17/16rem);
+            padding-bottom: (17/16rem);
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: (8/16rem);
+        }
+
+        .cs-submit-icon {
+            width: (16/16rem);
+            height: (16/16rem);
+            transition: transform 0.2s;
+        }
+
+        .cs-submit:hover .cs-submit-icon {
+            transform: translate(2px, -2px);
+        }
+    }
+}
+
+/* Tablet - 600px */
+@media only screen and (min-width: 37.5rem) {
+    .cs-contact-form {
+        /* fields in two columns */
+        grid-template-columns: 1fr 1fr;
+
+        /* first and last name share a row, everything else is full width */
+        .cs-full,
+        .cs-submit {
+            grid-column: 1 / -1;
+        }
+    }
+}

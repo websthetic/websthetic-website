@@ -1,22 +1,11 @@
 <br/>
 <p align="center">
-  <a href="https://codestitch.app/">
-    <img src="https://codestitch.app/frontend/images/icon.png" alt="Logo" width="80" height="80">
-  </a>
+  <img src="src/assets/favicons/web-app-manifest-192x192.png" alt="Websthetic logo" width="80" height="80">
 
-  <h3 align="center">Intermediate Starter Kit (LESS)</h3>
+  <h3 align="center">Websthetic LESS Kit</h3>
 
   <p align="center">
-    Introducing the Intermediate Website Kit, presented by CodeStitch. This kit includes a pre-configured Eleventy environment with Nunjucks templating, along with seamless integration of Decap CMS. This setup allows you to quickly start a project while providing your client with a blog for content management. Everything is ready to go right from the start, offering a fantastic introduction to the advantages of a Static Site Generator, complete with LESS preprocessing.
-    <br/>
-    <br/>
-    <a href="https://github.com/CodeStitchOfficial/Intermediate-Website-Kit-SASS">SASS Starter Kit</a>
-    .
-    <a href="https://codestitch-intermediate.netlify.app/">View Live Result</a>
-    .
-    <a href="https://www.youtube.com/watch?v=0BNCYM4InT0&t">Watch Video</a>
-    .
-    <a href="https://codestitch.app/contact">Report Bug</a>
+    Introducing the Websthetic LESS Kit. This kit includes a pre-configured Eleventy environment with Nunjucks templating, along with seamless integration of Decap CMS. This setup allows you to quickly start a project while providing your client with a blog for content management. Everything is ready to go right from the start, offering a fantastic introduction to the advantages of a Static Site Generator, complete with LESS preprocessing.
   </p>
 </p>
 
@@ -54,9 +43,9 @@
 
 ## Overview
 
-The Intermediate Website Kit builds off the beginner kits, mainly by including a pre-configured [Eleventy](https://www.11ty.dev) environment. This setup allows for reusable components, centralized data, and greater scalability as your clients grow. Additionally, a blog has been provided through [Decap CMS](https://decapcms.org/), enabling your clients to manage their own content. This can easily be adapted to various use cases, such as menus, job listing boards, portfolios, and more. A few additional plugins have also been included to enhance the developer experience, offering HTML/CSS minification, JS bundling/minification, and automatic sitemap generation.
+The Websthetic LESS Kit is built around a pre-configured [Eleventy](https://www.11ty.dev) environment. This setup allows for reusable components, centralized data, and greater scalability as your clients grow. Additionally, a blog has been provided through [Decap CMS](https://decapcms.org/), enabling your clients to manage their own content. This can easily be adapted to various use cases, such as menus, job listing boards, portfolios, and more. A few additional plugins have also been included to enhance the developer experience, offering HTML/CSS minification, JS bundling/minification, and automatic sitemap generation.
 
-An example website is also provided, with easy substitution of website sections through the use of [CodeStitch's vanilla component library](https://codestitch.app/). This kit aims to get any project off the ground as quickly as possible, with deployment achievable in as little as two minutes, including CMS hosting.
+An example website is also provided, built from modular `cs-` sections that are easy to swap out. This kit aims to get any project off the ground as quickly as possible, with deployment achievable in as little as two minutes, including CMS hosting.
 
 <a name="prerequisites"></a>
 
@@ -203,7 +192,7 @@ This directory contains data files that are accessible within any template throu
 
 Consider adding the client's contact details, address, and social media information to this file. Examples have been provided in the kit. This way, you can access the client's information from a single source of truth. If a client changes their email address, you can update it in the `client.js` file and have it reflect across the website without needing to search through multiple files or use Find and Replace.
 
-As an example, we have defined the client's email address under the `email` key. In the footer (`./src/_includes/components/footer.html`), we can use `{{ client.email }}` to access this value and output "help@codestitch.app". The format for outputting the data is `{{ [FILENAME].[KEY] }}`. If we wanted to add another file for pricing information, we could create a file (`_data/pricing.json`), then use `{{ pricing.price }}` to render the price.
+As an example, we have defined the client's email address under the `email` key. In the footer (`./src/_includes/components/footer.html`), we can use `{{ client.email }}` to access this value and output "hello@websthetic.com". The format for outputting the data is `{{ [FILENAME].[KEY] }}`. If we wanted to add another file for pricing information, we could create a file (`_data/pricing.json`), then use `{{ pricing.price }}` to render the price.
 
 In Eleventy, this is known as "Global Data". You can read more about Global Data [here](https://www.11ty.dev/docs/data-global/), with more information about how this works in the context of the Data Cascade [here](https://www.11ty.dev/docs/data-cascade/).
 
@@ -211,7 +200,7 @@ In Eleventy, this is known as "Global Data". You can read more about Global Data
 
 #### \_includes
 
-The `_includes` directory contains pieces of HTML code that you want to share between multiple pages. This code could be small components (a button or a loading spinner), larger sections (header, footer, or a stitch from [CodeStitch](https://codestitch.app/)), or a layout containing a reusable `<head>` element with all necessary meta tags.
+The `_includes` directory contains pieces of HTML code that you want to share between multiple pages. This code could be small components (a button or a loading spinner), larger sections (header, footer, or any other `cs-` section), or a layout containing a reusable `<head>` element with all necessary meta tags.
 
 By default, the kit has two sub-directories in `_includes` - one for components and one for layouts.
 
@@ -225,7 +214,7 @@ Layouts define the wider page structure. The main one used in this kit is `base.
 
 One thing you may notice in the `\_includes/header.html` file is the vast amount of Nunjucks code in the `cs-ul-wrapper` element. This is code that makes use of the `eleventyNavigation` object and keys in the frontmatter of all pages that are, by default, added to the kit. This is part of the Eleventy Navigation plugin, which allows us to create scalable navigation menus without having to constantly add new list items and dropdowns to the header whenever a new page is made. If you make a new page using the `\_template.txt` file in `content/pages`, you will be guided to add this information into the front matter, where the navigation will be remade with the new page data automatically.
 
-If you wish to use this kit, and benefit from this way of doing navigations but want to swap out the navigation for another one in the CodeStitch template library, you can copy the `cs-ul-wrapper` `<div>` element that's found in the kit and replace the `cs-ul-wrapper` in the new stitch. As the class system is the same with all Stitches, the auto-rendering functionality, including the application of active-style classes and dropdowns (if a "dropdown" Stitch is used) will remain the same.
+If you wish to use this kit, and benefit from this way of doing navigations but want to swap out the navigation for another one, you can copy the `cs-ul-wrapper` `<div>` element that's found in the kit and replace the `cs-ul-wrapper` in the new navigation. As long as the new navigation follows the same `cs-` class system, the auto-rendering functionality, including the application of active-style classes and dropdowns (if a dropdown navigation is used) will remain the same.
 
 <a name="nav-manual"></a>
 
@@ -390,9 +379,7 @@ When you're happy with your website, you can deploy it to your hosting provider 
 5.  Everything should be already configured, thanks to the `netlify.toml` file. Click **Deploy [PROJECT NAME]**.
 6.  Check to see if your site deploys without error. The site should be live, but we still need to set up the CMS.
 
-With slight modifications for usage with 11ty, this setup guide for DecapBridge was written by Geoffrey on the [Intermediate Astro Decap kit](https://github.com/CodeStitchOfficial/Intermediate-Astro-Decap-CMS/blob/main/README.md?plain=1#deployment)
-
-> [!IMPORTANT] This kit now uses decapbridge.com for its authentication solution. If you still use Netlify Identity, please refer to [the Netlify Identity branch](https://github.com/CodeStitchOfficial/Intermediate-Website-Kit-LESS/tree/deprecated---using-Netlify-Identity)
+> [!IMPORTANT] This kit uses decapbridge.com for its authentication solution.
 
 > [!TIP] If you are updating your kit from Netlify Identity to decapbridge.com:
 >

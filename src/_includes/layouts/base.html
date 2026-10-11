@@ -7,17 +7,32 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Content Security Policy - only lets the page load scripts, styles, fonts, and images from this site (plus the project images on DigitalOcean), and forms submit only to this site. "unsafe-inline" is needed for the small inline scripts (the Change Colour pre-draw, the stylesheet preload) and inline style attributes. If you add a third-party tool (analytics, embeds, chat), add its domain here. The other security headers are in netlify.toml -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://websthetic.tor1.cdn.digitaloceanspaces.com; font-src 'self'; connect-src 'self'; manifest-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
         <meta name="description" content="{{ description }}">
         <link rel="canonical" href="{{ client.domain }}{{ page.url }}">
         <meta name="generator" content="{{ eleventy.generator }}">
 
         <!--Social Media Display-->
+        <!-- the share image: a page's own "image" (e.g. a blog post), or the default Websthetic card (1200 x 630). Social sites need the full address, so the domain from client.js is added -->
+        {% set shareImage = image or "/assets/images/social-share.jpg" %}
+        {% if shareImage.indexOf("http") != 0 %}{% set shareImage = client.domain + shareImage %}{% endif %}
+        <meta property="og:site_name" content="{{ client.name }}"/>
         <meta property="og:title" content="{{ title }}"/>
         <meta property="og:description" content="{{ description }}"/>
         <meta property="og:type" content="website"/>
         <meta property="og:url" content="{{ client.domain }}{{ page.url }}"/>
-        <meta property="og:image" content="{{ image or "/assets/images/logo-small.png" }}"/>
-        <meta property="og:image:secure_url" content="{{ image or "/assets/images/logo-small.png" }}"/>
+        <meta property="og:image" content="{{ shareImage }}"/>
+        <meta property="og:image:secure_url" content="{{ shareImage }}"/>
+        {% if not image %}
+        <meta property="og:image:width" content="1200"/>
+        <meta property="og:image:height" content="630"/>
+        <meta property="og:image:alt" content="Websthetic: We build websites that earn attention. Web design and development in Toronto, Canada."/>
+        {% endif %}
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:title" content="{{ title }}"/>
+        <meta name="twitter:description" content="{{ description }}"/>
+        <meta name="twitter:image" content="{{ shareImage }}"/>
 
         <!--Favicons-->
         <!-- https://realfavicongenerator.net/ -->
@@ -25,18 +40,28 @@
         <link rel="icon" type="image/svg+xml" href="/assets/favicons/favicon.svg"/>
         <link rel="shortcut icon" href="/assets/favicons/favicon.ico"/>
         <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png"/>
-        <meta name="apple-mobile-web-app-title" content="Starter Kit"/>
+        <meta name="apple-mobile-web-app-title" content="{{ client.name }}"/>
         <link rel="manifest" href="/assets/favicons/site.webmanifest"/>
 
         <!-- Preloads -->
-        <link rel="preload" as="image" href="/assets/svgs/logo-black.svg">
-        <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/roboto-v29-latin-regular.woff2" crossorigin>
-        <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/roboto-v29-latin-700.woff2" crossorigin>
+        <link rel="preload" as="image" type="image/svg+xml" href="/assets/svgs/logo.svg">
+        <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/HankenGrotesk-Regular.woff2" crossorigin>
+        <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/HankenGrotesk-SemiBold.woff2" crossorigin>
+
+        <!-- Wada palette: applies the visitor's saved colour combination before the page draws, so the default colours never flash. theme-switcher.js does the rest -->
+        <script>
+            try {
+                var wada = JSON.parse(localStorage.getItem("websthetic-wada-theme-v2"));
+                if (wada && wada.roles) for (var token in wada.roles) document.documentElement.style.setProperty(token, wada.roles[token]);
+            } catch (e) {}
+        </script>
 
         <!-- Sitewide Stylesheets and Scripts -->
         <link rel="stylesheet" href="/assets/css/root.css">
-        <script defer src="/assets/js/dark.js"></script>
+        <link rel="stylesheet" href="/assets/css/global.css">
         <script defer src="/assets/js/nav.js"></script>
+        <script defer src="/assets/js/theme-switcher.js"></script>
+        <script defer src="/assets/js/reveal.js"></script>
 
         {% block head %}{% endblock %}
 
@@ -51,6 +76,7 @@
             {% block body %}{% endblock %}
         </main>
         {% include "sections/footer.html" %}
+        {% include "sections/theme-switcher.html" %}
 
     </body>
 </html>

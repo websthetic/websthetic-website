@@ -1,0 +1,497 @@
+---
+title: "Agencies | Websthetic"
+description: "White-label and overflow web development for agencies and creative teams. We turn approved designs into polished, accessible websites."
+permalink: "/agencies/"
+---
+
+{% extends "layouts/base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/assets/css/agencies.css">
+    <script defer src="/assets/js/one-team-preview.js"></script>
+{% endblock %}
+
+{% block body %}
+
+    <!-- ============================================ -->
+    <!--                   Banner                     -->
+    <!-- ============================================ -->
+
+    <div id="banner-310">
+        <div class="cs-container">
+            {% set crumb = "Agencies" %}
+            {% include "components/breadcrumb.html" %}
+            <!-- illustration on the right (desktop) - drawings live in components/banner-art/ -->
+            <div class="cs-banner-art" aria-hidden="true">
+                {% include "components/banner-art/agencies.html" %}
+            </div>
+            <div class="cs-banner-text">
+                <h1 class="cs-int-title">Your Creative Team.<br><span class="cs-highlight">Our Development Team.</span></h1>
+                <p class="cs-int-text">
+                    We partner with marketing agencies, creative studios, and design teams to turn approved creative into polished, accessible, high-performing websites.
+                </p>
+                <div class="cs-int-buttons">
+                    <a href="/contact/?project=I%E2%80%99d%20like%20to%20talk%20about%20an%20agency%20partnership." class="cs-button-solid cs-int-button">
+                        Partner With Us
+                        <svg class="cs-int-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                    <a href="/#work" class="cs-button-outline cs-int-button">View Our Work</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!--                   Capacity                   -->
+    <!-- ============================================ -->
+
+    <section id="capacity">
+        <div class="cs-container">
+            <div class="cs-content">
+                <h2 class="cs-title">More Capacity. <br>Fewer Overheads.</h2>
+                <p class="cs-text">
+                    Expand what your agency can deliver without adding another full-time developer to the team.
+                </p>
+            </div>
+            <ul class="cs-card-group">
+                <li class="cs-item">
+                    <!-- illustration, drawn in CSS and animated on hover - decorative -->
+                    <div class="cs-art" aria-hidden="true">
+                        <div class="cs-art-bar"><i></i><i></i><i></i></div>
+                        <div class="cs-art-body"><div class="cs-ag-capacity"><div class="cs-cap-stack"><span class="cs-proj cs-p1">Project A</span><span class="cs-proj cs-p2">Project B</span><span class="cs-proj cs-p3">Project C</span></div><div class="cs-meter"><b>Capacity</b><span class="cs-meter-track"><i></i></span></div></div></div>
+                    </div>
+                    <h3 class="cs-h3">Scale Without Hiring.</h3>
+                    <p class="cs-item-text">Take on more website projects without the cost, commitment, and overhead of growing an internal development team.</p>
+                </li>
+                <li class="cs-item">
+                    <!-- illustration, drawn in CSS and animated on hover - decorative -->
+                    <div class="cs-art" aria-hidden="true">
+                        <div class="cs-art-bar"><i></i><i></i><i></i></div>
+                        <div class="cs-art-body"><div class="cs-ag-match"><span class="cs-frame cs-design-frame"><i class="cs-f-bar"></i><i class="cs-f-dot"></i><i class="cs-f-block"></i></span><span class="cs-frame cs-built-frame"><i class="cs-f-bar"></i><i class="cs-f-dot"></i><i class="cs-f-block"></i></span><span class="cs-match-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Pixel-perfect</span></div></div>
+                    </div>
+                    <h3 class="cs-h3">Protect The Creative.</h3>
+                    <p class="cs-item-text">Your designs shouldn’t lose their character once development starts. We pay close attention to layout, interactions, responsiveness, and the details behind the original creative direction.</p>
+                </li>
+                <li class="cs-item">
+                    <!-- illustration, drawn in CSS and animated on hover - decorative -->
+                    <div class="cs-art" aria-hidden="true">
+                        <div class="cs-art-bar"><i></i><i></i><i></i></div>
+                        <div class="cs-art-body"><div class="cs-ag-lanes"><div class="cs-lane"><b>Your team</b><span class="cs-chip-sm cs-c-purple">Strategy</span><span class="cs-chip-sm cs-c-pink">Campaigns</span></div><div class="cs-lane cs-lane-us"><b>Websthetic</b><span class="cs-code-ln cs-l1"></span><span class="cs-code-ln cs-l2"></span><span class="cs-code-ln cs-l3"></span></div></div></div>
+                    </div>
+                    <h3 class="cs-h3">Stay Focused On Your Clients.</h3>
+                    <p class="cs-item-text">Your team stays focused on strategy, campaigns, relationships, and creative. We handle the technical execution behind the scenes.</p>
+                </li>
+                <li class="cs-item">
+                    <!-- illustration, drawn in CSS and animated on hover - decorative -->
+                    <div class="cs-art" aria-hidden="true">
+                        <div class="cs-art-bar"><i></i><i></i><i></i></div>
+                        <div class="cs-art-body"><div class="cs-ag-brand"><span class="cs-brand-logo">Your Agency</span><span class="cs-brand-line"></span><span class="cs-brand-line cs-short"></span><span class="cs-credit">Built by a third party</span><span class="cs-wl-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>White-label</span></div></div>
+                    </div>
+                    <h3 class="cs-h3">Your Clients Stay Yours.</h3>
+                    <p class="cs-item-text">We’re here to strengthen your agency, not compete with it. We respect the relationships you’ve built and can operate completely white-label when needed.</p>
+                </li>
+                <li class="cs-item">
+                    <!-- illustration, drawn in CSS and animated on hover - decorative -->
+                    <div class="cs-art" aria-hidden="true">
+                        <div class="cs-art-bar"><i></i><i></i><i></i></div>
+                        <div class="cs-art-body"><div class="cs-ag-a11y"><span class="cs-ax-aa">Aa</span><span class="cs-ax-badge">AA ✓</span><span class="cs-ax-field"></span><span class="cs-ax-btn">Submit</span></div></div>
+                    </div>
+                    <h3 class="cs-h3">Accessibility Built In.</h3>
+                    <p class="cs-item-text">We consider accessibility throughout development so your agency can deliver experiences designed for more people, not just more screens.</p>
+                </li>
+                <!-- Call to action card -->
+                <li class="cs-item cs-cta">
+                    <h3 class="cs-h3">Need An Extra Pair Of Hands?</h3>
+                    <p class="cs-item-text">Tell us about your next project or busy season and we’ll show you how we can plug in.</p>
+                    <a href="/contact/?project=I%E2%80%99d%20like%20to%20talk%20about%20an%20agency%20partnership." class="cs-button-white cs-cta-button">
+                        Let's Talk
+                        <svg class="cs-cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--                Agency Services               -->
+    <!-- ============================================ -->
+
+    <section id="agency-services">
+        <div class="cs-container">
+            <div class="cs-content">
+                <h2 class="cs-title">Built Around The Way <br>Your Agency Works.</h2>
+                <p class="cs-text">
+                    Use Websthetic for one project, ongoing support, or whenever your internal team needs additional development capacity.
+                </p>
+            </div>
+            <ol class="cs-list">
+                <li class="cs-item">
+                    <span class="cs-number" aria-hidden="true">01</span>
+                    <h3 class="cs-h3">Design-to-Development</h3>
+                    <div class="cs-item-text">
+                        <p>Send us your approved Figma designs and project requirements. We turn them into responsive, production-ready websites while staying true to the creative direction.</p>
+                    </div>
+                    <!-- hover preview illustration, drawn in CSS and moved by one-team-preview.js - decorative -->
+                    <div class="cs-preview" aria-hidden="true">
+                        <div class="cs-pv-window">
+                            <div class="cs-pv-bar"><i></i><i></i><i></i></div>
+                            <div class="cs-pv-body"><div class="cs-pv-d2d"><span class="cs-pv-figma"><i></i><i></i><i></i></span><span class="cs-pv-arrow">→</span><span class="cs-pv-site"><i></i><i></i><i></i></span></div></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="cs-item">
+                    <span class="cs-number" aria-hidden="true">02</span>
+                    <h3 class="cs-h3">White-Label Development</h3>
+                    <div class="cs-item-text">
+                        <p>We work behind your agency while you remain front and centre with the client.</p>
+                        <p>Your brand. Your relationship. Our technical support.</p>
+                    </div>
+                    <!-- hover preview illustration, drawn in CSS and moved by one-team-preview.js - decorative -->
+                    <div class="cs-preview" aria-hidden="true">
+                        <div class="cs-pv-window">
+                            <div class="cs-pv-bar"><i></i><i></i><i></i></div>
+                            <div class="cs-pv-body"><div class="cs-pv-wl"><span class="cs-pv-brand">Your Agency</span><span class="cs-pv-line"></span><span class="cs-pv-line cs-short"></span><span class="cs-pv-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>White-label</span></div></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="cs-item">
+                    <span class="cs-number" aria-hidden="true">03</span>
+                    <h3 class="cs-h3">Overflow Development</h3>
+                    <div class="cs-item-text">
+                        <p>Busy month? Large client? Internal developers at capacity?</p>
+                        <p>Bring us in when you need additional development support without making another permanent hire.</p>
+                    </div>
+                    <!-- hover preview illustration, drawn in CSS and moved by one-team-preview.js - decorative -->
+                    <div class="cs-preview" aria-hidden="true">
+                        <div class="cs-pv-window">
+                            <div class="cs-pv-bar"><i></i><i></i><i></i></div>
+                            <div class="cs-pv-body"><div class="cs-pv-cal"><div class="cs-pv-days"><i class="cs-busy"></i><i class="cs-busy"></i><i class="cs-busy"></i><i class="cs-busy"></i><i class="cs-busy"></i><i class="cs-free"></i><i class="cs-busy"></i><i class="cs-busy"></i><i class="cs-busy"></i><i class="cs-free"></i></div><span class="cs-pv-plus">+ Websthetic</span></div></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="cs-item">
+                    <span class="cs-number" aria-hidden="true">04</span>
+                    <h3 class="cs-h3">Custom Development</h3>
+                    <div class="cs-item-text">
+                        <p>For projects that go beyond a standard marketing site, we can support custom interactions, CMS functionality, integrations, e-commerce, APIs, and more complex digital experiences.</p>
+                    </div>
+                    <!-- hover preview illustration, drawn in CSS and moved by one-team-preview.js - decorative -->
+                    <div class="cs-preview" aria-hidden="true">
+                        <div class="cs-pv-window">
+                            <div class="cs-pv-bar"><i></i><i></i><i></i></div>
+                            <div class="cs-pv-body"><div class="cs-pv-api"><span class="cs-node cs-n-center">&lt;/&gt;</span><span class="cs-node cs-n1">CMS</span><span class="cs-node cs-n2">API</span><span class="cs-node cs-n3">Shop</span><span class="cs-node cs-n4">Forms</span></div></div>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--                 Agency Process               -->
+    <!-- ============================================ -->
+
+    <section id="agency-process">
+        <div class="cs-container">
+            <div class="cs-content">
+                <h2 class="cs-title">From Handoff To Launch, Without The Unnecessary Layers.</h2>
+                <p class="cs-text">
+                    We’ve built a lean development process around modern tools, AI-assisted workflows, and direct collaboration so projects can move quickly without sacrificing quality.
+                </p>
+            </div>
+            <!-- On tablet and up, each card sticks a little lower than the last so they stack like a deck as you scroll -->
+            <ol class="cs-step-list">
+                <li class="cs-step">
+                    <div class="cs-step-content">
+                        <span class="cs-number" aria-hidden="true">01</span>
+                        <h3 class="cs-h3">Project Handoff</h3>
+                        <p class="cs-step-text">Share your approved designs, content, project requirements, functionality, and target timeline.</p>
+                    </div>
+                    <!-- illustration, drawn in CSS - decorative -->
+                    <div class="cs-art" aria-hidden="true">
+                        <div class="cs-art-bar"><i></i><i></i><i></i></div>
+                        <div class="cs-art-body"><div class="cs-ar-handoff"><span class="cs-file cs-f1">Figma</span><span class="cs-file cs-f2">Content</span><span class="cs-file cs-f3">Brief</span><span class="cs-folder"></span></div></div>
+                    </div>
+                </li>
+                <li class="cs-step">
+                    <div class="cs-step-content">
+                        <span class="cs-number" aria-hidden="true">02</span>
+                        <h3 class="cs-h3">Technical Review</h3>
+                        <p class="cs-step-text">Before development starts, we review the project and flag responsive, accessibility, performance, CMS, integration, and implementation considerations.</p>
+                    </div>
+                    <!-- illustration, drawn in CSS - decorative -->
+                    <div class="cs-art" aria-hidden="true">
+                        <div class="cs-art-bar"><i></i><i></i><i></i></div>
+                        <div class="cs-art-body"><div class="cs-ar-review"><span class="cs-row-chk"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></b><i></i></span><span class="cs-row-chk cs-flag"><b>!</b><i></i></span><span class="cs-row-chk"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></b><i></i></span><span class="cs-row-chk"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></b><i class="cs-short"></i></span></div></div>
+                    </div>
+                </li>
+                <li class="cs-step">
+                    <div class="cs-step-content">
+                        <span class="cs-number" aria-hidden="true">03</span>
+                        <h3 class="cs-h3">Build</h3>
+                        <p class="cs-step-text">We turn the approved creative into a working staging site using modern development workflows and reusable systems wherever appropriate.</p>
+                    </div>
+                    <!-- illustration, drawn in CSS - decorative -->
+                    <div class="cs-art" aria-hidden="true">
+                        <div class="cs-art-bar"><i></i><i></i><i></i></div>
+                        <div class="cs-art-body"><div class="cs-ar-build"><span class="cs-staging">staging</span><span class="cs-bl cs-b1"></span><span class="cs-bl cs-b2"></span><span class="cs-bl cs-b3"></span><span class="cs-bl cs-b4"></span></div></div>
+                    </div>
+                </li>
+                <li class="cs-step">
+                    <div class="cs-step-content">
+                        <span class="cs-number" aria-hidden="true">04</span>
+                        <h3 class="cs-h3">Review &amp; Refine</h3>
+                        <p class="cs-step-text">Your team stays involved throughout the build. We work through organized feedback cycles and refine the implementation before final delivery.</p>
+                    </div>
+                    <!-- illustration, drawn in CSS - decorative -->
+                    <div class="cs-art" aria-hidden="true">
+                        <div class="cs-art-bar"><i></i><i></i><i></i></div>
+                        <div class="cs-art-body"><div class="cs-ar-comments"><span class="cs-page-bar"></span><span class="cs-page-block"></span><span class="cs-pin cs-pin1">1</span><span class="cs-pin cs-pin2">2</span><span class="cs-note-bubble">Tighten spacing ✓</span></div></div>
+                    </div>
+                </li>
+                <li class="cs-step">
+                    <div class="cs-step-content">
+                        <span class="cs-number" aria-hidden="true">05</span>
+                        <h3 class="cs-h3">QA &amp; Accessibility</h3>
+                        <p class="cs-step-text">We test responsiveness, browsers, functionality, performance, integrations, and accessibility considerations before handing the project back for final approval.</p>
+                    </div>
+                    <!-- illustration, drawn in CSS - decorative -->
+                    <div class="cs-art" aria-hidden="true">
+                        <div class="cs-art-bar"><i></i><i></i><i></i></div>
+                        <div class="cs-art-body"><div class="cs-ar-qa"><span class="cs-dev cs-desk"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></b></span><span class="cs-dev cs-tab"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></b></span><span class="cs-dev cs-ph"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></b></span><span class="cs-aa-badge">AA ✓</span></div></div>
+                    </div>
+                </li>
+                <li class="cs-step">
+                    <div class="cs-step-content">
+                        <span class="cs-number" aria-hidden="true">06</span>
+                        <h3 class="cs-h3">Launch &amp; Support</h3>
+                        <p class="cs-step-text">Once approved, we handle the technical launch and can remain involved for maintenance, updates, and future development.</p>
+                    </div>
+                    <!-- illustration, drawn in CSS - decorative -->
+                    <div class="cs-art" aria-hidden="true">
+                        <div class="cs-art-bar"><i></i><i></i><i></i></div>
+                        <div class="cs-art-body"><div class="cs-ar-launch"><span class="cs-live">Live</span><svg class="cs-pulse" viewBox="0 0 120 40" preserveAspectRatio="none"><polyline points="0,22 30,22 40,8 50,34 60,22 120,22" fill="none" style="stroke: var(--dark)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="cs-uptime">99.9% uptime</span></div></div>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--                 Capabilities                 -->
+    <!-- ============================================ -->
+
+    <section id="capabilities">
+        <div class="cs-container">
+            <div class="cs-content">
+                <h2 class="cs-title">Technical Support For Ambitious Creative.</h2>
+                <p class="cs-text">
+                    Your agency brings the idea. We provide the development capabilities to make it work.
+                </p>
+            </div>
+            <!-- bento grid - large tiles have illustrations, small tiles have icons -->
+            <ul class="cs-bento">
+                <li class="cs-tile cs-tile-big">
+                    <!-- illustration, drawn in CSS and animated on hover - decorative -->
+                    <div class="cs-art" aria-hidden="true"><div class="cs-bt-devices"><span class="cs-d cs-d-desk"><i></i><i></i><i></i></span><span class="cs-d cs-d-tab"><i></i><i></i><i></i></span><span class="cs-d cs-d-ph"><i></i><i></i><i></i></span></div></div>
+                    <h3 class="cs-h3">Responsive Development</h3>
+                    <p class="cs-tile-text">Polished implementation across desktop, tablet, and mobile.</p>
+                </li>
+                <li class="cs-tile">
+                    <span class="cs-icon-wrapper" aria-hidden="true"><svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect fill="currentColor" fill-opacity=".14" width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></span>
+                    <h3 class="cs-h3">CMS Development</h3>
+                    <p class="cs-tile-text">Flexible content systems that make ongoing updates easier for your team and your client.</p>
+                </li>
+                <li class="cs-tile">
+                    <span class="cs-icon-wrapper" aria-hidden="true"><svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle fill="currentColor" fill-opacity=".14" cx="12" cy="12" r="10"/><circle cx="12" cy="7.5" r="1.25" fill="currentColor"/><path d="M8 10.5h8"/><path d="M12 10.5v3.5"/><path d="m10 18 2-4 2 4"/></svg></span>
+                    <h3 class="cs-h3">Accessibility</h3>
+                    <p class="cs-tile-text">Semantic development, keyboard considerations, readable structure, accessible forms, reduced-motion considerations, and other accessibility best practices.</p>
+                </li>
+                <li class="cs-tile">
+                    <span class="cs-icon-wrapper" aria-hidden="true"><svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path fill="currentColor" fill-opacity=".14" d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.13-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.13a.5.5 0 0 1 .96 0L14.06 8.5A2 2 0 0 0 15.5 9.94l6.13 1.58a.5.5 0 0 1 0 .96L15.5 14.06a2 2 0 0 0-1.44 1.44l-1.58 6.13a.5.5 0 0 1-.96 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg></span>
+                    <h3 class="cs-h3">Custom Interactions</h3>
+                    <p class="cs-tile-text">Scroll experiences, animation, transitions, micro-interactions, and more advanced creative concepts.</p>
+                </li>
+                <li class="cs-tile cs-tile-big">
+                    <!-- illustration, drawn in CSS and animated on hover - decorative -->
+                    <div class="cs-art" aria-hidden="true"><div class="cs-bt-shop"><div class="cs-product"><span class="cs-prod-img"></span><span class="cs-prod-name"></span><span class="cs-prod-price">$48</span><span class="cs-add">Add to cart</span></div><span class="cs-cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg><b>2</b></span></div></div>
+                    <h3 class="cs-h3">E-Commerce</h3>
+                    <p class="cs-tile-text">Shopify and custom commerce experiences built around your agency’s design direction.</p>
+                </li>
+                <li class="cs-tile">
+                    <span class="cs-icon-wrapper" aria-hidden="true"><svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path fill="currentColor" fill-opacity=".14" d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/></svg></span>
+                    <h3 class="cs-h3">Integrations</h3>
+                    <p class="cs-tile-text">CRM platforms, booking systems, email marketing, analytics, forms, APIs, and third-party services.</p>
+                </li>
+                <li class="cs-tile cs-tile-big">
+                    <!-- illustration, drawn in CSS and animated on hover - decorative -->
+                    <div class="cs-art" aria-hidden="true"><div class="cs-bt-gauge"><span class="cs-gauge"><i class="cs-needle"></i></span><span class="cs-score">98</span><span class="cs-score-label">Performance</span></div></div>
+                    <h3 class="cs-h3">Performance</h3>
+                    <p class="cs-tile-text">Thoughtful implementation focused on loading speed, maintainability, and efficient front-end development.</p>
+                </li>
+                <li class="cs-tile cs-tile-big">
+                    <!-- illustration, drawn in CSS and animated on hover - decorative -->
+                    <div class="cs-art" aria-hidden="true"><div class="cs-bt-pipe"><span class="cs-stage"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></b>Staging</span><span class="cs-link-line"></span><span class="cs-stage"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></b>Tests</span><span class="cs-link-line"></span><span class="cs-stage cs-stage-live"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></b>Live</span></div></div>
+                    <h3 class="cs-h3">QA &amp; Deployment</h3>
+                    <p class="cs-tile-text">Responsive testing, browser testing, functionality checks, staging, deployment, and post-launch verification.</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--                      FAQ                     -->
+    <!-- ============================================ -->
+
+    <section id="faq">
+        <div class="cs-container">
+            <div class="cs-content">
+                <h2 class="cs-title">Frequently Asked Questions.</h2>
+                <p class="cs-text">
+                    Have a question about working with us? We’re happy to talk it through.
+                </p>
+                <a href="/contact/?project=I%E2%80%99d%20like%20to%20talk%20about%20an%20agency%20partnership." class="cs-faq-link">
+                    Ask Us Anything
+                    <svg class="cs-faq-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+            </div>
+            <!-- native details/summary accordion - keyboard and screen reader friendly with no JavaScript -->
+            <div class="cs-faq-group">
+                <details class="cs-faq-item" open>
+                    <summary class="cs-question">
+                        Can you work completely white-label?
+                        <span class="cs-faq-icon" aria-hidden="true"></span>
+                    </summary>
+                    <p class="cs-answer">Yes. We can remain entirely behind the scenes while your agency owns the client relationship and presents the work under your brand.</p>
+                </details>
+                <details class="cs-faq-item">
+                    <summary class="cs-question">
+                        Can we just send you our Figma files?
+                        <span class="cs-faq-icon" aria-hidden="true"></span>
+                    </summary>
+                    <p class="cs-answer">Yes. Approved designs, content, assets, requirements, and functionality are typically enough for us to begin a technical review and scope the development.</p>
+                </details>
+                <details class="cs-faq-item">
+                    <summary class="cs-question">
+                        Do you communicate directly with our clients?
+                        <span class="cs-faq-icon" aria-hidden="true"></span>
+                    </summary>
+                    <p class="cs-answer">Only if you want us to. We can communicate exclusively through your team or join client conversations when technical input would be useful.</p>
+                </details>
+                <details class="cs-faq-item">
+                    <summary class="cs-question">
+                        Can we use Websthetic only when we’re busy?
+                        <span class="cs-faq-icon" aria-hidden="true"></span>
+                    </summary>
+                    <p class="cs-answer">Absolutely. Some agencies work with us project by project, while others use us as an ongoing development partner.</p>
+                </details>
+                <details class="cs-faq-item">
+                    <summary class="cs-question">
+                        What happens if the client changes the design during development?
+                        <span class="cs-faq-icon" aria-hidden="true"></span>
+                    </summary>
+                    <p class="cs-answer">Small implementation adjustments are part of the process. Larger changes to design, functionality, or scope may require an updated timeline and cost before continuing.</p>
+                </details>
+                <details class="cs-faq-item">
+                    <summary class="cs-question">
+                        Do you build with accessibility in mind?
+                        <span class="cs-faq-icon" aria-hidden="true"></span>
+                    </summary>
+                    <p class="cs-answer">Yes. Accessibility considerations are incorporated throughout our development process. If a client requires a specific WCAG target or formal accessibility audit, we can identify that during scoping so the appropriate level of work is planned.</p>
+                </details>
+                <details class="cs-faq-item">
+                    <summary class="cs-question">
+                        Can you maintain the site after launch?
+                        <span class="cs-faq-icon" aria-hidden="true"></span>
+                    </summary>
+                    <p class="cs-answer">Yes. We can provide ongoing development, maintenance, updates, and technical support after the project launches.</p>
+                </details>
+                <details class="cs-faq-item">
+                    <summary class="cs-question">
+                        How do you price agency projects?
+                        <span class="cs-faq-icon" aria-hidden="true"></span>
+                    </summary>
+                    <p class="cs-answer">Projects are typically scoped based on design complexity, functionality, integrations, CMS requirements, timeline, and development effort. Once we review the project, we provide a clear scope and cost before development begins.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ structured data - lets search engines show these questions in results. Keep it matching the questions above -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Can you work completely white-label?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. We can remain entirely behind the scenes while your agency owns the client relationship and presents the work under your brand."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can we just send you our Figma files?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Approved designs, content, assets, requirements, and functionality are typically enough for us to begin a technical review and scope the development."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do you communicate directly with our clients?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Only if you want us to. We can communicate exclusively through your team or join client conversations when technical input would be useful."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can we use Websthetic only when we’re busy?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Absolutely. Some agencies work with us project by project, while others use us as an ongoing development partner."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What happens if the client changes the design during development?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Small implementation adjustments are part of the process. Larger changes to design, functionality, or scope may require an updated timeline and cost before continuing."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do you build with accessibility in mind?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Accessibility considerations are incorporated throughout our development process. If a client requires a specific WCAG target or formal accessibility audit, we can identify that during scoping so the appropriate level of work is planned."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can you maintain the site after launch?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. We can provide ongoing development, maintenance, updates, and technical support after the project launches."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do you price agency projects?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Projects are typically scoped based on design complexity, functionality, integrations, CMS requirements, timeline, and development effort. Once we review the project, we provide a clear scope and cost before development begins."
+                }
+            }
+        ]
+    }
+    </script>
+
+
+    {% include 'sections/cta.html' %}
+
+{% endblock %}

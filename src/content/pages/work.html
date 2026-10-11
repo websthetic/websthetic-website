@@ -1,0 +1,103 @@
+---
+title: "Work | Websthetic"
+description: "Selected websites designed and developed by Websthetic for growing businesses, agencies, and creative teams."
+permalink: "/work/"
+---
+
+{% extends "layouts/base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/assets/css/work.css">
+    <script defer src="/assets/js/work-filter.js"></script>
+{% endblock %}
+
+{% block body %}
+
+    <!-- ============================================ -->
+    <!--                   Banner                     -->
+    <!-- ============================================ -->
+
+    <div id="banner-310">
+        <div class="cs-container">
+            {% set crumb = "Work" %}
+            {% include "components/breadcrumb.html" %}
+            <!-- illustration on the right (desktop) - drawings live in components/banner-art/ -->
+            <div class="cs-banner-art" aria-hidden="true">
+                {% include "components/banner-art/work.html" %}
+            </div>
+            <div class="cs-banner-text">
+                <h1 class="cs-int-title">Websites Shaped By <span class="cs-highlight">Clear Goals.</span></h1>
+                <p class="cs-int-text">
+                    A look at the websites we’ve designed and built, where strategy, design, and development come together to help businesses grow.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!--                 Portfolio                    -->
+    <!-- ============================================ -->
+
+    <!-- Projects come from _data/projects.js. The filter pills are built from each project's "filter" value and work-filter.js shows / hides the cards -->
+    <section id="portfolio">
+        <div class="cs-container">
+            <h2 class="cs-visually-hidden">Projects</h2>
+
+            <!-- Filter pills - one for each filter used in _data/projects.js -->
+            {% set filters = [] %}
+            {% for project in projects %}
+                {% if not (project.filter in filters) %}{% set added = filters.push(project.filter) %}{% endif %}
+            {% endfor %}
+            <div class="cs-filters" role="group" aria-label="Filter projects">
+                <button class="cs-filter cs-active" type="button" data-filter="all" aria-pressed="true">All Work</button>
+                {% for filter in filters %}
+                <button class="cs-filter" type="button" data-filter="{{ filter | slugify }}" aria-pressed="false">{{ filter }}</button>
+                {% endfor %}
+            </div>
+
+            <ul class="cs-project-grid">
+                {% for project in projects %}
+                <li class="cs-project-card" data-category="{{ project.filter | slugify }}">
+                    <!-- the whole card links to the live site - the details fade in over the image on hover (always shown on touch screens), like the home page cards -->
+                    <a class="cs-project-link" href="{{ project.url }}" target="_blank" rel="noopener">
+                        <div class="cs-project-media">
+                            <img src="{{ project.image }}" alt="{{ project.alt }}" width="600" height="400" loading="lazy" decoding="async">
+                            <div class="cs-project-overlay">
+                                <span class="cs-project-category">{{ project.category }}</span>
+                                <h3 class="cs-project-title">{{ project.title }}</h3>
+                                <p class="cs-project-text">{{ project.text }}</p>
+                                <span class="cs-project-buttons">
+                                    <span class="cs-button-white cs-card-button">
+                                        Visit Site
+                                        <svg class="cs-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                                    </span>
+                                    <span class="cs-visually-hidden">(opens in a new tab)</span>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                {% endfor %}
+                <!-- always shown, whatever the filter -->
+                <li class="cs-project-card cs-next-card" data-category="all">
+                    <div class="cs-next">
+                        <span class="cs-next-topper">Now Booking</span>
+                        <h3 class="cs-next-title">Your Project Could Be <span class="cs-next-highlight">Next.</span></h3>
+                        <p class="cs-next-text">
+                            Tell us what you’re building and we’ll show you how a thoughtful website can help it grow.
+                        </p>
+                        <a href="/contact/" class="cs-button-solid cs-next-button">
+                            Start A Project
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <!-- read out by screen readers when a filter changes the list -->
+            <p class="cs-visually-hidden" aria-live="polite" id="portfolio-status"></p>
+        </div>
+    </section>
+
+    {% include 'sections/cta.html' %}
+
+{% endblock %}

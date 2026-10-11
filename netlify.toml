@@ -10,3 +10,25 @@ package = "netlify-plugin-cache"
     "public/assets/images", # Processed images - adjust to match your outputDir
     ".cache" # Remote Assets
   ]
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Security headers, sent with every page and file.
+# The Content-Security-Policy is a <meta> tag in src/_includes/layouts/base.html
+# instead, so it covers the site pages but not /admin/ (the CMS loads its
+# scripts from unpkg, which the site's policy blocks).
+# Check the result at https://securityheaders.com once the site is live.
+# ─────────────────────────────────────────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # always use HTTPS for the next year (add "; includeSubDomains" once every subdomain is on HTTPS too)
+    Strict-Transport-Security = "max-age=31536000"
+    # don't let other websites show this site inside a frame (clickjacking)
+    X-Frame-Options = "SAMEORIGIN"
+    # browsers must trust the file types the server sends
+    X-Content-Type-Options = "nosniff"
+    # other sites only see the domain a visitor came from, not the full page address
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    # switch off browser features the site doesn't use
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()"
+    Cross-Origin-Opener-Policy = "same-origin"

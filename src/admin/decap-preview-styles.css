@@ -2,13 +2,26 @@
 /* THe classses should match the elements created in the Decap CMS preview pane script in admin.astro */
 
 :root {
-	--primary: hsl(80, 90%, 55%);
-	--primaryLight: hsl(80, 60%, 40%);
-	--secondary: #001f3f;
-	--secondaryLight: #001f3f;
-	--headerColor: #1a1a1a;
-	--bodyTextColor: #4e4b66;
-	--bodyTextColorWhite: #fafbfc;
+	--color-purple: #E4D3FF;
+	--color-pink: #F9DBFF;
+	--color-yellow: #F5F7B8;
+	--color-lime: #F5FFAF;
+	--color-black: #000000;
+	--color-dark-gray: #757B83;
+	--color-background: #F9F9F9;
+	--color-border: #E0E0E0;
+	--color-white: #FFFFFF;
+
+	--background: var(--color-white);
+	--background-soft: var(--color-background);
+	--background-accent: var(--color-purple);
+	--text-primary: var(--color-black);
+	--text-secondary: var(--color-dark-gray);
+	--border: var(--color-border);
+	--accent: var(--color-black);
+	--button: var(--color-black);
+	--dark: var(--color-black);
+	--white: var(--color-white);
 
 	/* 13px - 16px */
 	--topperFontSize: clamp(0.8125rem, 1.6vw, 1rem);
@@ -21,7 +34,7 @@
 }
 
 .frame-content {
-	font-family: "Roboto", sans-serif;
+	font-family: "HankenGrotesk", Arial, sans-serif;
 	line-height: 1.6em;
 }
 
@@ -31,8 +44,8 @@
 .frame-content h4,
 .frame-content h5,
 .frame-content h6 {
-	font-family: "Roboto", sans-serif;
-	color: var(--headerColor);
+	font-family: "HankenGrotesk", Arial, sans-serif;
+	color: var(--text-primary);
 }
 
 .frame-content img {
@@ -63,7 +76,7 @@
 	align-items: center;
 	gap: 1rem;
 	margin-bottom: 50px;
-	color: var(--bodyTextColor);
+	color: var(--text-secondary);
 }
 
 .frame-content .blog .metadata .author {
@@ -75,7 +88,7 @@
 	display: block;
 	width: 3px;
 	height: 3px;
-	background-color: var(--primary);
+	background-color: var(--accent);
 	border-radius: 50%;
 	margin-bottom: 1px;
 }
@@ -101,20 +114,20 @@
 .frame-content .blog .markdown h4,
 .frame-content .blog .markdown h5,
 .frame-content .blog .markdown h6 {
-	color: var(--headerColor);
+	color: var(--text-primary);
 }
 
 .frame-content .blog .markdown a {
-	color: var(--bodyTextColor);
+	color: var(--text-secondary);
 }
 
 .frame-content .blog .markdown a:hover {
-	color: var(--primary);
-	text-decoration-color: var(--primary);
+	color: var(--accent);
+	text-decoration-color: var(--accent);
 }
 
 .frame-content .blog .markdown *:not(pre *, .admonition *, details *, blockquote *, span, a, h1, h2, h3, h4, h5, h6) {
-	color: var(--bodyTextColor);
+	color: var(--text-secondary);
 }
 
 .frame-content .blog .markdown pre {

@@ -1,0 +1,107 @@
+---
+title: "Resources | Websthetic"
+description: "Guides, checklists, and practical advice for planning, designing, and building better websites."
+permalink: "/resources/"
+---
+
+{% extends "layouts/base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/assets/css/resources.css">
+{% endblock %}
+
+{% block body %}
+
+    <!-- ============================================ -->
+    <!--                   Banner                     -->
+    <!-- ============================================ -->
+
+    <div id="banner-310">
+        <div class="cs-container">
+            {% set crumb = "Resources" %}
+            {% include "components/breadcrumb.html" %}
+            <!-- illustration on the right (desktop) - drawings live in components/banner-art/ -->
+            <div class="cs-banner-art" aria-hidden="true">
+                {% include "components/banner-art/resources.html" %}
+            </div>
+            <div class="cs-banner-text">
+                <h1 class="cs-int-title">Your Hub For Better <span class="cs-highlight">Websites.</span></h1>
+                <p class="cs-int-text">
+                    From planning checklists to practical how-tos, our resource library is built to help agencies, creative teams, and growing businesses build websites that work.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!--                  Resources                   -->
+    <!-- ============================================ -->
+
+    <section id="resources">
+        <div class="cs-container">
+            <div class="cs-content">
+                <h2 class="cs-title">Resources</h2>
+                <p class="cs-text">Our guides and tools to help you plan and build with confidence.</p>
+            </div>
+            <ul class="cs-card-group">
+                <li class="cs-card">
+                    <a class="cs-card-art cs-bg-mix" href="/resources/colour-contrast-checker/" tabindex="-1" aria-hidden="true">
+                        <!-- illustration, drawn in CSS - decorative -->
+                        <span class="cs-card-window">
+                            <span class="cs-card-bar"><i></i><i></i><i></i></span>
+                            <span class="cs-card-body">
+                                <span class="cs-r-contrast">
+                                    <span class="cs-r-sample">Aa</span>
+                                    <span class="cs-r-ratio"><b>15.2:1</b><i>AA ✓</i><i>AAA ✓</i></span>
+                                </span>
+                            </span>
+                        </span>
+                    </a>
+                    <span class="cs-tag">Tools</span>
+                    <h3 class="cs-h3">Colour Contrast Checker</h3>
+                    <p class="cs-card-text">Free WCAG accessibility tool to test colour contrast ratios. Make sure your website’s text and interface elements are readable for more people.</p>
+                    <a href="/resources/colour-contrast-checker/" class="cs-button-solid cs-read-more" aria-label="Open the Colour Contrast Checker">Try The Tool</a>
+                </li>
+                <li class="cs-card">
+                    <a class="cs-card-art cs-bg-lime" href="/resources/colour-palette-generator/" tabindex="-1" aria-hidden="true">
+                        <!-- illustration, drawn in CSS - decorative -->
+                        <span class="cs-card-window">
+                            <span class="cs-card-bar"><i></i><i></i><i></i></span>
+                            <span class="cs-card-body">
+                                <span class="cs-r-palette">
+                                    <i></i><i></i><i></i><i></i><i></i>
+                                </span>
+                            </span>
+                        </span>
+                    </a>
+                    <span class="cs-tag">Tools</span>
+                    <h3 class="cs-h3">Colour Palette Generator</h3>
+                    <p class="cs-card-text">Create balanced colour palettes for your brand or website. Choose a colour harmony, lock the shades you love, and export them as CSS, HEX, or PNG.</p>
+                    <a href="/resources/colour-palette-generator/" class="cs-button-solid cs-read-more" aria-label="Open the Colour Palette Generator">Try The Tool</a>
+                </li>
+                <li class="cs-card">
+                    <a class="cs-card-art cs-bg-pink" href="/resources/website-launch-checklist/" tabindex="-1" aria-hidden="true">
+                        <!-- illustration, drawn in CSS - decorative -->
+                        <span class="cs-card-window">
+                            <span class="cs-card-bar"><i></i><i></i><i></i></span>
+                            <span class="cs-card-body">
+                                <span class="cs-r-checklist">
+                                    <span class="cs-r-progress"><i></i></span>
+                                    <span class="cs-r-row cs-r-done"><b></b><i></i></span>
+                                    <span class="cs-r-row cs-r-done"><b></b><i></i></span>
+                                    <span class="cs-r-row"><b></b><i></i></span>
+                                </span>
+                            </span>
+                        </span>
+                    </a>
+                    <span class="cs-tag">Guides</span>
+                    <h3 class="cs-h3">Website Launch Checklist</h3>
+                    <p class="cs-card-text">An interactive checklist of the essentials to cover before you go live, from accessibility and SEO to performance and security.</p>
+                    <a href="/resources/website-launch-checklist/" class="cs-button-solid cs-read-more" aria-label="Open the Website Launch Checklist">Use The Checklist</a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    {% include 'sections/cta.html' %}
+{% endblock %}

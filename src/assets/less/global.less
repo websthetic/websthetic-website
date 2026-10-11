@@ -1,0 +1,1600 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// WEBSTHETIC GLOBAL SECTIONS
+// Navigation, banner, CTA, footer, and other repeated section styles shared
+// across the entire site. Core styles (variables, reset, typography,
+// utilities, fonts) live in root.less
+// ─────────────────────────────────────────────────────────────────────────────
+
+/*-- -------------------------- -->
+<---     Mobile Navigation      -->
+<--- -------------------------- -*/
+
+/* Mobile - 1023.5px */
+@media only screen and (max-width: 1023.5px) {
+	body {
+		&.cs-open {
+			overflow: hidden;
+		}
+	}
+
+	#cs-navigation {
+		width: 100%;
+		/* prevents padding and border from affecting height and width */
+		box-sizing: border-box;
+		padding: (12/16rem) (16/16rem);
+		/* transparent over the hero, see .cs-scrolled for the scrolled state */
+		background-color: transparent;
+		border-bottom: 1px solid transparent;
+		position: fixed;
+		z-index: 10000;
+		transition: background-color 0.3s, border-color 0.3s, transform 0.35s ease;
+
+		/* dark glass background once the page is scrolled (class added in nav.js) */
+		&.cs-scrolled {
+			background-color: color-mix(in srgb, var(--dark) 80%, transparent);
+			border-bottom-color: color-mix(in srgb, var(--on-dark) 8%, transparent);
+			-webkit-backdrop-filter: blur(16px) saturate(180%);
+			backdrop-filter: blur(16px) saturate(180%);
+		}
+
+		&.cs-active {
+			/* the full screen menu covers the page, so drop the glass. backdrop-filter also has to go because it would trap the fixed menu inside the header */
+			background-color: transparent;
+			border-bottom-color: transparent;
+			-webkit-backdrop-filter: none;
+			backdrop-filter: none;
+
+			.cs-ul-wrapper {
+				opacity: 1;
+				visibility: visible;
+			}
+
+			.cs-li {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		.cs-container {
+			width: 100%;
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+		}
+
+		.cs-logo {
+			width: 40%;
+			max-width: (128/16rem);
+			height: 100%;
+			margin: 0 auto 0 0;
+			/* prevents padding and border from affecting height and width */
+			box-sizing: border-box;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 10;
+			/* the logo svg is drawn in currentColor */
+			color: var(--on-dark);
+
+			img,
+			svg {
+				width: 100%;
+				height: 100%;
+				/* ensures the image never overflows the container. It stays contained within it's width and height and expands to fill it then stops once it reaches an edge */
+				object-fit: contain;
+				/* places the image to the left edge of the parent */
+				object-position: left;
+			}
+		}
+
+		.cs-toggle {
+			/* 44px - 48px */
+			width: clamp(2.75rem, 6vw, 3rem);
+			height: clamp(2.75rem, 6vw, 3rem);
+			margin: 0 0 0 auto;
+			background-color: transparent;
+			border: none;
+			border-radius: (4/16rem);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			z-index: 10;
+		}
+
+		.cs-active {
+			.cs-line1 {
+				top: 50%;
+				transform: translate(-50%, -50%) rotate(225deg);
+			}
+
+			.cs-line2 {
+				top: 50%;
+				transform: translate(-50%, -50%) translateY(0) rotate(-225deg);
+				transform-origin: center;
+			}
+
+			.cs-line3 {
+				opacity: 0;
+				bottom: 100%;
+			}
+		}
+
+		.cs-box {
+			/* 24px - 28px */
+			width: clamp(1.5rem, 2vw, 1.75rem);
+			/* 14px - 16px */
+			height: clamp(0.875rem, 1.5vw, 1rem);
+			position: relative;
+		}
+
+		.cs-line {
+			width: 100%;
+			height: 2px;
+			background-color: var(--surface);
+			border-radius: 2px;
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		.cs-line1 {
+			top: 0;
+			transition: transform 0.5s, top 0.3s, left 0.3s;
+			animation-duration: 0.7s;
+			animation-timing-function: ease;
+			animation-direction: normal;
+			animation-fill-mode: forwards;
+			transform-origin: center;
+		}
+
+		.cs-line2 {
+			top: 50%;
+			transform: translateX(-50%) translateY(-50%);
+			transition: top 0.3s, left 0.3s, transform 0.5s;
+			animation-duration: 0.7s;
+			animation-timing-function: ease;
+			animation-direction: normal;
+			animation-fill-mode: forwards;
+		}
+
+		.cs-line3 {
+			bottom: 0;
+			transition: bottom 0.3s, opacity 0.3s;
+		}
+
+		/* full screen menu - sits behind the logo and toggle, which stay on top */
+		.cs-ul-wrapper {
+			width: 100%;
+			height: 100vh;
+			height: 100dvh;
+			background-color: var(--dark);
+			opacity: 0;
+			visibility: hidden;
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: -1;
+			overflow: hidden;
+			transition: opacity 0.3s, visibility 0.3s;
+		}
+
+		.cs-ul {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			/* prevents padding and border from affecting height and width */
+			box-sizing: border-box;
+			/* top padding clears the logo and toggle */
+			padding: (112/16rem) (24/16rem) (40/16rem);
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: flex-start;
+			gap: (24/16rem);
+			overflow-y: auto;
+		}
+
+		.cs-li {
+			list-style: none;
+			width: 100%;
+			margin-right: 0;
+			opacity: 0;
+			/* transition from these values */
+			transform: translateY(1rem);
+			transition: transform 0.5s, opacity 0.5s;
+
+			&:nth-of-type(1) {
+				transition-delay: 0.05s;
+			}
+			&:nth-of-type(2) {
+				transition-delay: 0.1s;
+			}
+			&:nth-of-type(3) {
+				transition-delay: 0.15s;
+			}
+			&:nth-of-type(4) {
+				transition-delay: 0.2s;
+			}
+			&:nth-of-type(5) {
+				transition-delay: 0.25s;
+			}
+			&:nth-of-type(6) {
+				transition-delay: 0.3s;
+			}
+			&:nth-of-type(7) {
+				transition-delay: 0.35s;
+			}
+			&:nth-of-type(8) {
+				transition-delay: 0.4s;
+			}
+			&:nth-of-type(9) {
+				transition-delay: 0.45s;
+			}
+		}
+
+		.cs-li-cta {
+			margin-top: (16/16rem);
+
+			.cs-button-solid {
+				width: 100%;
+				/* prevents padding and border from affecting height and width */
+				box-sizing: border-box;
+			}
+		}
+
+		.cs-li-link {
+			/* 28px - 40px */
+			font-size: clamp(1.75rem, 6vw, 2.5rem);
+			font-weight: 500;
+			line-height: 1.2em;
+			text-decoration: none;
+			margin: 0;
+			padding: (4/16rem) 0;
+			color: var(--on-dark);
+			display: inline-block;
+			position: relative;
+			transition: color 0.3s;
+
+			&:hover {
+				color: var(--accent-1);
+			}
+
+			&:before {
+				/* active state underline */
+				content: "";
+				width: 100%;
+				height: 2px;
+				background: var(--accent-4);
+				opacity: 1;
+				display: none;
+				position: absolute;
+				bottom: (-2/16rem);
+				left: 0;
+			}
+
+			&.cs-active {
+				&:before {
+					display: block;
+				}
+			}
+		}
+
+		.cs-nav-button {
+			display: none;
+		}
+	}
+}
+
+/* Hide on scroll down, show on scroll up (class added in nav.js) */
+#cs-navigation.cs-nav-hidden {
+	transform: translateY(-100%);
+}
+
+/* Primary buttons sit on dark backgrounds in the nav, so they use the lime accent */
+#cs-navigation .cs-button-solid {
+	background-color: var(--accent-4);
+	color: var(--dark);
+
+	&:hover {
+		background-color: var(--surface);
+	}
+}
+
+/*-- -------------------------- -->
+<---     Navigation Dropdown    -->
+<--- -------------------------- -*/
+
+/* Mobile - 1023.5px */
+@media only screen and (max-width: 1023.5px) {
+	#cs-navigation {
+		.cs-dropdown {
+			color: var(--on-dark);
+			position: relative;
+
+			.cs-dropdown-toggle {
+				/* Reset default button styles */
+				background: none;
+				border: none;
+				font-family: inherit;
+				text-align: inherit;
+				cursor: pointer;
+				/* Remove any default focus styles */
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+			}
+
+			&.cs-active {
+				.cs-drop-ul {
+					height: auto;
+					margin: (12/16rem) 0 0 0;
+					padding: (24/16rem);
+					opacity: 1;
+					visibility: visible;
+					transform: scale(1);
+				}
+
+				.cs-drop-link {
+					opacity: 1;
+				}
+			}
+
+			.cs-li-link {
+				position: relative;
+				transition: opacity 0.3s;
+			}
+		}
+
+		.cs-drop-icon {
+			width: (15/16rem);
+			height: auto;
+			position: absolute;
+			top: 50%;
+			right: (-20/16rem);
+			transform: translateY(-50%);
+		}
+
+		.cs-drop-ul {
+			width: 100%;
+			height: 0;
+			margin: 0;
+			box-sizing: border-box;
+			padding: 0 (24/16rem) 0 (24/16rem);
+			background-color: var(--accent);
+			opacity: 0;
+			display: flex;
+			visibility: hidden;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: flex-end;
+			gap: (12/16rem);
+			overflow: hidden;
+			transform: scale(0);
+			transition: padding 0.3s, margin 0.3s, height 0.3s, opacity 0.3s, transform 0.3s, visibility 0.3s;
+			transform-origin: top right;
+		}
+
+		.cs-drop-li {
+			text-align: inherit;
+			list-style: none;
+		}
+
+		.cs-li-link {
+			&.cs-drop-link {
+				/* 14px - 16px */
+				font-size: clamp(0.875rem, 2vw, 1.25rem);
+				color: var(--on-dark);
+			}
+		}
+	}
+}
+
+/* Desktop - 1024px */
+@media only screen and (min-width: 1024px) {
+	#cs-navigation {
+		.cs-dropdown {
+			position: relative;
+
+			.cs-dropdown-toggle {
+				/* Reset default button styles */
+				background: none;
+				border: none;
+				font-family: inherit;
+				text-align: inherit;
+				cursor: pointer;
+				/* Remove any default focus styles */
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+			}
+
+			&:hover,
+			&.cs-active {
+				cursor: pointer;
+
+				.cs-drop-ul {
+					opacity: 1;
+					visibility: visible;
+					transform: scaleY(1);
+				}
+
+				.cs-drop-li {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+		}
+
+		.cs-drop-icon {
+			width: (15/16rem);
+			height: auto;
+			display: inline-block;
+		}
+
+		.cs-drop-ul {
+			min-width: (200/16rem);
+			margin: 0;
+			padding: 0;
+			background-color: var(--surface);
+			box-shadow: color-mix(in srgb, var(--text-secondary) 20%, transparent) 0px 10px 16px;
+			opacity: 0;
+			border-bottom: 5px solid var(--accent);
+			visibility: hidden;
+			/* if you have 8 or more links in your dropdown nav, uncomment the columns property to make the list into 2 even columns. Change it to 3 or 4 if you need extra columns. Then remove the transition delays on the cs-drop-li so they don't have weird scattered animations */
+			// columns: 2;
+			position: absolute;
+			top: 100%;
+			z-index: -100;
+			overflow: hidden;
+			transform: scaleY(0);
+			transition: transform 0.3s, visibility 0.3s, opacity 0.3s;
+			transform-origin: top;
+		}
+
+		.cs-drop-li {
+			font-size: (16/16rem);
+			text-decoration: none;
+			list-style: none;
+			width: 100%;
+			height: auto;
+			color: var(--text-secondary);
+			opacity: 0;
+			display: block;
+			transform: translateY(-0.625rem);
+			transition: opacity 0.6s, transform 0.6s;
+
+			&:nth-of-type(1) {
+				transition-delay: 0.05s;
+			}
+			&:nth-of-type(2) {
+				transition-delay: 0.1s;
+			}
+			&:nth-of-type(3) {
+				transition-delay: 0.15s;
+			}
+			&:nth-of-type(4) {
+				transition-delay: 0.2s;
+			}
+			&:nth-of-type(5) {
+				transition-delay: 0.25s;
+			}
+			&:nth-of-type(6) {
+				transition-delay: 0.3s;
+			}
+			&:nth-of-type(7) {
+				transition-delay: 0.35s;
+			}
+			&:nth-of-type(8) {
+				transition-delay: 0.4s;
+			}
+			&:nth-of-type(9) {
+				transition-delay: 0.45s;
+			}
+			&:nth-of-type(10) {
+				transition-delay: 0.5s;
+			}
+			&:nth-of-type(11) {
+				transition-delay: 0.55s;
+			}
+			&:nth-of-type(12) {
+				transition-delay: 0.6s;
+			}
+			&:nth-of-type(13) {
+				transition-delay: 0.65s;
+			}
+		}
+
+		.cs-li-link {
+			&.cs-drop-link {
+				font-size: (16/16rem);
+				line-height: 1.5em;
+				text-decoration: none;
+				white-space: nowrap;
+				width: 100%;
+				/* prevents padding and border from affecting height and width */
+				box-sizing: border-box;
+				padding: (12/16rem);
+				color: var(--text-secondary);
+				background-color: var(--background-soft);
+				outline: none;
+				display: block;
+				transition: color 0.3s, background-color 0.3s;
+
+				&:hover {
+					background-color: var(--accent-1);
+				}
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: -2px;
+				}
+
+				&:before {
+					display: none;
+				}
+			}
+		}
+	}
+}
+
+/*-- -------------------------- -->
+<---     Desktop Navigation     -->
+<--- -------------------------- -*/
+
+/* Small Desktop - 1024px */
+@media only screen and (min-width: 1024px) {
+	#cs-navigation {
+		width: 100%;
+		/* prevents padding and border from affecting height and width */
+		box-sizing: border-box;
+		padding: 0 (16/16rem);
+		/* transparent over the hero, see .cs-scrolled for the scrolled state */
+		background-color: transparent;
+		border-bottom: 1px solid transparent;
+		position: fixed;
+		z-index: 10000;
+		transition: background-color 0.3s, border-color 0.3s, transform 0.35s ease;
+
+		/* dark glass background once the page is scrolled (class added in nav.js) */
+		&.cs-scrolled {
+			background-color: color-mix(in srgb, var(--dark) 80%, transparent);
+			border-bottom-color: color-mix(in srgb, var(--on-dark) 8%, transparent);
+			-webkit-backdrop-filter: blur(16px) saturate(180%);
+			backdrop-filter: blur(16px) saturate(180%);
+		}
+
+		.cs-container {
+			width: 100%;
+			max-width: (1280/16rem);
+			margin: auto;
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+			gap: (24/16rem);
+		}
+
+		.cs-toggle {
+			display: none;
+		}
+
+		.cs-logo {
+			width: 18.4%;
+			max-width: (180/16rem);
+			height: (65/16rem);
+			/* margin-right auto pushes everything away from it to the right */
+			margin: 0 auto 0 0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 100;
+			/* the logo svg is drawn in currentColor */
+			color: var(--on-dark);
+
+			img,
+			svg {
+				width: 100%;
+				height: 100%;
+				/* ensures the image never overflows the container. It stays contained within it's width and height and expands to fill it then stops once it reaches an edge */
+				object-fit: contain;
+			}
+		}
+
+		.cs-ul {
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			/* 20px - 36px */
+			gap: clamp(1.25rem, 2.6vw, 2.25rem);
+		}
+
+		.cs-li {
+			list-style: none;
+			padding: (32/16rem) 0;
+			/* prevent flexbox from squishing it */
+			flex: none;
+		}
+
+		.cs-li-link {
+			/* 14px - 16px */
+			font-size: clamp(0.875rem, 1vw, 1rem);
+			font-weight: 500;
+			line-height: 1.5em;
+			text-decoration: none;
+			margin: 0;
+			color: color-mix(in srgb, var(--on-dark) 80%, transparent);
+			display: block;
+			position: relative;
+			transition: color 0.3s;
+
+			&:hover {
+				color: var(--on-dark);
+
+				&:before {
+					width: 100%;
+				}
+			}
+
+			&.cs-active {
+				color: var(--on-dark);
+
+				&:before {
+					width: 100%;
+				}
+			}
+
+			&:before {
+				/* active state underline */
+				content: "";
+				width: 0%;
+				height: 2px;
+				background: var(--accent-4);
+				opacity: 1;
+				display: block;
+				position: absolute;
+				bottom: (0/16rem);
+				left: 0;
+				transition: width 0.3s;
+			}
+		}
+	}
+}
+
+/*-- -------------------------- -->
+<---          Banner            -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0px) {
+	#banner-310 {
+		/* top clears the fixed navigation - 144px - 208px top, 72px - 112px bottom */
+		padding: clamp(9rem, 14.5vw, 13rem) (16/16rem) clamp(4.5rem, 7.8vw, 7rem);
+		/* light page with a soft pastel wash - deliberately different from the dark home hero. The wash uses the accents, so it follows the Change Colour button */
+		background:
+			radial-gradient(ellipse 45% 75% at 88% 18%, color-mix(in srgb, var(--accent-1) 90%, transparent), transparent 70%),
+			radial-gradient(ellipse 40% 60% at 62% 0%, color-mix(in srgb, var(--accent-2) 80%, transparent), transparent 70%),
+			radial-gradient(ellipse 45% 70% at 104% 92%, color-mix(in srgb, var(--accent-4) 90%, transparent), transparent 70%),
+			radial-gradient(ellipse 35% 55% at 0% 100%, color-mix(in srgb, var(--accent-3) 55%, transparent), transparent 70%),
+			var(--background-soft);
+		border-bottom: 1px solid var(--border);
+		position: relative;
+		z-index: 1;
+		overflow: hidden;
+
+		/* faint dot grid, fading out toward the right where the colour is */
+		&:before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			z-index: -1;
+			pointer-events: none;
+			background-image: radial-gradient(circle, color-mix(in srgb, var(--dark) 14%, transparent) 1px, transparent 1.5px);
+			background-size: (22/16rem) (22/16rem);
+			-webkit-mask-image: linear-gradient(100deg, #000 0%, transparent 65%);
+			mask-image: linear-gradient(100deg, #000 0%, transparent 65%);
+		}
+
+		.cs-container {
+			width: 100%;
+			max-width: (1280/16rem);
+			margin: auto;
+			display: flex;
+			justify-content: center;
+			align-items: flex-start;
+			flex-direction: column;
+			text-align: left;
+		}
+
+		/* Home / Page */
+		.cs-breadcrumb {
+			/* 20px - 32px */
+			margin-bottom: clamp(1.25rem, 3vw, 2rem);
+		}
+
+		.cs-crumbs {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+		}
+
+		.cs-crumb {
+			font-size: (14/16rem);
+			font-weight: 500;
+			line-height: 1.5em;
+			color: var(--text-primary);
+
+			/* slash between crumbs */
+			& + .cs-crumb:before {
+				content: "/";
+				margin: 0 (10/16rem);
+				color: var(--text-on-accent);
+			}
+		}
+
+		.cs-crumb-link {
+			font-size: inherit;
+			text-decoration: none;
+			color: var(--text-on-accent);
+			transition: color 0.2s;
+
+			&:hover {
+				color: var(--text-primary);
+				text-decoration: underline;
+				text-underline-offset: 0.2em;
+			}
+		}
+
+		/* optional small pill above the banner title */
+		.cs-int-badge {
+			font-size: (13/16rem);
+			font-weight: 600;
+			padding: (7/16rem) (14/16rem);
+			background-color: color-mix(in srgb, var(--surface) 70%, transparent);
+			border: 1px solid color-mix(in srgb, var(--dark) 10%, transparent);
+			border-radius: (999/16rem);
+			color: var(--text-primary);
+			/* 20px - 28px */
+			margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem);
+			display: inline-flex;
+			align-items: center;
+			gap: (8/16rem);
+
+			svg {
+				width: (16/16rem);
+				height: (16/16rem);
+			}
+		}
+
+		.cs-int-title {
+			/* 36px - 72px */
+			font-size: clamp(2.25rem, 5.6vw, 4.5rem);
+			font-weight: 700;
+			line-height: 1.08em;
+			letter-spacing: -0.02em;
+			text-align: left;
+			max-width: (860/16rem);
+			margin: 0;
+			color: var(--text-primary);
+			position: relative;
+
+			.cs-highlight {
+				/* a thick pastel marker under the words, like the text link underline */
+				background-image: linear-gradient(90deg, var(--accent-1) 0%, var(--accent-2) 50%, var(--accent-4) 100%);
+				background-size: 100% 0.3em;
+				background-position: 0 88%;
+				background-repeat: no-repeat;
+				/* each wrapped line gets its own marker */
+				-webkit-box-decoration-break: clone;
+				box-decoration-break: clone;
+			}
+		}
+
+		.cs-int-text {
+			/* 16px - 20px */
+			font-size: clamp(1rem, 1.6vw, 1.25rem);
+			line-height: 1.6em;
+			text-align: left;
+			max-width: (640/16rem);
+			/* 20px - 28px */
+			margin: clamp(1.25rem, 2.5vw, 1.75rem) 0 0;
+			/* readable on the white and on every pastel in the wash */
+			color: var(--text-on-accent);
+		}
+
+		/* a second paragraph sits closer to the first */
+		.cs-int-text + .cs-int-text {
+			margin-top: (14/16rem);
+		}
+
+		/* optional buttons under the banner text */
+		.cs-int-buttons {
+			/* 28px - 40px */
+			margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: flex-start;
+			gap: (12/16rem);
+		}
+
+		.cs-int-button {
+			display: inline-flex;
+			align-items: center;
+			gap: (8/16rem);
+		}
+
+		/* the outline button sits on a light, slightly tinted background */
+		.cs-button-outline {
+			background-color: color-mix(in srgb, var(--surface) 55%, transparent);
+		}
+
+		.cs-int-icon {
+			width: (18/16rem);
+			height: (18/16rem);
+			transition: transform 0.2s;
+		}
+
+		.cs-int-button:hover .cs-int-icon {
+			transform: translateX(3px);
+		}
+	}
+}
+
+/* Banner illustration (components/banner-art.html) - desktop only, on the right */
+@media only screen and (min-width: 0px) {
+	#banner-310 {
+		.cs-banner-art {
+			display: none;
+		}
+
+		/* title, text and buttons */
+		.cs-banner-text {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		/* every colour in the drawing comes from the site tokens */
+		.cs-ba-surface { fill: var(--surface); }
+		.cs-ba-soft { fill: var(--background-soft); }
+		.cs-ba-dark { fill: var(--dark); }
+		.cs-ba-text { fill: color-mix(in srgb, var(--dark) 28%, transparent); }
+		.cs-ba-muted { fill: color-mix(in srgb, var(--dark) 14%, transparent); }
+		.cs-ba-button { fill: var(--button-bg); }
+		.cs-ba-accent-1 { fill: var(--accent-1); }
+		.cs-ba-accent-2 { fill: var(--accent-2); }
+		.cs-ba-accent-3 { fill: var(--accent-3); }
+		.cs-ba-accent-4 { fill: var(--accent-4); }
+		.cs-ba-blob { opacity: 0.55; }
+		.cs-ba-shadow { fill: color-mix(in srgb, var(--shadow) 7%, transparent); }
+
+		.cs-ba-stroke {
+			stroke: color-mix(in srgb, var(--dark) 12%, transparent);
+			stroke-width: 1.5;
+		}
+
+		.cs-ba-ring-track,
+		.cs-ba-ring {
+			fill: none;
+			stroke-width: 6;
+		}
+
+		.cs-ba-ring-track {
+			stroke: var(--background-soft);
+		}
+
+		.cs-ba-ring {
+			stroke: var(--button-bg);
+			stroke-linecap: round;
+			/* a full 100 / 100 score */
+			stroke-dasharray: 100 0;
+		}
+
+		.cs-ba-label {
+			font-family: var(--headerFont);
+			font-weight: 700;
+			fill: var(--text-primary);
+		}
+
+		.cs-ba-label-big {
+			font-size: 15px;
+		}
+
+		.cs-ba-success { fill: var(--success); }
+		.cs-ba-on-button { fill: var(--button-text); }
+		.cs-ba-on-dark-muted { fill: color-mix(in srgb, var(--on-dark) 35%, transparent); }
+
+		/* outlines and line drawings */
+		.cs-ba-stroke-strong {
+			stroke: var(--dark);
+			stroke-width: 2;
+		}
+
+		.cs-ba-line,
+		.cs-ba-line-thin,
+		.cs-ba-line-light,
+		.cs-ba-line-button {
+			fill: none;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+		}
+
+		.cs-ba-line {
+			stroke: var(--dark);
+			stroke-width: 3;
+		}
+
+		.cs-ba-line-thin {
+			stroke: var(--dark);
+			stroke-width: 2;
+		}
+
+		/* ticks and arrows on the button colour or the green success dots */
+		.cs-ba-line-light {
+			stroke: var(--button-text);
+			stroke-width: 3;
+		}
+
+		.cs-ba-line-small {
+			stroke-width: 2;
+		}
+
+		.cs-ba-line-button {
+			stroke: var(--button-bg);
+			stroke-width: 4;
+		}
+
+		.cs-ba-grid {
+			stroke: color-mix(in srgb, var(--dark) 10%, transparent);
+			stroke-width: 1;
+			stroke-dasharray: 4 4;
+		}
+
+		/* a white edge so overlapping circles separate */
+		.cs-ba-ring-gap {
+			stroke: var(--surface);
+			stroke-width: 3;
+		}
+
+		/* the selected layer in the design tool */
+		.cs-ba-select {
+			fill: none;
+			stroke: var(--button-bg);
+			stroke-width: 1.5;
+			stroke-dasharray: 4 3;
+		}
+
+		.cs-ba-select-handle {
+			stroke: var(--button-bg);
+			stroke-width: 1.5;
+		}
+
+		.cs-ba-star {
+			fill: var(--accent-4);
+			stroke: var(--dark);
+			stroke-width: 1.5;
+		}
+
+		.cs-ba-star-on-button {
+			stroke: var(--button-text);
+		}
+
+		.cs-ba-quote {
+			font-family: var(--headerFont);
+			font-size: 120px;
+			font-weight: 700;
+			fill: var(--accent-1);
+		}
+
+		.cs-ba-label-small {
+			font-size: 12px;
+		}
+
+		.cs-ba-label-mid {
+			font-size: 16px;
+		}
+
+		.cs-ba-label-ratio {
+			font-size: 30px;
+			letter-spacing: -0.02em;
+		}
+
+		.cs-ba-label-big-on-button {
+			font-size: 26px;
+			fill: var(--button-text);
+		}
+
+		/* the "Aa" samples in the contrast checker drawing */
+		.cs-ba-sample {
+			font-family: var(--headerFont);
+			font-size: 56px;
+			font-weight: 700;
+		}
+
+		.cs-ba-sample-light { fill: var(--accent-4); }
+		.cs-ba-sample-dark { fill: var(--dark); }
+
+		.cs-ba-cursor {
+			fill: var(--dark);
+			stroke: var(--surface);
+			stroke-width: 2;
+		}
+
+		/* the floating cards bob gently */
+		.cs-ba-float {
+			animation: cs-ba-bob 6s ease-in-out infinite;
+		}
+
+		.cs-ba-float-2 {
+			animation-delay: -2s;
+		}
+
+		.cs-ba-float-3 {
+			animation-duration: 4s;
+			animation-delay: -1s;
+		}
+
+		@keyframes cs-ba-bob {
+			0%,
+			100% {
+				transform: translateY(0);
+			}
+			50% {
+				transform: translateY(-6px);
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			.cs-ba-float {
+				animation: none;
+			}
+		}
+	}
+}
+
+/* Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+	#banner-310 {
+		/* text on the left, illustration on the right */
+		.cs-container {
+			display: grid;
+			grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+			column-gap: clamp(2.5rem, 5vw, 5rem);
+			align-items: center;
+		}
+
+		/* breadcrumb across the top, then text and illustration side by side */
+		.cs-breadcrumb {
+			grid-column: 1 / -1;
+		}
+
+		.cs-banner-text {
+			grid-column: 1;
+			grid-row: 2;
+		}
+
+		.cs-banner-art {
+			grid-column: 2;
+			grid-row: 2;
+			width: 100%;
+			max-width: (520/16rem);
+			justify-self: end;
+			display: block;
+
+			svg {
+				width: 100%;
+				height: auto;
+				display: block;
+				overflow: visible;
+			}
+		}
+	}
+}
+
+/* Navigation over the light banner: black text until the page scrolls (then the dark glass nav takes over) or the mobile menu opens */
+@media only screen and (min-width: 0px) {
+	body:has(#banner-310) #cs-navigation:not(.cs-scrolled):not(.cs-active) {
+		.cs-logo {
+			color: var(--text-primary);
+		}
+
+		.cs-line {
+			background-color: var(--text-primary);
+		}
+
+		.cs-nav-button {
+			background-color: var(--button-bg);
+			color: var(--button-text);
+
+			&:hover {
+				background-color: var(--accent-hover);
+			}
+		}
+	}
+}
+
+@media only screen and (min-width: 64rem) {
+	body:has(#banner-310) #cs-navigation:not(.cs-scrolled):not(.cs-active) {
+		.cs-li-link {
+			color: color-mix(in srgb, var(--text-primary) 78%, transparent);
+
+			&:hover,
+			&.cs-active {
+				color: var(--text-primary);
+			}
+
+			/* the lime underline is too faint on the light banner */
+			&:before {
+				background: var(--text-primary);
+			}
+		}
+	}
+}
+
+/*-- -------------------------- -->
+<---            CTA             -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0px) {
+	#cta-51 {
+		/* 80px - 128px top and bottom */
+		padding: clamp(5rem, 10vw, 8rem) (16/16rem);
+		/* same dark navy as the hero: soft blue glow at the top over a navy gradient */
+		background:
+			radial-gradient(ellipse 70% 55% at 50% 0%, color-mix(in srgb, var(--glow) 16.8%, transparent), transparent 70%),
+			/* lightens toward the middle, then fades back to the footer's navy at the bottom so the two blend seamlessly */
+			linear-gradient(180deg, var(--dark) 0%, var(--dark-2) 55%, var(--dark) 100%);
+		position: relative;
+		overflow: hidden;
+
+		/* subtle star layers - tiled at different sizes so the pattern doesn't look repeated */
+		&:before,
+		&:after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			pointer-events: none;
+			background-repeat: repeat;
+			/* stars fade out toward the bottom since the footer has none */
+			-webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+			mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+		}
+
+		/* small dim stars, still */
+		&:before {
+			background-image:
+				radial-gradient(circle at 12% 18%, color-mix(in srgb, var(--on-dark) 55%, transparent) 0 1px, transparent 1.5px),
+				radial-gradient(circle at 63% 7%, color-mix(in srgb, var(--on-dark) 40%, transparent) 0 1px, transparent 1.5px),
+				radial-gradient(circle at 38% 52%, color-mix(in srgb, var(--on-dark) 50%, transparent) 0 1px, transparent 1.5px),
+				radial-gradient(circle at 84% 71%, color-mix(in srgb, var(--on-dark) 35%, transparent) 0 1px, transparent 1.5px),
+				radial-gradient(circle at 21% 88%, color-mix(in srgb, var(--on-dark) 45%, transparent) 0 1px, transparent 1.5px);
+			background-size: (240/16rem) (240/16rem);
+			opacity: 0.6;
+		}
+
+		/* a few brighter stars that twinkle slowly */
+		&:after {
+			background-image:
+				radial-gradient(circle at 28% 24%, color-mix(in srgb, var(--on-dark) 85%, transparent) 0 1.2px, transparent 2px),
+				radial-gradient(circle at 81% 58%, color-mix(in srgb, var(--on-dark) 75%, transparent) 0 1.2px, transparent 2px),
+				radial-gradient(circle at 56% 91%, color-mix(in srgb, var(--on-dark) 70%, transparent) 0 1.2px, transparent 2px);
+			background-size: (530/16rem) (530/16rem);
+			opacity: 0.6;
+			animation: cs-cta-twinkle 4s ease-in-out infinite;
+		}
+
+		@keyframes cs-cta-twinkle {
+			0%,
+			100% {
+				opacity: 0.6;
+			}
+			50% {
+				opacity: 0.2;
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			&:after {
+				animation: none;
+			}
+		}
+
+		.cs-container {
+			width: 100%;
+			max-width: (760/16rem);
+			margin: auto;
+			/* sits above the star layers */
+			position: relative;
+			z-index: 1;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.cs-title {
+			/* 32px - 64px */
+			font-size: clamp(2rem, 5.2vw, 4rem);
+			font-weight: 600;
+			line-height: 1.1em;
+			letter-spacing: -0.02em;
+			text-align: center;
+			max-width: none;
+			/* 16px - 24px */
+			margin: 0 0 clamp(1rem, 2vw, 1.5rem);
+			color: var(--on-dark);
+		}
+
+		.cs-text {
+			/* 16px - 19px */
+			font-size: clamp(1rem, 1.6vw, 1.1875rem);
+			line-height: 1.6em;
+			text-align: center;
+			max-width: (520/16rem);
+			/* 28px - 40px */
+			margin: 0 0 clamp(1.75rem, 3.5vw, 2.5rem);
+			color: color-mix(in srgb, var(--on-dark) 82%, transparent);
+		}
+
+		.cs-cta-button {
+			display: inline-flex;
+			align-items: center;
+			gap: (8/16rem);
+		}
+
+		.cs-cta-icon {
+			width: (18/16rem);
+			height: (18/16rem);
+		}
+	}
+}
+
+/*-- -------------------------- -->
+<---          Footer            -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #cs-footer-275 {
+        /* 56px - 96px top, 40px - 64px bottom */
+        padding: clamp(3.5rem, 8vw, 6rem) (16/16rem) clamp(2.5rem, 5vw, 4rem);
+        background-color: var(--dark);
+
+        .cs-container {
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            /* 40px - 48px */
+            gap: clamp(2.5rem, 5vw, 3rem);
+        }
+
+        .cs-logo {
+            /* 150px - 180px */
+            width: clamp(9.375rem, 18vw, 11.25rem);
+            height: auto;
+            /* 20px - 28px */
+            margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem);
+            display: block;
+            /* the logo svg is drawn in currentColor */
+            color: var(--on-dark);
+        }
+
+        .cs-logo-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .cs-text {
+            /* 15px - 17px */
+            font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
+            line-height: 1.65em;
+            max-width: (440/16rem);
+            margin: 0;
+            color: color-mix(in srgb, var(--on-dark) 80%, transparent);
+        }
+
+        .cs-bottom {
+            /* 48px - 72px */
+            margin-top: clamp(3rem, 6vw, 4.5rem);
+            /* room so the floating palette switcher never covers the legal links */
+            padding-bottom: (64/16rem);
+        }
+
+        .cs-bottom-container {
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+            /* 24px - 32px */
+            padding-top: clamp(1.5rem, 3vw, 2rem);
+            /* divider lines up with the footer content width */
+            border-top: 1px solid color-mix(in srgb, var(--on-dark) 10%, transparent);
+            display: flex;
+            flex-direction: column;
+            gap: (12/16rem);
+        }
+
+        .cs-copyright,
+        .cs-legal-link {
+            font-size: (14/16rem);
+            line-height: 1.5em;
+            color: color-mix(in srgb, var(--on-dark) 55%, transparent);
+        }
+
+        .cs-copyright {
+            margin: 0;
+        }
+
+        .cs-bottom-text {
+            display: flex;
+            flex-direction: column;
+            gap: (4/16rem);
+        }
+
+        .cs-credit {
+            font-size: (13/16rem);
+
+            a {
+                font-size: inherit;
+                color: inherit;
+                text-underline-offset: 0.2em;
+                transition: color 0.2s;
+
+                &:hover {
+                    color: var(--on-dark);
+                }
+            }
+        }
+
+        .cs-legal-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            gap: (20/16rem);
+        }
+
+        .cs-legal-link {
+            text-decoration: none;
+            transition: color 0.2s;
+
+            &:hover {
+                color: var(--on-dark);
+            }
+        }
+
+        .cs-nav,
+        .cs-contact {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: (16/16rem);
+        }
+
+        .cs-header {
+            font-size: (13/16rem);
+            font-weight: 600;
+            line-height: 1.2em;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--accent-4);
+            margin-bottom: (8/16rem);
+            display: block;
+        }
+
+        .cs-nav-link,
+        .cs-contact-link {
+            /* 16px - 17px */
+            font-size: clamp(1rem, 1.3vw, 1.0625rem);
+            line-height: 1.4em;
+            text-decoration: none;
+            color: var(--on-dark);
+            transition: color 0.2s;
+
+            &:hover {
+                color: var(--accent-1);
+            }
+        }
+
+        .cs-social {
+            margin-top: (8/16rem);
+            display: flex;
+            gap: (12/16rem);
+        }
+
+        .cs-social-link {
+            width: (48/16rem);
+            height: (48/16rem);
+            background-color: color-mix(in srgb, var(--on-dark) 6%, transparent);
+            border: 1px solid color-mix(in srgb, var(--on-dark) 12%, transparent);
+            border-radius: 50%;
+            color: var(--on-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+
+            &:hover {
+                background-color: var(--accent-4);
+                border-color: var(--accent-4);
+                color: var(--dark);
+                transform: translateY(-2px);
+            }
+        }
+
+        .cs-social-icon {
+            width: (20/16rem);
+            height: (20/16rem);
+        }
+    }
+}
+
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    #cs-footer-275 {
+        .cs-bottom-container {
+            /* copyright on the left, legal links on the right */
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cs-container {
+            /* logo group on its own row, sitemap and contact side by side below */
+            flex-direction: row;
+            flex-wrap: wrap;
+            column-gap: (64/16rem);
+        }
+
+        .cs-logo-group {
+            width: 100%;
+        }
+    }
+}
+
+/* Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+    #cs-footer-275 {
+        .cs-container {
+            /* logo group on the left, sitemap and contact on the right */
+            flex-wrap: nowrap;
+            justify-content: space-between;
+        }
+
+        .cs-logo-group {
+            width: 44%;
+            flex: none;
+        }
+
+        .cs-nav {
+            width: 22%;
+        }
+
+        .cs-contact {
+            width: 26%;
+        }
+    }
+}
+
+/*-- -------------------------- -->
+<---   Wada Palette Switcher    -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    .cs-theme-switcher {
+        /* 16px from the edges */
+        position: fixed;
+        right: (16/16rem);
+        bottom: (16/16rem);
+        z-index: 900;
+        padding: (6/16rem);
+        background-color: color-mix(in srgb, var(--dark) 88%, transparent);
+        border: 1px solid color-mix(in srgb, var(--on-dark) 14%, transparent);
+        border-radius: (999/16rem);
+        box-shadow: 0 (10/16rem) (30/16rem) color-mix(in srgb, var(--shadow) 25%, transparent);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        display: flex;
+        align-items: center;
+        gap: (4/16rem);
+        color: var(--on-dark);
+
+        &[hidden] {
+            display: none;
+        }
+    }
+
+    /* the full screen mobile menu is open */
+    body.cs-open .cs-theme-switcher {
+        display: none;
+    }
+
+    .cs-ts-swatches {
+        margin-right: (6/16rem);
+        display: flex;
+    }
+
+    .cs-ts-swatch {
+        width: (16/16rem);
+        height: (16/16rem);
+        border: 2px solid var(--dark);
+        border-radius: 50%;
+        display: block;
+
+        & + & {
+            margin-left: (-5/16rem);
+        }
+    }
+
+    /* "Change Colour" - a lime-style pill that takes the current accent */
+    .cs-ts-shuffle {
+        padding: (8/16rem) (16/16rem) (8/16rem) (10/16rem);
+        background-color: var(--accent-4);
+        border: none;
+        border-radius: (999/16rem);
+        display: flex;
+        align-items: center;
+        gap: (2/16rem);
+        font-family: inherit;
+        font-size: (14/16rem);
+        font-weight: 600;
+        line-height: 1.2em;
+        white-space: nowrap;
+        color: var(--dark);
+        transition: background-color 0.2s, transform 0.2s;
+
+        &:hover {
+            background-color: var(--surface);
+            transform: translateY(-1px);
+        }
+    }
+
+    .cs-ts-reset {
+        width: (36/16rem);
+        height: (36/16rem);
+        padding: 0;
+        background-color: transparent;
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--on-dark);
+        transition: background-color 0.2s;
+
+        &[hidden] {
+            display: none;
+        }
+
+        svg {
+            width: (18/16rem);
+            height: (18/16rem);
+        }
+
+        &:hover {
+            background-color: color-mix(in srgb, var(--on-dark) 14%, transparent);
+        }
+    }
+
+    .cs-ts-shuffle,
+    .cs-ts-reset {
+        &:focus-visible {
+            outline: 2px solid var(--accent-4);
+            outline-offset: 2px;
+        }
+    }
+}

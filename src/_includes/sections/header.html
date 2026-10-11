@@ -2,69 +2,58 @@
 <!--                 Navigation                   -->
 <!-- ============================================ -->
 
+<!-- Transparent over the hero/banner, gets the .cs-scrolled class (dark glass background) once the page is scrolled - see nav.js -->
 <header id="cs-navigation">
     <div class="cs-container">
         <!--Nav Logo-->
-        <a href="/" class="cs-logo" aria-label="back to home">
-            <img class="cs-logo-icon" src="https://websthetic.tor1.cdn.digitaloceanspaces.com/websthetic-website/websthetic-icon-white-logo.png" alt="websthetic icon" width="40" height="40" decoding="async">
-            <span class="cs-logo-text-wrapper">
-                <span class="cs-logo-text">Websthetic</span>
-                <span class="cs-logo-text">Websthetic</span>
-            </span>
+        <a href="/" class="cs-logo" aria-label="Websthetic home page">
+            <svg viewBox="0 0 160.89 32" preserveAspectRatio="xMinYMid meet" width="161" height="32" aria-hidden="true" focusable="false"><use href="/assets/svgs/logo.svg#logo"/></svg>
         </a>
-
-        <!-- Let's Talk button (mobile only) -->
-        <a href="/contact/" class="cs-mobile-talk-btn">GET IN TOUCH</a>
-
         <!--Navigation List-->
-        <nav class="cs-nav" role="navigation">
+        <nav class="cs-nav" aria-label="main navigation">
             <!--Mobile Nav Toggle-->
-            <button class="cs-toggle" aria-label="mobile menu toggle">
-                <div class="cs-box" aria-hidden="true">
+            <button class="cs-toggle" id="cs-toggle" aria-expanded="false" aria-controls="cs-ul-wrapper" aria-label="mobile menu toggle" aria-haspopup="menu">
+                <span class="cs-box" aria-hidden="true">
                     <span class="cs-line cs-line1" aria-hidden="true"></span>
                     <span class="cs-line cs-line2" aria-hidden="true"></span>
                     <span class="cs-line cs-line3" aria-hidden="true"></span>
-                </div>
+                </span>
             </button>
-            <div class="cs-ul-wrapper">
-                <ul id="cs-expanded" class="cs-ul" aria-expanded="false">
+            <!-- On mobile this wrapper becomes the full screen menu. On desktop it's just the inline list of links -->
+            <div class="cs-ul-wrapper" id="cs-ul-wrapper">
+                <ul id="cs-expanded" class="cs-ul">
                     <li class="cs-li">
-                        <a href="/" class="cs-li-link cs-active">
-                            <span class="cs-link-wrapper">Home</span>
+                        <a href="/work/" class="cs-li-link {% if page.url == "/work/" %} cs-active {% endif %}" {% if page.url == "/work/" %} aria-current="page" {% endif %}>
+                            Work
                         </a>
                     </li>
                     <li class="cs-li">
-                        <a href="/#our-process" class="cs-li-link">
-                            <span class="cs-link-wrapper">Process</span>
+                        <a href="/agencies/" class="cs-li-link {% if page.url == "/agencies/" %} cs-active {% endif %}" {% if page.url == "/agencies/" %} aria-current="page" {% endif %}>
+                            Agencies
                         </a>
                     </li>
                     <li class="cs-li">
-                        <a href="/#our-portfolio" class="cs-li-link">
-                            <span class="cs-link-wrapper">Work</span>
+                        <a href="/businesses/" class="cs-li-link {% if page.url == "/businesses/" %} cs-active {% endif %}" {% if page.url == "/businesses/" %} aria-current="page" {% endif %}>
+                            Businesses
                         </a>
                     </li>
                     <li class="cs-li">
-                        <a href="/#our-services" class="cs-li-link">
-                            <span class="cs-link-wrapper">Services</span>
+                        <a href="/resources/" class="cs-li-link {% if page.url == "/resources/" %} cs-active {% endif %}" {% if page.url == "/resources/" %} aria-current="page" {% endif %}>
+                            Resources
                         </a>
                     </li>
                     <li class="cs-li">
-                        <a href="/contact/" class="cs-li-link">
-                            <span class="cs-link-wrapper">Contact</span>
+                        <a href="/about/" class="cs-li-link {% if page.url == "/about/" %} cs-active {% endif %}" {% if page.url == "/about/" %} aria-current="page" {% endif %}>
+                            About
                         </a>
+                    </li>
+                    <!-- CTA inside the mobile menu, the desktop CTA is the .cs-nav-button below -->
+                    <li class="cs-li cs-li-cta cs-hide-on-desktop">
+                        <a href="/contact/" class="cs-button-solid">Start a Project</a>
                     </li>
                 </ul>
-                <!-- Button inside mobile menu -->
-                <a href="/contact/" class="cs-button-solid cs-nav-button" aria-label="Get a quote">
-                    GET IN TOUCH ↗
-                </a>
             </div>
         </nav>
-
-        <!-- Button for desktop only -->
-        <a href="/contact/" class="cs-button-solid cs-nav-button cs-desktop-button" aria-label="Get a quote">
-            GET IN TOUCH ↗
-        </a>
-
+        <a href="/contact/" class="cs-button-solid cs-nav-button">Start a Project</a>
     </div>
 </header>
