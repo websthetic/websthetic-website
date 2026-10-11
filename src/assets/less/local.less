@@ -125,8 +125,8 @@
         .cs-project-media {
             display: block;
             width: 100%;
-            /* matches the 3:2 laptop mockups so nothing gets cropped */
-            aspect-ratio: 3 / 2;
+            /* mobile: tall card so the image still shows above the always-visible details */
+            aspect-ratio: 4 / 5;
             border-radius: (14/16rem);
             /* placeholder background until the real image goes in */
             background: radial-gradient(ellipse 80% 70% at 50% 20%, color-mix(in srgb, var(--glow) 21%, transparent), transparent 70%), linear-gradient(160deg, var(--dark-2) 0%, var(--dark) 100%);
@@ -398,6 +398,11 @@
         .cs-project {
             /* one large card at a time with the next one peeking in */
             width: 72%;
+        }
+
+        .cs-project-media {
+            /* matches the 3:2 laptop mockups so nothing gets cropped */
+            aspect-ratio: 3 / 2;
         }
     }
 }
