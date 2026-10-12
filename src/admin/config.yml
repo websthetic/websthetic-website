@@ -1,13 +1,38 @@
-# Replace the "backend" object below with the snippet from DecapBridge. We need something here to get the CMS to work locally, but this alone won't work in production
+# Use DecapBridge PKCE auth (required)
 backend:
     name: git-gateway
+    repo: websthetic/websthetic-website
+    branch: main
+    auth_type: pkce
+    base_url: https://auth.decapbridge.com
+    auth_endpoint: /sites/1137ea3f-cff7-4d89-838c-d9d7125c33e4/pkce
+    auth_token_endpoint: /sites/1137ea3f-cff7-4d89-838c-d9d7125c33e4/token
+    gateway_url: https://gateway.decapbridge.com
+
+    # See who did what (optional)
+    commit_messages:
+        create: Create {{collection}} “{{slug}}” - {{author-name}} <{{author-login}}> via DecapBridge
+        update: Update {{collection}} “{{slug}}” - {{author-name}} <{{author-login}}> via DecapBridge
+        delete: Delete {{collection}} “{{slug}}” - {{author-name}} <{{author-login}}> via DecapBridge
+        uploadMedia: Upload “{{path}}” - {{author-name}} <{{author-login}}> via DecapBridge
+        deleteMedia: Delete “{{path}}” - {{author-name}} <{{author-login}}> via DecapBridge
+        openAuthoring: Message {{message}} - {{author-name}} <{{author-login}}> via DecapBridge
+
+# Enable PKCE fields (optional, recommended)
+auth:
+    email_claim: email
+    first_name_claim: first_name
+    last_name_claim: last_name
+    avatar_url_claim: avatar_url
 
 # Keep this to allow you to edit the cms locally
 local_backend: true
 
-# change url to a link to the image you want to use, no file paths, must be a URL
-# once deployed, point this at your live logo, e.g. https://www.yourdomain.com/assets/svgs/logo-black.svg
-logo_url: https://www.example.com/assets/svgs/logo-black.svg
+# Logo on the CMS login screen - must be a URL, not a file path
+logo_url: https://decapbridge.com/decapcms-with-bridge.svg
+
+# Adds a link to the live site in the CMS
+site_url: https://websthetic.com
 
 # Image folders
 media_folder: "src/assets/images/blog"
