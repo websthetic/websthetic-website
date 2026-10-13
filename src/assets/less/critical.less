@@ -216,9 +216,9 @@
             color: var(--on-dark);
             position: relative;
 
-            /* only used on phones */
+            /* a plain space on desktop, a line break on phones (see the mobile styles below) */
             .cs-mobile-break {
-                display: none;
+                display: inline;
             }
 
             .cs-highlight {
@@ -386,7 +386,7 @@
             line-height: 1.12em;
 
             .cs-mobile-break {
-                display: inline;
+                display: block;
             }
         }
 

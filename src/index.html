@@ -46,8 +46,8 @@ tags: "sitemap" # content/content.json will make sure that all pages in content/
     <section id="hero-143">
         <div class="cs-container">
             <h1 class="cs-title">
-                <!-- the first break only shows on phones, so the bigger mobile headline splits evenly over three lines -->
-                We Build <br class="cs-mobile-break"> Websites That<br>
+                <!-- the space after "We Build" turns into a line break on phones, so the bigger mobile headline splits evenly over three lines. A span, not a <br>, so the minifier keeps the space on desktop -->
+                We Build<span class="cs-mobile-break"> </span>Websites That<br>
                 <!-- Rotating phrase - edit the list in data-words, hero-rotator.js cycles through it. The first one is the default for search engines and no-JS -->
                 <span class="cs-highlight cs-rotator" data-words='["Mean Something.", "Earn Attention.", "Inspire Trust.", "Do The Work."]'>Mean Something.</span>
             </h1>
