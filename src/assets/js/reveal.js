@@ -140,6 +140,8 @@
 		if (!pending.length) {
 			window.removeEventListener("scroll", onScroll);
 			window.removeEventListener("resize", onScroll);
+			window.removeEventListener("load", onScroll);
+			layout.disconnect();
 		}
 	};
 
@@ -149,7 +151,14 @@
 		requestAnimationFrame(check);
 	};
 
+	// the page can also move without a scroll - on phones local.css, fonts and images often finish loading after
+	// the first check and pull the first sections up into view, which used to leave them blank until a scroll
+	const layout = new ResizeObserver(onScroll);
+	layout.observe(document.body);
+
 	window.addEventListener("scroll", onScroll, { passive: true });
 	window.addEventListener("resize", onScroll);
-	check();
+	window.addEventListener("load", onScroll);
+	// wait a frame so the hidden state is painted first - otherwise items already on screen skip the fade
+	requestAnimationFrame(onScroll);
 })();

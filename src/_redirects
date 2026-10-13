@@ -1,1 +1,3 @@
-
+# old Businesses page address
+/businesses     /small-business-websites/   301
+/businesses/*   /small-business-websites/   301

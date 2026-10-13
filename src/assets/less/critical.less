@@ -205,7 +205,7 @@
         }
 
         .cs-title {
-            /* 32px - 76px - small enough on phones to keep "Our Development Team." on one line */
+            /* 32px - 76px, bigger on phones - see the mobile styles below */
             font-size: clamp(2rem, 7.5vw, 4.75rem);
             font-weight: 600;
             line-height: 1.2em;
@@ -215,6 +215,11 @@
             margin: 0 auto clamp(1rem, 4vw, 1.5rem);
             color: var(--on-dark);
             position: relative;
+
+            /* only used on phones */
+            .cs-mobile-break {
+                display: none;
+            }
 
             .cs-highlight {
                 /* light-to-bright blue gradient text, light enough to stay readable on the navy */
@@ -368,6 +373,42 @@
                 background-color: color-mix(in srgb, var(--dark-2) 85%, transparent);
                 color: var(--on-dark);
             }
+        }
+    }
+}
+
+/* Mobile - under 768px: no frosted glass over the moving globe (the blur is redrawn every frame, which makes phones stutter), a more solid background keeps the text readable instead */
+@media only screen and (max-width: 47.9375rem) {
+    #hero-143 {
+        .cs-title {
+            /* 40px - 52px - split over three lines ("We Build / Websites That / Do The Work.") so it can be this big */
+            font-size: clamp(2.5rem, 11.5vw, 3.25rem);
+            line-height: 1.12em;
+
+            .cs-mobile-break {
+                display: inline;
+            }
+        }
+
+        .cs-container {
+            /* hero-scroll.js doesn't blur on phones */
+            will-change: opacity, transform;
+        }
+
+        .cs-project-form {
+            background-color: color-mix(in srgb, var(--dark) 88%, transparent);
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+
+            &:focus-within {
+                background-color: color-mix(in srgb, var(--dark) 94%, transparent);
+            }
+        }
+
+        .cs-idea {
+            background-color: color-mix(in srgb, var(--dark) 80%, transparent);
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
         }
     }
 }

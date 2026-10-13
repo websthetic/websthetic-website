@@ -68,6 +68,9 @@
 	];
 
 	const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+	// phones get a lighter globe - see resize() and tick()
+	const mobile = window.matchMedia("(max-width: 47.9375rem)");
+	const MOBILE_FRAME_MS = 1000 / 30; // 30fps is plenty for a 2 minute rotation
 
 	// Utilities
 	const toVector = (lat, lon) => {
@@ -112,7 +115,8 @@
 
 	const resize = () => {
 		const rect = canvas.getBoundingClientRect();
-		dpr = Math.min(window.devicePixelRatio || 1, 2);
+		// the canvas is much wider than a phone screen, so draw it at 1x there to cut the pixels per frame by 4
+		dpr = mobile.matches ? 1 : Math.min(window.devicePixelRatio || 1, 2);
 		size = rect.width;
 		canvas.width = Math.round(size * dpr);
 		canvas.height = Math.round(size * dpr);
@@ -306,10 +310,16 @@
 	let running = false;
 	let startTime = 0;
 	let frame = 0;
+	let lastDraw = 0;
 
 	const tick = (now) => {
 		if (!running) return;
 		if (!startTime) startTime = now;
+		if (mobile.matches && now - lastDraw < MOBILE_FRAME_MS - 1) {
+			frame = requestAnimationFrame(tick);
+			return;
+		}
+		lastDraw = now;
 		setRotation(startRotation - ((now - startTime) / 1000 / CONFIG.SECONDS_PER_TURN) * Math.PI * 2);
 
 		if (now >= nextSpawn && arcs.length < CONFIG.MAX_ARCS) {

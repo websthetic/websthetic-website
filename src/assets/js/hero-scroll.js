@@ -26,6 +26,7 @@
 		LIFT: 40, // px the content drifts up
 	};
 
+	const mobile = window.matchMedia("(max-width: 47.9375rem)");
 	let ticking = false;
 
 	const update = () => {
@@ -48,7 +49,8 @@
 			content.style.transform = "";
 			return;
 		}
-		content.style.filter = `blur(${(progress * CONFIG.MAX_BLUR).toFixed(2)}px)`;
+		// skip the blur on phones - blurring the whole hero while scrolling is what makes it stutter there, the fade and drift still run
+		content.style.filter = mobile.matches ? "" : `blur(${(progress * CONFIG.MAX_BLUR).toFixed(2)}px)`;
 		content.style.opacity = (1 - progress * (1 - CONFIG.MIN_OPACITY)).toFixed(3);
 		content.style.transform = `translateY(${(-progress * CONFIG.LIFT).toFixed(1)}px)`;
 	};

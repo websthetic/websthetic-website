@@ -20,7 +20,6 @@ tags: "sitemap" # content/content.json will make sure that all pages in content/
     <script defer src="/assets/js/work-carousel.js"></script>
     <script defer src="/assets/js/one-team-preview.js"></script>
     <script defer src="/assets/js/timeline.js"></script>
-    <script defer src="/assets/js/section-blur.js"></script>
 
     <!-- If we're in production, defer the rest of the home page styles. In development, always load it. Otherwise the site will break when hot-reload is used. -->
     {% if client.isProduction %}
@@ -47,7 +46,8 @@ tags: "sitemap" # content/content.json will make sure that all pages in content/
     <section id="hero-143">
         <div class="cs-container">
             <h1 class="cs-title">
-                We Build Websites That<br>
+                <!-- the first break only shows on phones, so the bigger mobile headline splits evenly over three lines -->
+                We Build <br class="cs-mobile-break"> Websites That<br>
                 <!-- Rotating phrase - edit the list in data-words, hero-rotator.js cycles through it. The first one is the default for search engines and no-JS -->
                 <span class="cs-highlight cs-rotator" data-words='["Mean Something.", "Earn Attention.", "Inspire Trust.", "Do The Work."]'>Mean Something.</span>
             </h1>
@@ -252,7 +252,7 @@ tags: "sitemap" # content/content.json will make sure that all pages in content/
                         <p class="cs-item-text">
                             We help businesses plan, design, build, and launch websites from start to finish.
                         </p>
-                        <a href="/businesses/" class="cs-item-link">
+                        <a href="/small-business-websites/" class="cs-item-link">
                             Explore Websites for Businesses
                             <svg class="cs-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                         </a>
