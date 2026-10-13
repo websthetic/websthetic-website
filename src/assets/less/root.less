@@ -139,13 +139,30 @@
 
 /* Components + Utilities */
 @media only screen and (min-width: 0px) {
-	// Hidden screen reader skip nav button
+	// Skip link - sits just above the screen until a keyboard user tabs to it, then slides into view as a pill above the navigation
 	.skip {
-		z-index: -1111111;
-		position: absolute;
-		top: 0;
-		left: 0;
-		opacity: 0;
+		padding: (12/16rem) (20/16rem);
+		background-color: var(--dark);
+		border-radius: (999/16rem);
+		font-size: (16/16rem);
+		font-weight: 600;
+		line-height: 1.2em;
+		text-decoration: none;
+		color: var(--on-dark);
+		position: fixed;
+		top: (16/16rem);
+		left: (16/16rem);
+		/* one above the fixed navigation (10000 in global.less) */
+		z-index: 10001;
+		/* moved off screen rather than faded out, so it keeps full contrast (accessibility checkers measure hidden text too) */
+		transform: translateY(-200%);
+		transition: transform 0.2s;
+
+		&:focus {
+			transform: translateY(0);
+			outline: 3px solid var(--accent-4);
+			outline-offset: 2px;
+		}
 	}
 
 	// Buttons - can be replaced with any custom button component. Make sure to clear the default button styles from any new components you place.

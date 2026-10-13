@@ -128,6 +128,11 @@
             mask-composite: intersect;
         }
 
+        /* screen reader only labels ("Or start with an idea:") - hidden, but accessibility checkers still measure their contrast, so match the light text of the dark hero */
+        .cs-visually-hidden {
+            color: var(--on-dark);
+        }
+
         /* fade up on page load, one after another */
         .cs-title,
         .cs-text,

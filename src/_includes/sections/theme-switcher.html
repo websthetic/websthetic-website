@@ -3,7 +3,8 @@
 <!-- ============================================ -->
 
 <!-- Floating pill that re-colours the site's accents with a random combination from Sanzo Wada's "A Dictionary of Color Combinations" - see theme-switcher.js. Hidden until the script runs, since it does nothing without it -->
-<div class="cs-theme-switcher" id="cs-theme-switcher" role="group" aria-label="Site colours" hidden>
+<!-- an <aside> so it is its own "Site colours" landmark - it sits outside the header, main and footer -->
+<aside class="cs-theme-switcher" id="cs-theme-switcher" aria-label="Site colours" hidden>
     <button class="cs-ts-shuffle" type="button" data-theme-action="shuffle">
         <span class="cs-ts-swatches" aria-hidden="true"></span>
         Change Colour
@@ -14,4 +15,4 @@
     </button>
     <!-- read out by screen readers when the colours change -->
     <p class="cs-visually-hidden" aria-live="polite"></p>
-</div>
+</aside>
